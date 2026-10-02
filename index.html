@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>JDJ San Juan 2026</title>
+
+    <link
+        rel="stylesheet"
+        href="css/estilos.css"
+    >
+</head>
+
+<body>
+
+    <!-- ===================================== -->
+    <!-- PANTALLA DE INICIO -->
+    <!-- ===================================== -->
+
+    <main
+        id="pantalla-inicio"
+        class="contenedor-principal"
+    >
+
+        <div class="logo">
+            <img
+                src="img/logo-jdj.png"
+                alt="Logo JDJ San Juan 2026"
+            >
+        </div>
+
+        <div class="bienvenida">
+
+            <h1>BIENVENIDO</h1>
+
+            <p>
+                GESTIÓN DE PARQUEO
+            </p>
+
+        </div>
+
+        <div class="botones">
+
+            <button
+                id="btn-registrar"
+                class="btn-principal"
+            >
+                REGISTRAR VEHÍCULO
+            </button>
+
+            <button
+                class="btn-secundario"
+            >
+                ¿NECESITAS AYUDA?
+            </button>
+
+            <button
+                id="btn-encargado"
+                class="btn-acceso-encargado"
+            >
+                ACCESO ENCARGADO
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <!-- ===================================== -->
+    <!-- PANTALLA DE REGISTRO -->
+    <!-- ===================================== -->
+
+    <section
+        id="pantalla-registro"
+        class="pantalla"
+    >
+
+        <div class="encabezado-registro">
+
+            <h1>
+                REGISTRO DE<br>
+                VEHÍCULO
+            </h1>
+
+            <p>
+                Por favor completa los datos:
+            </p>
+
+        </div>
+
+        <form id="form-registro">
+
+            <div class="campo">
+
+                <label for="nombre-piloto">
+                    Nombre del Piloto/Encargado
+                </label>
+
+                <input
+                    type="text"
+                    id="nombre-piloto"
+                    placeholder="Ej: Candy Cholotío"
+                    required
+                >
+
+            </div>
+
+            <div class="campo">
+
+                <label for="tipo-vehiculo">
+                    Tipo de Vehículo
+                </label>
+
+                <select
+                    id="tipo-vehiculo"
+                    required
+                >
+
+                    <option value="">
+                        Selecciona una opción
+                    </option>
+
+                    <option value="motocicleta">
+                        Motocicleta
+                    </option>
+
+                    <option value="liviano">
+                        Vehículo Liviano
+                    </option>
+
+                    <option value="microbus">
+                        Microbús
+                    </option>
+
+                    <option value="bus">
+                        Bus
+                    </option>
+
+                </select>
+
+            </div>
+
+            <button
+                type="submit"
+                class="btn-principal"
+            >
+                CONTINUAR
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <!-- ===================================== -->
+    <!-- PANTALLA DE ASIGNACIÓN -->
+    <!-- ===================================== -->
+
+    <section
+        id="pantalla-asignacion"
+        class="pantalla"
+    >
+
+        <div class="asignacion-contenido">
+
+            <div class="check-asignacion">
+                ✓
+            </div>
+
+            <h1>
+                PARQUEO ASIGNADO
+            </h1>
+
+            <p class="mensaje-asignacion">
+                Hemos encontrado el mejor<br>
+                parqueo disponible para ti
+            </p>
+
+            <div class="tarjeta-asignacion">
+
+                <h2>
+                    Código de Ingreso
+                </h2>
+
+                <p id="codigo-ingreso">
+                    JDJ-XXXXXX
+                </p>
+
+                <div id="qr-codigo"></div>
+
+                <div class="datos-parqueo">
+
+                    <span id="tipo-asignado">
+                        BUS
+                    </span>
+
+                    <h3 id="codigo-parqueo">
+                        B01
+                    </h3>
+
+                    <p id="nombre-parqueo">
+                        Parqueo Municipal
+                    </p>
+
+                </div>
+
+                <p class="instruccion-qr">
+                    Presenta este código en el parqueo
+                    para confirmar tu ingreso
+                </p>
+
+            </div>
+
+            <div class="tiempo-asignacion">
+                Válido por 30 minutos
+            </div>
+
+            <p class="instruccion-ruta">
+                Dirígete al parqueo asignado con la ubicación exacta
+            </p>
+
+            <div class="botones-ruta">
+
+                <button id="btn-maps">
+                    Abrir en Google Maps
+                </button>
+
+                <button id="btn-waze">
+                    Abrir en Waze
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================== -->
+    <!-- PANTALLA DEL ENCARGADO -->
+    <!-- ===================================== -->
+
+    <section
+        id="pantalla-encargado"
+        class="pantalla"
+    >
+
+        <div class="encargado-contenido">
+
+            <h1>
+                CONTROL DE INGRESO
+            </h1>
+
+            <p class="subtitulo-encargado">
+                Escanea el código presentado por el piloto
+            </p>
+
+
+            <div class="tarjeta-busqueda">
+
+                <!-- BOTÓN PARA ACTIVAR CÁMARA -->
+
+                <button
+                    id="btn-escanear-qr"
+                    class="btn-escanear"
+                >
+                    📷 ESCANEAR CÓDIGO QR
+                </button>
+
+
+                <!-- AQUÍ APARECERÁ LA CÁMARA -->
+
+                <div
+                    id="lector-qr"
+                    class="lector-qr"
+                ></div>
+
+
+                <p
+                    id="mensaje-escaner"
+                    class="mensaje-escaner"
+                ></p>
+
+
+                <!-- TAMBIÉN PODREMOS ESCRIBIR EL CÓDIGO -->
+
+                <label for="codigo-busqueda">
+                    Código de Ingreso
+                </label>
+
+                <input
+                    type="text"
+                    id="codigo-busqueda"
+                    placeholder="Ej: JDJ-Z68Y0L"
+                    autocomplete="off"
+                >
+
+                <button
+                    id="btn-buscar-codigo"
+                    class="btn-principal"
+                >
+                    BUSCAR VEHÍCULO
+                </button>
+
+            </div>
+
+
+            <!-- RESULTADO -->
+
+            <div
+                id="resultado-busqueda"
+                class="resultado-busqueda"
+            >
+
+                <div class="check-encontrado">
+                    ✓
+                </div>
+
+                <h2>
+                    VEHÍCULO ENCONTRADO
+                </h2>
+
+                <div class="datos-vehiculo">
+
+                    <p>
+                        <strong>Piloto:</strong>
+                        <span id="encargado-nombre">-</span>
+                    </p>
+
+                    <p>
+                        <strong>Tipo:</strong>
+                        <span id="encargado-tipo">-</span>
+                    </p>
+
+                    <p>
+                        <strong>Parqueo:</strong>
+                        <span id="encargado-codigo-parqueo">-</span>
+                    </p>
+
+                    <p>
+                        <strong>Nombre del parqueo:</strong>
+                        <span id="encargado-nombre-parqueo">-</span>
+                    </p>
+
+                    <p>
+                        <strong>Estado:</strong>
+                        <span id="encargado-estado">-</span>
+                    </p>
+
+                </div>
+
+                <button
+                    id="btn-confirmar-ingreso"
+                    class="btn-confirmar"
+                >
+                    CONFIRMAR INGRESO
+                </button>
+
+            </div>
+
+
+            <button
+                id="btn-volver-inicio"
+                class="btn-volver"
+            >
+                VOLVER AL INICIO
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================== -->
+    <!-- LIBRERÍA PARA GENERAR QR -->
+    <!-- ===================================== -->
+
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
+    </script>
+
+
+    <!-- ===================================== -->
+    <!-- LIBRERÍA PARA ESCANEAR QR -->
+    <!-- ===================================== -->
+
+    <script
+        src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js">
+    </script>
+
+
+    <!-- ===================================== -->
+    <!-- NUESTRO JAVASCRIPT -->
+    <!-- ===================================== -->
+
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>
