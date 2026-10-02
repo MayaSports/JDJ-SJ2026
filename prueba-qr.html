@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Prueba QR JDJ</title>
+</head>
+
+<body>
+
+    <h1>QR DE PRUEBA</h1>
+
+    <p>
+        Código: <strong>JDJ-LO1N59</strong>
+    </p>
+
+    <div id="codigo-qr"></div>
+
+
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
+    </script>
+
+
+    <script>
+
+        new QRCode(
+            document.getElementById("codigo-qr"),
+            {
+                text: "JDJ-LO1N59",
+                width: 300,
+                height: 300
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
