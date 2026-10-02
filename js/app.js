@@ -66,6 +66,24 @@ const btnBuscarCodigo =
 const resultadoBusqueda =
     document.getElementById("resultado-busqueda");
 
+const encargadoNombre =
+    document.getElementById("encargado-nombre");
+
+const encargadoTipo =
+    document.getElementById("encargado-tipo");
+
+const encargadoCodigoParqueo =
+    document.getElementById("encargado-codigo-parqueo");
+
+const encargadoNombreParqueo =
+    document.getElementById("encargado-nombre-parqueo");
+
+const encargadoEstado =
+    document.getElementById("encargado-estado");
+
+const btnConfirmarIngreso =
+    document.getElementById("btn-confirmar-ingreso");
+
 
 // ========================================
 // 3. VARIABLES DEL ESCÁNER
@@ -77,48 +95,6 @@ let escanerActivo = false;
 
 const URL_API =
     "https://script.google.com/macros/s/AKfycbzCXQd3o8y943wLaOzEEJZCxcGnHzU2mRmaVlKmmklMTVLN9UOvUkNWgEEe3ZTwBc0kvg/exec";
-
-
-async function probarAPI() {
-
-    try {
-
-        const respuesta =
-            await fetch(
-                URL_API +
-                "?accion=buscar&codigo=JDJ-LO1N59"
-            );
-
-        const datos =
-            await respuesta.json();
-
-        console.log(
-            "PRUEBA API:",
-            datos
-        );
-
-        alert(
-            "API conectada: " +
-            datos.nombre
-        );
-
-    } catch (error) {
-
-        console.error(
-            "ERROR API:",
-            error
-        );
-
-        alert(
-            "Error conectando API: " +
-            error
-        );
-    }
-}
-
-
-probarAPI();
-
 
 // ========================================
 // 4. IR A REGISTRO
@@ -283,15 +259,12 @@ btnEscanearQR.addEventListener(
 // 8. QR DETECTADO
 // ========================================
 
-function codigoDetectado(
-    textoQR
-) {
+function codigoDetectado(textoQR) {
 
     const codigo =
         String(textoQR)
             .trim()
             .toUpperCase();
-
 
     console.log(
         "QR detectado:",
@@ -299,7 +272,7 @@ function codigoDetectado(
     );
 
 
-    // Validar que sea un QR del sistema
+    // Validar que sea código JDJ
     if (
         codigo.startsWith("JDJ-") === false
     ) {
@@ -311,29 +284,110 @@ function codigoDetectado(
     }
 
 
-    // Colocar código automáticamente
+    // Colocar código en el campo
     codigoBusqueda.value =
         codigo;
 
 
     mensajeEscaner.textContent =
-        "Código detectado: " +
-        codigo;
+        "Código detectado correctamente ✓";
 
 
-    // Detener cámara
+    // Cerrar cámara
     detenerEscaner();
 
 
-    // POR AHORA NO BUSCAMOS EN SHEETS
-    // Solo comprobamos que el QR se lea
+    // Buscar automáticamente
+    setTimeout(
+        function () {
 
-    alert(
-        "QR detectado correctamente: " +
-        codigo
+            buscarVehiculo(codigo);
+
+        },
+        500
     );
 }
 
+async function buscarVehiculo(codigo) {
+
+    resultadoBusqueda.style.display =
+        "none";
+
+
+    try {
+
+        mensajeEscaner.textContent =
+            "Buscando vehículo...";
+
+
+        const respuesta =
+            await fetch(
+                URL_API +
+                "?accion=buscar&codigo=" +
+                encodeURIComponent(codigo)
+            );
+
+
+        const datos =
+            await respuesta.json();
+
+
+        console.log(
+            "Vehículo encontrado:",
+            datos
+        );
+
+
+        // No encontrado
+        if (
+            datos.encontrado !== true
+        ) {
+
+            mensajeEscaner.textContent =
+                datos.mensaje ||
+                "No se encontró el vehículo.";
+
+            return;
+        }
+
+
+        // Mostrar información
+        encargadoNombre.textContent =
+            datos.nombre;
+
+        encargadoTipo.textContent =
+            datos.tipoVehiculo.toUpperCase();
+
+        encargadoCodigoParqueo.textContent =
+            datos.codigoParqueo;
+
+        encargadoNombreParqueo.textContent =
+            datos.nombreParqueo;
+
+        encargadoEstado.textContent =
+            datos.estado;
+
+
+        // Mostrar tarjeta
+        resultadoBusqueda.style.display =
+            "block";
+
+
+        mensajeEscaner.textContent =
+            "Vehículo encontrado ✓";
+
+
+    } catch (error) {
+
+        console.error(
+            "Error buscando vehículo:",
+            error
+        );
+
+        mensajeEscaner.textContent =
+            "No fue posible consultar el vehículo.";
+    }
+}
 
 // ========================================
 // 9. DETENER CÁMARA
@@ -428,9 +482,6 @@ btnBuscarCodigo.addEventListener(
         }
 
 
-        alert(
-            "Código ingresado: " +
-            codigo
-        );
+        buscarVehiculo(codigo);
     }
 );
