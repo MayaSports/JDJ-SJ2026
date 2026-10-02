@@ -328,8 +328,18 @@ function codigoDetectado(textoQR) {
 
 async function buscarVehiculo(codigo) {
 
+    // Limpiar cualquier vehículo anterior
+    codigoSeleccionado = "";
+
     resultadoBusqueda.style.display =
         "none";
+
+    // Mientras buscamos, no se puede confirmar
+    btnConfirmarIngreso.disabled =
+        true;
+
+    btnConfirmarIngreso.textContent =
+        "CONFIRMAR INGRESO";
 
 
     try {
@@ -368,12 +378,41 @@ async function buscarVehiculo(codigo) {
             return;
         }
 
-codigoSeleccionado =
-    datos.codigo;
+// ========================================
+// REVISAR ESTADO DEL VEHÍCULO
+// ========================================
 
-        // Mostrar información
-        encargadoNombre.textContent =
-            datos.nombre;
+if (datos.estado === "ASIGNADO") {
+
+    codigoSeleccionado =
+        datos.codigo;
+
+    btnConfirmarIngreso.disabled =
+        false;
+
+    btnConfirmarIngreso.textContent =
+        "CONFIRMAR INGRESO";
+
+} else if (datos.estado === "INGRESADO") {
+
+    codigoSeleccionado = "";
+
+    btnConfirmarIngreso.disabled =
+        true;
+
+    btnConfirmarIngreso.textContent =
+        "VEHÍCULO YA INGRESADO";
+
+} else {
+
+    codigoSeleccionado = "";
+
+    btnConfirmarIngreso.disabled =
+        true;
+
+    btnConfirmarIngreso.textContent =
+        "NO DISPONIBLE";
+}
 
         encargadoTipo.textContent =
             datos.tipoVehiculo.toUpperCase();
@@ -673,6 +712,8 @@ btnConfirmarIngreso.addEventListener(
 
                 btnConfirmarIngreso.textContent =
                     "CONFIRMAR INGRESO";
+
+                codigoSeleccionado = "";    
 
                 return;
             }
