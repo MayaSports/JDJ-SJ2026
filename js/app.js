@@ -43,6 +43,22 @@ const nombrePiloto =
 const tipoVehiculo =
     document.getElementById("tipo-vehiculo");
 
+// Elementos de la asignación
+const codigoIngreso =
+    document.getElementById("codigo-ingreso");
+
+const qrCodigo =
+    document.getElementById("qr-codigo");
+
+const tipoAsignado =
+    document.getElementById("tipo-asignado");
+
+const codigoParqueo =
+    document.getElementById("codigo-parqueo");
+
+const nombreParqueo =
+    document.getElementById("nombre-parqueo");
+
 
 // ========================================
 // 2. ELEMENTOS DEL ENCARGADO
@@ -506,29 +522,53 @@ formRegistro.addEventListener(
                 return;
             }
 
-            // Registro correcto
-            console.log(
-                "Vehículo registrado correctamente."
-            );
+           // ========================================
+// MOSTRAR ASIGNACIÓN
+// ========================================
 
-            console.log(
-                "Código:",
-                datos.codigo
-            );
+// Colocar datos
+codigoIngreso.textContent =
+    datos.codigo;
 
-            console.log(
-                "Parqueo:",
-                datos.nombreParqueo
-            );
+tipoAsignado.textContent =
+    datos.tipoVehiculo.toUpperCase();
 
-            alert(
-                "Registro realizado correctamente.\n\n" +
-                "Código: " +
-                datos.codigo +
-                "\n" +
-                "Parqueo: " +
-                datos.nombreParqueo
-            );
+codigoParqueo.textContent =
+    datos.codigoParqueo;
+
+nombreParqueo.textContent =
+    datos.nombreParqueo;
+
+
+// Limpiar QR anterior
+qrCodigo.innerHTML = "";
+
+
+// Generar QR real
+new QRCode(
+    qrCodigo,
+    {
+        text: datos.codigo,
+        width: 220,
+        height: 220
+    }
+);
+
+
+// Limpiar formulario
+formRegistro.reset();
+
+
+// Ocultar registro
+pantallaRegistro.style.display =
+    "none";
+
+
+// Mostrar asignación
+pantallaAsignacion.style.display =
+    "block";
+
+           
 
         } catch (error) {
 
