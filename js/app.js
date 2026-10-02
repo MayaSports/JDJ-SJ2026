@@ -93,6 +93,8 @@ let escanerQR = null;
 
 let escanerActivo = false;
 
+let codigoSeleccionado = "";
+
 const URL_API =
     "https://script.google.com/macros/s/AKfycbzCXQd3o8y943wLaOzEEJZCxcGnHzU2mRmaVlKmmklMTVLN9UOvUkNWgEEe3ZTwBc0kvg/exec";
 
@@ -350,6 +352,8 @@ async function buscarVehiculo(codigo) {
             return;
         }
 
+codigoSeleccionado =
+    datos.codigo;
 
         // Mostrar información
         encargadoNombre.textContent =
@@ -483,5 +487,107 @@ btnBuscarCodigo.addEventListener(
 
 
         buscarVehiculo(codigo);
+    }
+);
+
+// ========================================
+// 12. CONFIRMAR INGRESO
+// ========================================
+
+btnConfirmarIngreso.addEventListener(
+    "click",
+    async function () {
+
+        if (codigoSeleccionado === "") {
+
+            alert(
+                "Primero debes buscar un vehículo."
+            );
+
+            return;
+        }
+
+
+        try {
+
+            btnConfirmarIngreso.disabled =
+                true;
+
+            btnConfirmarIngreso.textContent =
+                "CONFIRMANDO...";
+
+
+            const respuesta =
+                await fetch(
+                    URL_API +
+                    "?accion=confirmar&codigo=" +
+                    encodeURIComponent(
+                        codigoSeleccionado
+                    )
+                );
+
+
+            const datos =
+                await respuesta.json();
+
+
+            console.log(
+                "Confirmar ingreso:",
+                datos
+            );
+
+
+            if (datos.exito !== true) {
+
+                alert(
+                    datos.mensaje ||
+                    "No se pudo confirmar el ingreso."
+                );
+
+                btnConfirmarIngreso.disabled =
+                    false;
+
+                btnConfirmarIngreso.textContent =
+                    "CONFIRMAR INGRESO";
+
+                return;
+            }
+
+
+            // Actualizar estado en pantalla
+            encargadoEstado.textContent =
+                datos.estado;
+
+
+            mensajeEscaner.textContent =
+                "✓ Ingreso confirmado correctamente";
+
+
+            btnConfirmarIngreso.textContent =
+                "INGRESO CONFIRMADO";
+
+
+            alert(
+                "Ingreso confirmado correctamente."
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "Error al confirmar ingreso:",
+                error
+            );
+
+            alert(
+                "No fue posible confirmar el ingreso."
+            );
+
+            btnConfirmarIngreso.disabled =
+                false;
+
+            btnConfirmarIngreso.textContent =
+                "CONFIRMAR INGRESO";
+        }
     }
 );
