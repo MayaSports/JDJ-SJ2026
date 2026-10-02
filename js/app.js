@@ -75,6 +75,50 @@ let escanerQR = null;
 
 let escanerActivo = false;
 
+const URL_API =
+    "https://script.google.com/macros/s/AKfycbzCXQd3o8y943wLaOzEEJZCxcGnHzU2mRmaVlKmmklMTVLN9UOvUkNWgEEe3ZTwBc0kvg/exec";
+
+
+async function probarAPI() {
+
+    try {
+
+        const respuesta =
+            await fetch(
+                URL_API +
+                "?accion=buscar&codigo=JDJ-LO1N59"
+            );
+
+        const datos =
+            await respuesta.json();
+
+        console.log(
+            "PRUEBA API:",
+            datos
+        );
+
+        alert(
+            "API conectada: " +
+            datos.nombre
+        );
+
+    } catch (error) {
+
+        console.error(
+            "ERROR API:",
+            error
+        );
+
+        alert(
+            "Error conectando API: " +
+            error
+        );
+    }
+}
+
+
+probarAPI();
+
 
 // ========================================
 // 4. IR A REGISTRO
