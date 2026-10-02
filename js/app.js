@@ -444,21 +444,105 @@ function detenerEscaner() {
 // 10. FORMULARIO
 // ========================================
 
-// Temporalmente no conectamos con Google.
-// Solo evitamos que la página se recargue.
-
 formRegistro.addEventListener(
     "submit",
-    function (event) {
+    async function (event) {
 
         event.preventDefault();
 
-        alert(
-            "El registro se conectará nuevamente después de probar la cámara."
-        );
+        const nombre =
+            nombrePiloto.value.trim();
+
+        const tipo =
+            tipoVehiculo.value.trim();
+
+        // Validar nombre
+        if (nombre === "") {
+
+            alert(
+                "Ingresa el nombre del piloto."
+            );
+
+            return;
+        }
+
+        // Validar vehículo
+        if (tipo === "") {
+
+            alert(
+                "Selecciona un tipo de vehículo."
+            );
+
+            return;
+        }
+
+        try {
+
+            const respuesta =
+                await fetch(
+                    URL_API +
+                    "?accion=registrar" +
+                    "&nombre=" +
+                    encodeURIComponent(nombre) +
+                    "&tipo=" +
+                    encodeURIComponent(tipo)
+                );
+
+            const datos =
+                await respuesta.json();
+
+            console.log(
+                "Registro:",
+                datos
+            );
+
+            if (datos.exito !== true) {
+
+                alert(
+                    datos.mensaje ||
+                    "No se pudo realizar el registro."
+                );
+
+                return;
+            }
+
+            // Registro correcto
+            console.log(
+                "Vehículo registrado correctamente."
+            );
+
+            console.log(
+                "Código:",
+                datos.codigo
+            );
+
+            console.log(
+                "Parqueo:",
+                datos.nombreParqueo
+            );
+
+            alert(
+                "Registro realizado correctamente.\n\n" +
+                "Código: " +
+                datos.codigo +
+                "\n" +
+                "Parqueo: " +
+                datos.nombreParqueo
+            );
+
+        } catch (error) {
+
+            console.error(
+                "Error registrando vehículo:",
+                error
+            );
+
+            alert(
+                "No fue posible realizar el registro."
+            );
+        }
     }
 );
-
 
 // ========================================
 // 11. BÚSQUEDA MANUAL
