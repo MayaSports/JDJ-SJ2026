@@ -721,56 +721,98 @@
     <!-- NAVEGACIÓN INFERIOR -->
     <nav class="dashboard-nav">
 
-        <button
-            id="btn-volver-encargado"
-            type="button"
-            class="dashboard-nav-item"
-        >
+    <!-- CONTROL -->
+    <button
+        id="btn-volver-encargado"
+        type="button"
+        class="dashboard-nav-item"
+    >
 
-            <span class="dashboard-nav-icon">
-                ⌁
-            </span>
+        <span class="dashboard-nav-icon">
 
-            <span>
-                Control
-            </span>
+            <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+            >
+                <path
+                    d="M4 7h16M4 12h10M4 17h7"
+                />
+            </svg>
 
-        </button>
+        </span>
 
+        <span class="dashboard-nav-texto">
+            Control
+        </span>
 
-        <button
-            type="button"
-            class="dashboard-nav-item dashboard-nav-activo"
-        >
-
-            <span class="dashboard-nav-icon">
-                ▦
-            </span>
-
-            <span>
-                Parqueos
-            </span>
-
-        </button>
+    </button>
 
 
-        <button
-            id="btn-actualizar-dashboard"
-            type="button"
-            class="dashboard-nav-item"
-        >
+    <!-- PARQUEOS / ACTIVO -->
+    <button
+        type="button"
+        class="dashboard-nav-item dashboard-nav-activo"
+    >
 
-            <span class="dashboard-nav-icon">
-                ↻
-            </span>
+        <span class="dashboard-nav-icon">
 
-            <span>
-                Actualizar
-            </span>
+            <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+            >
+                <rect
+                    x="4"
+                    y="4"
+                    width="16"
+                    height="16"
+                    rx="3"
+                />
 
-        </button>
+                <path
+                    d="M9 17V7h4a3 3 0 0 1 0 6H9"
+                />
+            </svg>
 
-    </nav>
+        </span>
+
+        <span class="dashboard-nav-texto">
+            Parqueos
+        </span>
+
+    </button>
+
+
+    <!-- ACTUALIZAR -->
+    <button
+        id="btn-actualizar-dashboard"
+        type="button"
+        class="dashboard-nav-item"
+    >
+
+        <span class="dashboard-nav-icon">
+
+            <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+            >
+                <path
+                    d="M20 6v5h-5"
+                />
+
+                <path
+                    d="M18.5 15a7 7 0 1 1-.7-7.7L20 11"
+                />
+            </svg>
+
+        </span>
+
+        <span class="dashboard-nav-texto">
+            Actualizar
+        </span>
+
+    </button>
+
+</nav>
 
 </section>
 

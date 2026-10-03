@@ -4969,3 +4969,243 @@ strong {
     }
 
 }
+
+/* =========================================================
+   DASHBOARD V3.1
+   NAVEGACIÓN INFERIOR PREMIUM
+========================================================= */
+
+.dashboard-nav {
+    position: fixed;
+
+    z-index: 100;
+
+    left: 50%;
+    bottom: 12px;
+
+    width: calc(100% - 28px);
+    max-width: 450px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 5px;
+
+    padding: 7px;
+
+    transform:
+        translateX(-50%);
+
+    background:
+        rgba(255, 255, 255, 0.96);
+
+    border:
+        1px solid
+        rgba(23, 63, 150, 0.08);
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 10px 30px
+        rgba(23, 63, 150, 0.13);
+
+    backdrop-filter:
+        blur(12px);
+
+    -webkit-backdrop-filter:
+        blur(12px);
+}
+
+
+/* =========================================================
+   BOTONES
+========================================================= */
+
+.dashboard-nav-item {
+    position: relative;
+
+    min-height: 57px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 4px;
+
+    padding:
+        6px
+        4px;
+
+    color: #8a97aa;
+
+    background: transparent;
+
+    border: none;
+    border-radius: 16px;
+
+    cursor: pointer;
+
+    transition:
+        transform 150ms ease,
+        color 150ms ease,
+        background 150ms ease;
+}
+
+
+.dashboard-nav-item:active {
+    transform:
+        scale(0.94);
+}
+
+
+/* =========================================================
+   ICONOS
+========================================================= */
+
+.dashboard-nav-icon {
+    width: 24px;
+    height: 24px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 0;
+}
+
+
+.dashboard-nav-icon svg {
+    width: 21px;
+    height: 21px;
+
+    fill: none;
+
+    stroke: currentColor;
+
+    stroke-width: 1.8;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+/* =========================================================
+   TEXTO
+========================================================= */
+
+.dashboard-nav-texto {
+    font-size: 9px;
+    font-weight: 650;
+
+    line-height: 1;
+}
+
+
+/* =========================================================
+   PARQUEOS ACTIVO
+========================================================= */
+
+.dashboard-nav-activo {
+    color: #173f96;
+
+    background:
+        #edf3ff;
+}
+
+
+.dashboard-nav-activo
+.dashboard-nav-icon {
+    width: 31px;
+    height: 27px;
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #173f96,
+            #3473dc
+        );
+
+    border-radius: 9px;
+
+    box-shadow:
+        0 4px 9px
+        rgba(23, 63, 150, 0.20);
+}
+
+
+.dashboard-nav-activo
+.dashboard-nav-icon svg {
+    width: 17px;
+    height: 17px;
+}
+
+
+.dashboard-nav-activo
+.dashboard-nav-texto {
+    color: #173f96;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   HOVER PARA COMPUTADORA
+========================================================= */
+
+@media (hover: hover) {
+
+    .dashboard-nav-item:hover {
+        color: #173f96;
+
+        background:
+            #f3f6fc;
+    }
+
+}
+
+
+/* =========================================================
+   ESPACIO PARA QUE LA BARRA NO TAPE CONTENIDO
+========================================================= */
+
+.dashboard-nav-space {
+    height: 78px;
+}
+
+
+#pantalla-dashboard {
+    padding-bottom:
+        calc(
+            92px +
+            env(safe-area-inset-bottom)
+        );
+}
+
+
+/* =========================================================
+   CELULARES PEQUEÑOS
+========================================================= */
+
+@media (max-width: 370px) {
+
+    .dashboard-nav {
+        width:
+            calc(100% - 20px);
+
+        bottom: 8px;
+
+        border-radius: 20px;
+    }
+
+
+    .dashboard-nav-item {
+        min-height: 54px;
+    }
+
+}
