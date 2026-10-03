@@ -1360,3 +1360,682 @@ button {
     }
 
 }
+
+/* =========================================================
+   JDJ SAN JUAN 2026
+   MOBILE PREMIUM V2
+   Optimizado para teléfonos
+========================================================= */
+
+@media (max-width: 600px) {
+
+    /* =========================
+       BASE MÓVIL
+    ========================= */
+
+    body {
+        background:
+            radial-gradient(
+                circle at 50% -10%,
+                rgba(47, 103, 216, 0.12),
+                transparent 38%
+            ),
+            linear-gradient(
+                180deg,
+                #ffffff 0%,
+                #f5f8ff 100%
+            );
+    }
+
+    .pantalla {
+        width: 100%;
+        min-height: 100dvh;
+
+        padding:
+            24px
+            18px
+            calc(28px + env(safe-area-inset-bottom));
+    }
+
+
+    /* =========================
+       INICIO
+    ========================= */
+
+    .contenedor-principal {
+        width: 100%;
+        min-height: 100dvh;
+
+        justify-content: flex-start;
+
+        padding:
+            34px
+            22px
+            calc(30px + env(safe-area-inset-bottom));
+    }
+
+    .logo {
+        width: 100%;
+
+        margin-bottom: 5px;
+    }
+
+    .logo img {
+        width: 175px;
+        max-width: 65%;
+
+        margin:
+            0 auto
+            22px;
+
+        object-fit: contain;
+    }
+
+    .bienvenida {
+        margin-bottom: 27px;
+    }
+
+    .bienvenida h1 {
+        margin-bottom: 6px;
+
+        font-size: 30px;
+        line-height: 1.05;
+
+        letter-spacing: -0.8px;
+    }
+
+    .bienvenida p {
+        font-size: 12px;
+
+        letter-spacing: 2px;
+    }
+
+    .botones {
+        width: 100%;
+
+        gap: 12px;
+    }
+
+    .btn-principal,
+    .btn-secundario {
+        min-height: 54px;
+
+        padding: 13px 17px;
+
+        border-radius: 16px;
+
+        font-size: 15px;
+    }
+
+    .btn-principal {
+        box-shadow:
+            0 10px 22px
+            rgba(23, 63, 150, 0.23);
+    }
+
+    .btn-secundario {
+        box-shadow:
+            0 5px 14px
+            rgba(23, 63, 150, 0.07);
+    }
+
+    .btn-acceso-encargado {
+        margin-top: 4px;
+
+        padding: 11px 16px;
+
+        font-size: 12px;
+    }
+
+
+    /* =========================
+       CABECERAS
+    ========================= */
+
+    #pantalla-registro,
+    #pantalla-login-encargado,
+    #pantalla-encargado,
+    #pantalla-dashboard {
+        padding-top: 27px;
+    }
+
+    .encabezado-registro {
+        margin-bottom: 22px;
+    }
+
+    .encabezado-registro h1 {
+        margin-bottom: 8px;
+
+        font-size: 27px;
+        line-height: 1.02;
+
+        letter-spacing: -0.7px;
+    }
+
+    .encabezado-registro p {
+        font-size: 14px;
+    }
+
+    .encargado-contenido > h1 {
+        margin-bottom: 5px;
+
+        font-size: 27px;
+        line-height: 1.05;
+
+        letter-spacing: -0.6px;
+    }
+
+    .subtitulo-encargado {
+        margin-bottom: 20px;
+
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+
+    /* =========================
+       FORMULARIOS
+    ========================= */
+
+    #form-registro,
+    #form-login-encargado {
+        padding: 20px 18px;
+
+        border-radius: 20px;
+
+        box-shadow:
+            0 12px 32px
+            rgba(23, 63, 150, 0.09);
+    }
+
+    .campo {
+        margin-bottom: 16px;
+    }
+
+    .campo label {
+        margin-bottom: 7px;
+
+        font-size: 13px;
+    }
+
+    .campo input,
+    .campo select {
+        height: 50px;
+
+        padding:
+            0
+            14px;
+
+        border-radius: 13px;
+
+        font-size: 15px;
+    }
+
+    #form-registro .btn-principal,
+    #form-login-encargado .btn-principal {
+        min-height: 52px;
+
+        margin-top: 3px;
+    }
+
+
+    /* =========================
+       LOGIN
+    ========================= */
+
+    #pantalla-login-encargado
+    .encargado-contenido {
+        max-width: 100%;
+    }
+
+    #pantalla-login-encargado
+    #form-login-encargado {
+        margin-top: 4px;
+    }
+
+    #pantalla-login-encargado
+    .btn-volver {
+        margin-top: 13px;
+    }
+
+
+    /* =========================
+       PARQUEO ASIGNADO
+    ========================= */
+
+    #pantalla-asignacion {
+        padding:
+            22px
+            17px
+            calc(28px + env(safe-area-inset-bottom));
+    }
+
+    .asignacion-contenido {
+        max-width: 100%;
+    }
+
+    .check-asignacion {
+        width: 52px;
+        height: 52px;
+
+        margin-bottom: 10px;
+
+        font-size: 28px;
+
+        box-shadow:
+            0 8px 18px
+            rgba(40, 167, 69, 0.22);
+    }
+
+    .asignacion-contenido h1 {
+        font-size: 25px;
+        line-height: 1.05;
+    }
+
+    .mensaje-asignacion {
+        max-width: 310px;
+
+        margin:
+            7px auto
+            17px;
+
+        font-size: 14px;
+        line-height: 1.35;
+    }
+
+    .tarjeta-asignacion {
+        padding:
+            19px
+            17px
+            18px;
+
+        border-radius: 20px;
+
+        box-shadow:
+            0 10px 28px
+            rgba(23, 63, 150, 0.1);
+    }
+
+    .tarjeta-asignacion::before {
+        height: 4px;
+    }
+
+    .tarjeta-asignacion h2 {
+        font-size: 11px;
+
+        letter-spacing: 1.2px;
+    }
+
+    #codigo-ingreso {
+        margin:
+            5px
+            0
+            11px;
+
+        font-size: 23px;
+    }
+
+
+    /* QR MÁS COMPACTO */
+
+    #qr-codigo {
+        width: 205px;
+        min-height: 205px;
+
+        margin:
+            11px
+            auto
+            15px;
+
+        padding: 11px;
+
+        border-radius: 17px;
+    }
+
+    #qr-codigo img,
+    #qr-codigo canvas {
+        width: 183px !important;
+        max-width: 100% !important;
+        height: 183px !important;
+    }
+
+    #tipo-asignado {
+        padding:
+            6px
+            18px;
+
+        font-size: 10px;
+    }
+
+    #codigo-parqueo {
+        margin-top: 8px;
+
+        font-size: 27px;
+    }
+
+    #nombre-parqueo {
+        margin-top: 1px;
+
+        font-size: 14px;
+    }
+
+    .instruccion-qr {
+        margin-top: 13px;
+
+        font-size: 12px;
+        line-height: 1.35;
+    }
+
+    .tiempo-asignacion {
+        margin:
+            13px
+            0;
+
+        padding: 10px;
+
+        border-radius: 12px;
+
+        font-size: 13px;
+    }
+
+    .instruccion-ruta {
+        margin:
+            15px
+            0
+            10px;
+
+        font-size: 12px;
+    }
+
+
+    /* =========================
+       MAPS / WAZE
+    ========================= */
+
+    .botones-ruta {
+        grid-template-columns:
+            1fr
+            1fr;
+
+        gap: 9px;
+    }
+
+    .botones-ruta button {
+        min-height: 48px;
+
+        padding:
+            10px
+            7px;
+
+        border-radius: 14px;
+
+        font-size: 12px;
+    }
+
+
+    /* =========================
+       CONTROL DE INGRESO
+    ========================= */
+
+    #pantalla-encargado {
+        padding-left: 17px;
+        padding-right: 17px;
+    }
+
+    .encargado-contenido {
+        max-width: 100%;
+    }
+
+    .tarjeta-busqueda {
+        padding: 18px;
+
+        border-radius: 20px;
+
+        box-shadow:
+            0 10px 28px
+            rgba(23, 63, 150, 0.09);
+    }
+
+    .btn-escanear {
+        min-height: 52px;
+
+        margin-bottom: 17px;
+
+        padding: 12px;
+
+        border-radius: 15px;
+
+        font-size: 14px;
+    }
+
+    .tarjeta-busqueda label {
+        margin-bottom: 7px;
+
+        font-size: 13px;
+    }
+
+    .tarjeta-busqueda input {
+        height: 50px;
+
+        margin-bottom: 12px;
+
+        padding:
+            0
+            14px;
+
+        font-size: 15px;
+    }
+
+    .tarjeta-busqueda .btn-principal {
+        min-height: 51px;
+
+        font-size: 14px;
+    }
+
+    #btn-dashboard {
+        min-height: 52px;
+
+        margin-top: 15px;
+
+        font-size: 14px;
+    }
+
+    #pantalla-encargado
+    .btn-volver {
+        margin-top: 11px;
+    }
+
+
+    /* =========================
+       RESULTADO DEL ESCANEO
+    ========================= */
+
+    .resultado-busqueda {
+        margin-top: 17px;
+
+        padding: 19px 17px;
+
+        border-radius: 18px;
+    }
+
+    .check-encontrado {
+        width: 48px;
+        height: 48px;
+
+        margin-bottom: 8px;
+
+        font-size: 25px;
+    }
+
+    .resultado-busqueda h2 {
+        margin-bottom: 14px;
+
+        font-size: 19px;
+    }
+
+    .datos-vehiculo {
+        margin-bottom: 15px;
+
+        padding: 13px;
+
+        border-radius: 12px;
+    }
+
+    .datos-vehiculo p {
+        flex-direction: row;
+        justify-content: space-between;
+
+        gap: 8px;
+
+        margin-bottom: 7px;
+
+        font-size: 12px;
+    }
+
+    .btn-confirmar {
+        min-height: 51px;
+
+        padding: 12px;
+
+        font-size: 14px;
+    }
+
+
+    /* =========================
+       DASHBOARD
+    ========================= */
+
+    .dashboard-resumen {
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 9px;
+
+        margin:
+            18px
+            0
+            22px;
+    }
+
+    .dashboard-tarjeta {
+        padding:
+            14px
+            8px;
+
+        border-radius: 16px;
+    }
+
+    .dashboard-tarjeta span {
+        margin-bottom: 4px;
+
+        font-size: 9px;
+    }
+
+    .dashboard-tarjeta strong {
+        font-size: 24px;
+    }
+
+    .titulo-parqueos-dashboard {
+        margin:
+            19px
+            0
+            11px;
+
+        font-size: 16px;
+    }
+
+    .dashboard-parqueo {
+        margin-bottom: 11px;
+
+        padding: 15px;
+
+        border-radius: 16px;
+    }
+
+    .dashboard-parqueo-encabezado h3 {
+        font-size: 15px;
+    }
+
+    .dashboard-parqueo-encabezado span {
+        font-size: 9px;
+    }
+
+    .dashboard-parqueo-encabezado > strong {
+        font-size: 16px;
+    }
+
+    .barra-dashboard {
+        height: 8px;
+
+        margin:
+            11px
+            0;
+    }
+
+    .dashboard-parqueo-datos {
+        gap: 6px;
+    }
+
+    .dashboard-parqueo-datos p {
+        padding:
+            7px
+            8px;
+
+        font-size: 10px;
+    }
+
+
+    /* =========================
+       VOLVER
+    ========================= */
+
+    .btn-volver {
+        margin-top: 13px;
+
+        padding:
+            10px
+            17px;
+
+        font-size: 11px;
+    }
+
+}
+
+
+/* =========================================================
+   TELÉFONOS ANGOSTOS
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .pantalla {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .contenedor-principal {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .bienvenida h1 {
+        font-size: 28px;
+    }
+
+    .encabezado-registro h1,
+    .encargado-contenido > h1 {
+        font-size: 25px;
+    }
+
+    #qr-codigo {
+        width: 190px;
+        min-height: 190px;
+    }
+
+    #qr-codigo img,
+    #qr-codigo canvas {
+        width: 168px !important;
+        height: 168px !important;
+    }
+
+}
