@@ -59,6 +59,13 @@ const codigoParqueo =
 const nombreParqueo =
     document.getElementById("nombre-parqueo");
 
+// Botones de navegación
+const btnGoogleMaps =
+    document.getElementById("btn-google-maps");
+
+const btnWaze =
+    document.getElementById("btn-waze");
+
 
 // ========================================
 // 2. ELEMENTOS DEL ENCARGADO
@@ -110,6 +117,9 @@ let escanerQR = null;
 let escanerActivo = false;
 
 let codigoSeleccionado = "";
+
+let latitudParqueo = null;
+let longitudParqueo = null;
 
 const URL_API =
     "https://script.google.com/macros/s/AKfycbzCXQd3o8y943wLaOzEEJZCxcGnHzU2mRmaVlKmmklMTVLN9UOvUkNWgEEe3ZTwBc0kvg/exec";
@@ -578,6 +588,13 @@ codigoParqueo.textContent =
 nombreParqueo.textContent =
     datos.nombreParqueo;
 
+// Guardar ubicación del parqueo asignado
+latitudParqueo =
+    datos.latitud;
+
+longitudParqueo =
+    datos.longitud;
+
 
 // Limpiar QR anterior
 qrCodigo.innerHTML = "";
@@ -754,5 +771,73 @@ btnConfirmarIngreso.addEventListener(
             btnConfirmarIngreso.textContent =
                 "CONFIRMAR INGRESO";
         }
+    }
+);
+
+// ========================================
+// 13. NAVEGACIÓN AL PARQUEO
+// ========================================
+
+
+// GOOGLE MAPS
+btnGoogleMaps.addEventListener(
+    "click",
+    function () {
+
+        if (
+            latitudParqueo === null ||
+            longitudParqueo === null
+        ) {
+
+            alert(
+                "No se encontró la ubicación del parqueo."
+            );
+
+            return;
+        }
+
+        const urlMaps =
+            "https://www.google.com/maps/dir/?api=1" +
+            "&destination=" +
+            encodeURIComponent(
+                latitudParqueo + "," + longitudParqueo
+            );
+
+        window.open(
+            urlMaps,
+            "_blank"
+        );
+    }
+);
+
+
+// WAZE
+btnWaze.addEventListener(
+    "click",
+    function () {
+
+        if (
+            latitudParqueo === null ||
+            longitudParqueo === null
+        ) {
+
+            alert(
+                "No se encontró la ubicación del parqueo."
+            );
+
+            return;
+        }
+
+        const urlWaze =
+            "https://www.waze.com/ul?ll=" +
+            encodeURIComponent(
+                latitudParqueo + "," + longitudParqueo
+            ) +
+            "&navigate=yes";
+
+        window.open(
+            urlWaze,
+            "_blank"
+        );
     }
 );
