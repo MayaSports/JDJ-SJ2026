@@ -61,7 +61,7 @@ const nombreParqueo =
 
 // Botones de navegación
 const btnGoogleMaps =
-    document.getElementById("btn-google-maps");
+    document.getElementById("btn-maps");
 
 const btnWaze =
     document.getElementById("btn-waze");
