@@ -112,6 +112,26 @@ const listaParqueosDashboard =
         "lista-parqueos-dashboard"
     );
 
+const dashPorcentajeGeneral =
+    document.getElementById(
+        "dash-porcentaje-general"
+    );
+
+const dashBarraGeneralProgreso =
+    document.getElementById(
+        "dash-barra-general-progreso"
+    );
+
+const dashEspaciosGeneral =
+    document.getElementById(
+        "dash-espacios-general"
+    );
+
+const dashTotalParqueos =
+    document.getElementById(
+        "dash-total-parqueos"
+    );
+
 
 // Formulario
 const formRegistro =
@@ -1067,7 +1087,7 @@ btnDashboard.addEventListener(
 
 
 // ========================================
-// CARGAR DATOS DEL DASHBOARD
+// CARGAR DATOS DEL DASHBOARD V3
 // ========================================
 
 async function cargarDashboard() {
@@ -1075,7 +1095,7 @@ async function cargarDashboard() {
     try {
 
         listaParqueosDashboard.innerHTML =
-            "<p>Cargando información...</p>";
+            '<p class="dashboard-cargando">Cargando información...</p>';
 
 
         const respuesta =
@@ -1098,7 +1118,7 @@ async function cargarDashboard() {
         if (datos.exito !== true) {
 
             listaParqueosDashboard.innerHTML =
-                "<p>No fue posible cargar el dashboard.</p>";
+                '<p class="dashboard-cargando">No fue posible cargar el dashboard.</p>';
 
             return;
         }
@@ -1122,6 +1142,57 @@ async function cargarDashboard() {
 
 
         // ========================================
+        // OCUPACIÓN GENERAL
+        // ========================================
+
+        const ocupadosGeneral =
+            datos.resumen.asignados +
+            datos.resumen.ingresados;
+
+
+        let porcentajeGeneral = 0;
+
+
+        if (datos.resumen.capacidad > 0) {
+
+            porcentajeGeneral =
+                Math.round(
+                    (
+                        ocupadosGeneral /
+                        datos.resumen.capacidad
+                    ) * 100
+                );
+
+        }
+
+
+        if (porcentajeGeneral > 100) {
+
+            porcentajeGeneral = 100;
+
+        }
+
+
+        dashPorcentajeGeneral.textContent =
+            porcentajeGeneral + "%";
+
+
+        dashBarraGeneralProgreso.style.width =
+            porcentajeGeneral + "%";
+
+
+        dashEspaciosGeneral.textContent =
+            ocupadosGeneral +
+            " de " +
+            datos.resumen.capacidad +
+            " espacios";
+
+
+        dashTotalParqueos.textContent =
+            datos.parqueos.length;
+
+
+        // ========================================
         // LIMPIAR LISTA
         // ========================================
 
@@ -1130,7 +1201,7 @@ async function cargarDashboard() {
 
 
         // ========================================
-        // CREAR TARJETA POR CADA PARQUEO
+        // CREAR PARQUEOS
         // ========================================
 
         for (
@@ -1143,104 +1214,264 @@ async function cargarDashboard() {
                 datos.parqueos[i];
 
 
+            // Espacios comprometidos
             const ocupados =
                 parqueo.asignados +
                 parqueo.ingresados;
 
 
+            // ========================================
+            // PORCENTAJE
+            // ========================================
+
             let porcentaje = 0;
+
 
             if (parqueo.capacidad > 0) {
 
                 porcentaje =
                     Math.round(
-                        (ocupados /
-                        parqueo.capacidad) *
-                        100
+                        (
+                            ocupados /
+                            parqueo.capacidad
+                        ) * 100
                     );
 
             }
 
 
             if (porcentaje > 100) {
+
                 porcentaje = 100;
+
             }
 
 
+            // ========================================
+            // ESTADO VISUAL
+            // ========================================
+
+            let estado =
+                "disponible";
+
+
+            let textoEstado =
+                "Disponible";
+
+
+            if (porcentaje >= 100) {
+
+                estado =
+                    "lleno";
+
+                textoEstado =
+                    "Lleno";
+
+            }
+            else if (porcentaje >= 90) {
+
+                estado =
+                    "critico";
+
+                textoEstado =
+                    "Casi lleno";
+
+            }
+            else if (porcentaje >= 75) {
+
+                estado =
+                    "precaucion";
+
+                textoEstado =
+                    "Poco espacio";
+
+            }
+
+
+            // ========================================
+            // NOMBRE DEL TIPO
+            // ========================================
+
+            let tipoVehiculo =
+                parqueo.tipoVehiculo;
+
+
+            if (
+                tipoVehiculo ===
+                "microbus"
+            ) {
+
+                tipoVehiculo =
+                    "Microbús";
+
+            }
+            else if (
+                tipoVehiculo ===
+                "liviano"
+            ) {
+
+                tipoVehiculo =
+                    "Vehículo liviano";
+
+            }
+            else if (
+                tipoVehiculo ===
+                "motocicleta"
+            ) {
+
+                tipoVehiculo =
+                    "Motocicleta";
+
+            }
+            else if (
+                tipoVehiculo ===
+                "bus"
+            ) {
+
+                tipoVehiculo =
+                    "Bus";
+
+            }
+
+
+            // ========================================
+            // CREAR TARJETA
+            // ========================================
+
             const tarjeta =
                 document.createElement(
-                    "div"
+                    "article"
                 );
 
 
             tarjeta.className =
-                "dashboard-parqueo";
+                "dashboard-parqueo " +
+                "estado-" +
+                estado;
 
 
             tarjeta.innerHTML = `
 
-                <div class="dashboard-parqueo-encabezado">
+                <div
+                    class="dashboard-parqueo-superior"
+                >
 
-                    <div>
+                    <div
+                        class="dashboard-parqueo-titulo"
+                    >
 
-                        <h3>
-                            ${parqueo.nombre}
-                        </h3>
+                        <div
+                            class="dashboard-parqueo-nombre"
+                        >
 
-                        <span>
+                            <span
+                                class="dashboard-estado-punto"
+                            ></span>
+
+                            <h3>
+                                ${parqueo.nombre}
+                            </h3>
+
+                        </div>
+
+
+                        <p>
                             ${parqueo.codigo}
                             ·
-                            ${parqueo.tipoVehiculo.toUpperCase()}
+                            ${tipoVehiculo}
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        class="dashboard-porcentaje"
+                    >
+
+                        <strong>
+                            ${porcentaje}%
+                        </strong>
+
+                        <span>
+                            ${textoEstado}
                         </span>
 
                     </div>
 
-                    <strong>
-                        ${porcentaje}%
-                    </strong>
-
                 </div>
 
 
-                <div class="barra-dashboard">
+                <div
+                    class="dashboard-barra-parqueo"
+                >
 
                     <div
-                        class="barra-dashboard-progreso"
-                        style="width: ${porcentaje}%"
+                        class="dashboard-barra-parqueo-progreso"
+                        style="
+                            width:
+                            ${porcentaje}%;
+                        "
                     ></div>
 
                 </div>
 
 
-                <div class="dashboard-parqueo-datos">
+                <div
+                    class="dashboard-parqueo-estadisticas"
+                >
 
-                    <p>
-                        Capacidad:
+                    <div>
+
+                        <span>
+                            Capacidad
+                        </span>
+
                         <strong>
                             ${parqueo.capacidad}
                         </strong>
-                    </p>
 
-                    <p>
-                        Asignados:
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Asignados
+                        </span>
+
                         <strong>
                             ${parqueo.asignados}
                         </strong>
-                    </p>
 
-                    <p>
-                        Ingresados:
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Ingresados
+                        </span>
+
                         <strong>
                             ${parqueo.ingresados}
                         </strong>
-                    </p>
 
-                    <p>
-                        Disponibles:
+                    </div>
+
+
+                    <div
+                        class="dashboard-libres"
+                    >
+
+                        <span>
+                            Libres
+                        </span>
+
                         <strong>
                             ${parqueo.disponibles}
                         </strong>
-                    </p>
+
+                    </div>
 
                 </div>
 
@@ -1254,7 +1485,8 @@ async function cargarDashboard() {
         }
 
 
-    } catch (error) {
+    }
+    catch (error) {
 
         console.error(
             "Error cargando dashboard:",
@@ -1263,12 +1495,11 @@ async function cargarDashboard() {
 
 
         listaParqueosDashboard.innerHTML =
-            "<p>No fue posible cargar la información.</p>";
+            '<p class="dashboard-cargando">No fue posible cargar la información.</p>';
 
     }
 
 }
-
 
 // ========================================
 // ACTUALIZAR DASHBOARD

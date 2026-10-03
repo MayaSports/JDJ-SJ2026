@@ -4096,3 +4096,876 @@ and
     }
 
 }
+
+/* =========================================================
+   JDJ SAN JUAN 2026
+   DASHBOARD V3 - MOBILE APP
+========================================================= */
+
+
+/* =========================================================
+   PANTALLA
+========================================================= */
+
+#pantalla-dashboard {
+    position: relative;
+
+    min-height: 100dvh;
+
+    padding:
+        0
+        0
+        calc(82px + env(safe-area-inset-bottom));
+
+    background:
+        #f5f8fd;
+}
+
+
+.dashboard-app {
+    width: 100%;
+    max-width: 600px;
+
+    margin: 0 auto;
+
+    padding:
+        26px
+        17px
+        20px;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 12px;
+
+    margin-bottom: 21px;
+}
+
+
+.dashboard-eyebrow {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #7183a3;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: 1.2px;
+}
+
+
+.dashboard-header h1 {
+    margin: 0;
+
+    color: #173f96;
+
+    font-size: 27px;
+    font-weight: 800;
+
+    line-height: 1.08;
+
+    letter-spacing: -0.7px;
+}
+
+
+.dashboard-header p {
+    margin:
+        6px
+        0
+        0;
+
+    color: #8491a7;
+
+    font-size: 12px;
+}
+
+
+/* EN VIVO */
+
+.dashboard-live {
+    display: flex;
+    align-items: center;
+
+    gap: 5px;
+
+    flex-shrink: 0;
+
+    margin-top: 3px;
+
+    padding:
+        6px
+        8px;
+
+    color: #278847;
+
+    background: #eaf8ef;
+
+    border-radius: 999px;
+
+    font-size: 8px;
+    font-weight: 800;
+
+    letter-spacing: 0.5px;
+}
+
+
+.dashboard-live > span {
+    width: 6px;
+    height: 6px;
+
+    background: #32a852;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(50, 168, 82, 0.12);
+}
+
+
+/* =========================================================
+   RESUMEN
+========================================================= */
+
+#pantalla-dashboard
+.dashboard-resumen {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 9px;
+
+    margin:
+        0
+        0
+        12px;
+}
+
+
+#pantalla-dashboard
+.dashboard-tarjeta {
+    min-height: 83px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    gap: 10px;
+
+    padding:
+        13px;
+
+    background: #ffffff;
+
+    border:
+        1px solid
+        #e8edf5;
+
+    border-radius: 17px;
+
+    box-shadow:
+        0 4px 13px
+        rgba(23, 63, 150, 0.045);
+}
+
+
+#pantalla-dashboard
+.dashboard-tarjeta::before {
+    display: none;
+}
+
+
+.dashboard-icono {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-shrink: 0;
+
+    color: #173f96;
+
+    background: #edf3ff;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+    font-weight: 800;
+}
+
+
+.dashboard-icono-verde {
+    color: #268a48;
+
+    background: #ebf8ef;
+}
+
+
+.dashboard-icono-disponible {
+    color: #268a48;
+
+    background: #e9f8ee;
+}
+
+
+#pantalla-dashboard
+.dashboard-tarjeta span {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #8491a7;
+
+    font-size: 8px;
+    font-weight: 800;
+
+    letter-spacing: 0.55px;
+}
+
+
+#pantalla-dashboard
+.dashboard-tarjeta strong {
+    display: block;
+
+    color: #20345b;
+
+    font-size: 23px;
+    font-weight: 800;
+
+    line-height: 1;
+}
+
+
+/* DISPONIBLES */
+
+#pantalla-dashboard
+.dashboard-tarjeta:nth-child(4)
+strong {
+    color: #278847;
+}
+
+
+/* =========================================================
+   OCUPACIÓN GENERAL
+========================================================= */
+
+.dashboard-ocupacion-general {
+    margin-bottom: 25px;
+
+    padding:
+        16px;
+
+    background: #ffffff;
+
+    border:
+        1px solid
+        #e8edf5;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 4px 13px
+        rgba(23, 63, 150, 0.045);
+}
+
+
+.dashboard-ocupacion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 15px;
+}
+
+
+.dashboard-seccion-label {
+    display: block;
+
+    color: #40577e;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: 0.8px;
+}
+
+
+.dashboard-ocupacion-header small {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #98a3b5;
+
+    font-size: 9px;
+}
+
+
+.dashboard-ocupacion-header > strong {
+    color: #173f96;
+
+    font-size: 21px;
+    font-weight: 800;
+}
+
+
+.dashboard-barra-general {
+    width: 100%;
+    height: 8px;
+
+    margin:
+        14px
+        0
+        8px;
+
+    overflow: hidden;
+
+    background: #e9eef6;
+
+    border-radius: 999px;
+}
+
+
+.dashboard-barra-general-progreso {
+    width: 0;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #173f96,
+            #3974db
+        );
+
+    border-radius: inherit;
+
+    transition:
+        width
+        450ms
+        ease;
+}
+
+
+.dashboard-ocupacion-leyenda {
+    display: flex;
+    justify-content: space-between;
+
+    gap: 10px;
+
+    color: #939fb2;
+
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   HEADER LISTA
+========================================================= */
+
+.dashboard-lista-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 11px;
+
+    padding:
+        0
+        2px;
+}
+
+
+.dashboard-lista-header h2 {
+    margin: 0;
+
+    color: #173f96;
+
+    font-size: 18px;
+    font-weight: 800;
+
+    letter-spacing: -0.3px;
+}
+
+
+.dashboard-lista-header p {
+    margin:
+        3px
+        0
+        0;
+
+    color: #939fb2;
+
+    font-size: 10px;
+}
+
+
+.dashboard-total-parqueos {
+    min-width: 30px;
+    height: 30px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding:
+        0
+        8px;
+
+    color: #173f96;
+
+    background: #e9f0ff;
+
+    border-radius: 9px;
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   TARJETA PARQUEO
+========================================================= */
+
+#pantalla-dashboard
+.dashboard-parqueo {
+    margin-bottom: 9px;
+
+    padding:
+        14px;
+
+    background: #ffffff;
+
+    border:
+        1px solid
+        #e8edf5;
+
+    border-radius: 17px;
+
+    box-shadow:
+        0 3px 11px
+        rgba(23, 63, 150, 0.04);
+}
+
+
+.dashboard-parqueo-superior {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 12px;
+}
+
+
+.dashboard-parqueo-titulo {
+    min-width: 0;
+}
+
+
+.dashboard-parqueo-nombre {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+}
+
+
+.dashboard-parqueo-nombre h3 {
+    margin: 0;
+
+    overflow: hidden;
+
+    color: #20345b;
+
+    font-size: 14px;
+    font-weight: 800;
+
+    line-height: 1.25;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
+
+
+.dashboard-parqueo-titulo > p {
+    margin:
+        4px
+        0
+        0
+        15px;
+
+    color: #929db0;
+
+    font-size: 9px;
+    font-weight: 600;
+}
+
+
+/* Punto estado */
+
+.dashboard-estado-punto {
+    width: 7px;
+    height: 7px;
+
+    flex-shrink: 0;
+
+    background: #3ba55c;
+
+    border-radius: 50%;
+}
+
+
+/* Porcentaje */
+
+.dashboard-porcentaje {
+    flex-shrink: 0;
+
+    text-align: right;
+}
+
+
+.dashboard-porcentaje strong {
+    display: block;
+
+    color: #2c8f4b;
+
+    font-size: 16px;
+    font-weight: 800;
+
+    line-height: 1;
+}
+
+
+.dashboard-porcentaje span {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #7f8da4;
+
+    font-size: 7px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   BARRA PARQUEO
+========================================================= */
+
+.dashboard-barra-parqueo {
+    width: 100%;
+    height: 6px;
+
+    margin:
+        12px
+        0;
+
+    overflow: hidden;
+
+    background: #edf1f6;
+
+    border-radius: 999px;
+}
+
+
+.dashboard-barra-parqueo-progreso {
+    height: 100%;
+
+    background: #3ba55c;
+
+    border-radius: inherit;
+
+    transition:
+        width
+        450ms
+        ease;
+}
+
+
+/* =========================================================
+   ESTADÍSTICAS
+========================================================= */
+
+.dashboard-parqueo-estadisticas {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 5px;
+}
+
+
+.dashboard-parqueo-estadisticas > div {
+    min-width: 0;
+
+    padding:
+        7px
+        3px;
+
+    text-align: center;
+
+    background: #f7f9fc;
+
+    border-radius: 9px;
+}
+
+
+.dashboard-parqueo-estadisticas span {
+    display: block;
+
+    margin-bottom: 3px;
+
+    overflow: hidden;
+
+    color: #929db0;
+
+    font-size: 7px;
+    font-weight: 600;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
+
+
+.dashboard-parqueo-estadisticas strong {
+    display: block;
+
+    color: #33445f;
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+
+.dashboard-parqueo-estadisticas
+.dashboard-libres strong {
+    color: #288b48;
+}
+
+
+/* =========================================================
+   ESTADOS
+========================================================= */
+
+/* PRECAUCIÓN */
+
+.dashboard-parqueo.estado-precaucion
+.dashboard-estado-punto,
+
+.dashboard-parqueo.estado-precaucion
+.dashboard-barra-parqueo-progreso {
+    background: #e3a426;
+}
+
+
+.dashboard-parqueo.estado-precaucion
+.dashboard-porcentaje strong {
+    color: #c78b13;
+}
+
+
+/* CRÍTICO */
+
+.dashboard-parqueo.estado-critico
+.dashboard-estado-punto,
+
+.dashboard-parqueo.estado-critico
+.dashboard-barra-parqueo-progreso {
+    background: #e46b3a;
+}
+
+
+.dashboard-parqueo.estado-critico
+.dashboard-porcentaje strong {
+    color: #d65d2e;
+}
+
+
+/* LLENO */
+
+.dashboard-parqueo.estado-lleno
+.dashboard-estado-punto,
+
+.dashboard-parqueo.estado-lleno
+.dashboard-barra-parqueo-progreso {
+    background: #d74646;
+}
+
+
+.dashboard-parqueo.estado-lleno
+.dashboard-porcentaje strong {
+    color: #c93c3c;
+}
+
+
+.dashboard-parqueo.estado-lleno
+.dashboard-libres strong {
+    color: #c93c3c;
+}
+
+
+/* =========================================================
+   CARGANDO
+========================================================= */
+
+.dashboard-cargando {
+    padding:
+        30px
+        10px;
+
+    color: #8c99ad;
+
+    text-align: center;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   NAVEGACIÓN INFERIOR
+========================================================= */
+
+.dashboard-nav {
+    position: fixed;
+
+    z-index: 100;
+
+    left: 50%;
+    bottom: 0;
+
+    width: 100%;
+    max-width: 600px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    padding:
+        8px
+        12px
+        calc(
+            8px +
+            env(safe-area-inset-bottom)
+        );
+
+    transform:
+        translateX(-50%);
+
+    background:
+        rgba(255, 255, 255, 0.97);
+
+    border-top:
+        1px solid
+        #e5eaf2;
+
+    box-shadow:
+        0 -5px 20px
+        rgba(23, 63, 150, 0.06);
+}
+
+
+.dashboard-nav-item {
+    min-height: 49px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 2px;
+
+    padding: 4px;
+
+    color: #8b98ad;
+
+    background: transparent;
+
+    border: none;
+    border-radius: 12px;
+
+    font-size: 8px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 150ms ease,
+        color 150ms ease,
+        background 150ms ease;
+}
+
+
+.dashboard-nav-item:active {
+    transform: scale(0.94);
+}
+
+
+.dashboard-nav-icon {
+    font-size: 18px;
+    line-height: 1;
+}
+
+
+.dashboard-nav-activo {
+    color: #173f96;
+
+    background: #edf3ff;
+}
+
+
+/* =========================================================
+   CELULARES MUY PEQUEÑOS
+========================================================= */
+
+@media (max-width: 370px) {
+
+    .dashboard-app {
+        padding-left: 13px;
+        padding-right: 13px;
+    }
+
+
+    .dashboard-header h1 {
+        font-size: 24px;
+    }
+
+
+    #pantalla-dashboard
+    .dashboard-tarjeta {
+        padding: 10px;
+    }
+
+
+    .dashboard-icono {
+        width: 30px;
+        height: 30px;
+    }
+
+
+    #pantalla-dashboard
+    .dashboard-tarjeta strong {
+        font-size: 20px;
+    }
+
+
+    .dashboard-parqueo-estadisticas span {
+        font-size: 6px;
+    }
+
+}

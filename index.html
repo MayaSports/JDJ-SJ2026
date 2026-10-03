@@ -13,7 +13,7 @@
 
     <link
         rel="stylesheet"
-        href="css/estilos.css?v=17"
+        href="css/estilos.css?v=18"
     >
 </head>
 
@@ -522,7 +522,7 @@
     </section>
 
     <!-- ===================================== -->
-<!-- DASHBOARD DE PARQUEOS -->
+<!-- DASHBOARD DE PARQUEOS V3 -->
 <!-- ===================================== -->
 
 <section
@@ -530,88 +530,249 @@
     class="pantalla"
 >
 
-    <div class="encargado-contenido">
+    <div class="dashboard-app">
 
-        <h1>
-            ESTADO DE PARQUEOS
-        </h1>
+        <!-- ENCABEZADO -->
+        <header class="dashboard-header">
 
-        <p class="subtitulo-encargado">
-            Información actualizada del evento
-        </p>
+            <div>
+                <span class="dashboard-eyebrow">
+                    JDJ · SAN JUAN 2026
+                </span>
+
+                <h1>
+                    Estado de parqueos
+                </h1>
+
+                <p>
+                    Información actualizada del evento
+                </p>
+            </div>
+
+            <div
+                class="dashboard-live"
+                title="Sistema activo"
+            >
+                <span></span>
+                EN VIVO
+            </div>
+
+        </header>
 
 
-        <!-- RESUMEN GENERAL -->
-
+        <!-- RESUMEN -->
         <div class="dashboard-resumen">
 
             <div class="dashboard-tarjeta">
-                <span>CAPACIDAD</span>
-                <strong id="dash-capacidad">
-                    0
-                </strong>
+
+                <div class="dashboard-icono">
+                    P
+                </div>
+
+                <div>
+                    <span>CAPACIDAD</span>
+
+                    <strong id="dash-capacidad">
+                        0
+                    </strong>
+                </div>
+
             </div>
 
-            <div class="dashboard-tarjeta">
-                <span>ASIGNADOS</span>
-                <strong id="dash-asignados">
-                    0
-                </strong>
-            </div>
 
             <div class="dashboard-tarjeta">
-                <span>INGRESADOS</span>
-                <strong id="dash-ingresados">
-                    0
-                </strong>
+
+                <div class="dashboard-icono">
+                    →
+                </div>
+
+                <div>
+                    <span>ASIGNADOS</span>
+
+                    <strong id="dash-asignados">
+                        0
+                    </strong>
+                </div>
+
             </div>
 
+
             <div class="dashboard-tarjeta">
-                <span>DISPONIBLES</span>
-                <strong id="dash-disponibles">
-                    0
-                </strong>
+
+                <div class="dashboard-icono dashboard-icono-verde">
+                    ✓
+                </div>
+
+                <div>
+                    <span>INGRESADOS</span>
+
+                    <strong id="dash-ingresados">
+                        0
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-tarjeta">
+
+                <div class="dashboard-icono dashboard-icono-disponible">
+                    +
+                </div>
+
+                <div>
+                    <span>DISPONIBLES</span>
+
+                    <strong id="dash-disponibles">
+                        0
+                    </strong>
+                </div>
+
             </div>
 
         </div>
 
 
-        <!-- LISTA DE PARQUEOS -->
+        <!-- OCUPACIÓN GENERAL -->
+        <div class="dashboard-ocupacion-general">
 
-        <h2 class="titulo-parqueos-dashboard">
-            PARQUEOS
-        </h2>
+            <div class="dashboard-ocupacion-header">
+
+                <div>
+                    <span class="dashboard-seccion-label">
+                        OCUPACIÓN GENERAL
+                    </span>
+
+                    <small>
+                        Espacios comprometidos
+                    </small>
+                </div>
+
+                <strong id="dash-porcentaje-general">
+                    0%
+                </strong>
+
+            </div>
+
+
+            <div class="dashboard-barra-general">
+
+                <div
+                    id="dash-barra-general-progreso"
+                    class="dashboard-barra-general-progreso"
+                ></div>
+
+            </div>
+
+
+            <div class="dashboard-ocupacion-leyenda">
+
+                <span>
+                    Asignados + ingresados
+                </span>
+
+                <span id="dash-espacios-general">
+                    0 de 0 espacios
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- PARQUEOS -->
+        <div class="dashboard-lista-header">
+
+            <div>
+                <h2>
+                    Parqueos
+                </h2>
+
+                <p>
+                    Disponibilidad por ubicación
+                </p>
+            </div>
+
+            <span
+                id="dash-total-parqueos"
+                class="dashboard-total-parqueos"
+            >
+                0
+            </span>
+
+        </div>
+
 
         <div id="lista-parqueos-dashboard">
 
-            <p>
+            <p class="dashboard-cargando">
                 Cargando información...
             </p>
 
         </div>
 
 
-        <button
-            id="btn-actualizar-dashboard"
-            class="btn-principal"
-            type="button"
-        >
-            ↻ ACTUALIZAR
-        </button>
-
-
-        <button
-            id="btn-volver-encargado"
-            class="btn-volver"
-            type="button"
-        >
-            VOLVER AL CONTROL
-        </button>
+        <!-- ESPACIO PARA NAV INFERIOR -->
+        <div class="dashboard-nav-space"></div>
 
     </div>
 
-</section>
 
+    <!-- NAVEGACIÓN INFERIOR -->
+    <nav class="dashboard-nav">
+
+        <button
+            id="btn-volver-encargado"
+            type="button"
+            class="dashboard-nav-item"
+        >
+
+            <span class="dashboard-nav-icon">
+                ⌁
+            </span>
+
+            <span>
+                Control
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="dashboard-nav-item dashboard-nav-activo"
+        >
+
+            <span class="dashboard-nav-icon">
+                ▦
+            </span>
+
+            <span>
+                Parqueos
+            </span>
+
+        </button>
+
+
+        <button
+            id="btn-actualizar-dashboard"
+            type="button"
+            class="dashboard-nav-item"
+        >
+
+            <span class="dashboard-nav-icon">
+                ↻
+            </span>
+
+            <span>
+                Actualizar
+            </span>
+
+        </button>
+
+    </nav>
+
+</section>
 
     <!-- ===================================== -->
     <!-- LIBRERÍA PARA GENERAR QR -->
@@ -635,7 +796,7 @@
     <!-- NUESTRO JAVASCRIPT -->
     <!-- ===================================== -->
 
-    <script src="js/app.js?v=14"></script>
+    <script src="js/app.js?v=15"></script>
 
 </body>
 
