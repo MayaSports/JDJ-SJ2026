@@ -26,6 +26,11 @@ const pantallaEncargado =
         "pantalla-login-encargado"
     );
 
+    const pantallaDashboard =
+    document.getElementById(
+        "pantalla-dashboard"
+    );
+
 
 // Botones principales
 const btnRegistrar =
@@ -61,6 +66,50 @@ const mensajeLogin =
 const btnVolverLogin =
     document.getElementById(
         "btn-volver-login"
+    );
+
+// ========================================
+// ELEMENTOS DEL DASHBOARD
+// ========================================
+
+const btnDashboard =
+    document.getElementById(
+        "btn-dashboard"
+    );
+
+const btnActualizarDashboard =
+    document.getElementById(
+        "btn-actualizar-dashboard"
+    );
+
+const btnVolverEncargado =
+    document.getElementById(
+        "btn-volver-encargado"
+    );
+
+const dashCapacidad =
+    document.getElementById(
+        "dash-capacidad"
+    );
+
+const dashAsignados =
+    document.getElementById(
+        "dash-asignados"
+    );
+
+const dashIngresados =
+    document.getElementById(
+        "dash-ingresados"
+    );
+
+const dashDisponibles =
+    document.getElementById(
+        "dash-disponibles"
+    );
+
+const listaParqueosDashboard =
+    document.getElementById(
+        "lista-parqueos-dashboard"
     );
 
 
@@ -992,5 +1041,262 @@ btnWaze.addEventListener(
             urlWaze,
             "_blank"
         );
+    }
+);
+
+// ========================================
+// 14. DASHBOARD
+// ========================================
+
+btnDashboard.addEventListener(
+    "click",
+    function () {
+
+        detenerEscaner();
+
+        pantallaEncargado.style.display =
+            "none";
+
+        pantallaDashboard.style.display =
+            "block";
+
+        cargarDashboard();
+
+    }
+);
+
+
+// ========================================
+// CARGAR DATOS DEL DASHBOARD
+// ========================================
+
+async function cargarDashboard() {
+
+    try {
+
+        listaParqueosDashboard.innerHTML =
+            "<p>Cargando información...</p>";
+
+
+        const respuesta =
+            await fetch(
+                URL_API +
+                "?accion=dashboard"
+            );
+
+
+        const datos =
+            await respuesta.json();
+
+
+        console.log(
+            "Dashboard:",
+            datos
+        );
+
+
+        if (datos.exito !== true) {
+
+            listaParqueosDashboard.innerHTML =
+                "<p>No fue posible cargar el dashboard.</p>";
+
+            return;
+        }
+
+
+        // ========================================
+        // RESUMEN GENERAL
+        // ========================================
+
+        dashCapacidad.textContent =
+            datos.resumen.capacidad;
+
+        dashAsignados.textContent =
+            datos.resumen.asignados;
+
+        dashIngresados.textContent =
+            datos.resumen.ingresados;
+
+        dashDisponibles.textContent =
+            datos.resumen.disponibles;
+
+
+        // ========================================
+        // LIMPIAR LISTA
+        // ========================================
+
+        listaParqueosDashboard.innerHTML =
+            "";
+
+
+        // ========================================
+        // CREAR TARJETA POR CADA PARQUEO
+        // ========================================
+
+        for (
+            let i = 0;
+            i < datos.parqueos.length;
+            i++
+        ) {
+
+            const parqueo =
+                datos.parqueos[i];
+
+
+            const ocupados =
+                parqueo.asignados +
+                parqueo.ingresados;
+
+
+            let porcentaje = 0;
+
+            if (parqueo.capacidad > 0) {
+
+                porcentaje =
+                    Math.round(
+                        (ocupados /
+                        parqueo.capacidad) *
+                        100
+                    );
+
+            }
+
+
+            if (porcentaje > 100) {
+                porcentaje = 100;
+            }
+
+
+            const tarjeta =
+                document.createElement(
+                    "div"
+                );
+
+
+            tarjeta.className =
+                "dashboard-parqueo";
+
+
+            tarjeta.innerHTML = `
+
+                <div class="dashboard-parqueo-encabezado">
+
+                    <div>
+
+                        <h3>
+                            ${parqueo.nombre}
+                        </h3>
+
+                        <span>
+                            ${parqueo.codigo}
+                            ·
+                            ${parqueo.tipoVehiculo.toUpperCase()}
+                        </span>
+
+                    </div>
+
+                    <strong>
+                        ${porcentaje}%
+                    </strong>
+
+                </div>
+
+
+                <div class="barra-dashboard">
+
+                    <div
+                        class="barra-dashboard-progreso"
+                        style="width: ${porcentaje}%"
+                    ></div>
+
+                </div>
+
+
+                <div class="dashboard-parqueo-datos">
+
+                    <p>
+                        Capacidad:
+                        <strong>
+                            ${parqueo.capacidad}
+                        </strong>
+                    </p>
+
+                    <p>
+                        Asignados:
+                        <strong>
+                            ${parqueo.asignados}
+                        </strong>
+                    </p>
+
+                    <p>
+                        Ingresados:
+                        <strong>
+                            ${parqueo.ingresados}
+                        </strong>
+                    </p>
+
+                    <p>
+                        Disponibles:
+                        <strong>
+                            ${parqueo.disponibles}
+                        </strong>
+                    </p>
+
+                </div>
+
+            `;
+
+
+            listaParqueosDashboard.appendChild(
+                tarjeta
+            );
+
+        }
+
+
+    } catch (error) {
+
+        console.error(
+            "Error cargando dashboard:",
+            error
+        );
+
+
+        listaParqueosDashboard.innerHTML =
+            "<p>No fue posible cargar la información.</p>";
+
+    }
+
+}
+
+
+// ========================================
+// ACTUALIZAR DASHBOARD
+// ========================================
+
+btnActualizarDashboard.addEventListener(
+    "click",
+    function () {
+
+        cargarDashboard();
+
+    }
+);
+
+
+// ========================================
+// VOLVER AL CONTROL
+// ========================================
+
+btnVolverEncargado.addEventListener(
+    "click",
+    function () {
+
+        pantallaDashboard.style.display =
+            "none";
+
+        pantallaEncargado.style.display =
+            "block";
+
     }
 );

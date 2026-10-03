@@ -13,7 +13,7 @@
 
     <link
         rel="stylesheet"
-        href="css/estilos.css"
+        href="css/estilos.css?v=14"
     >
 </head>
 
@@ -443,7 +443,13 @@
 
             </div>
 
-
+            <button
+    id="btn-dashboard"
+    class="btn-principal"
+    type="button"
+>
+     VER DASHBOARD
+</button>
             <button
                 id="btn-volver-inicio"
                 class="btn-volver"
@@ -454,6 +460,97 @@
         </div>
 
     </section>
+
+    <!-- ===================================== -->
+<!-- DASHBOARD DE PARQUEOS -->
+<!-- ===================================== -->
+
+<section
+    id="pantalla-dashboard"
+    class="pantalla"
+>
+
+    <div class="encargado-contenido">
+
+        <h1>
+            ESTADO DE PARQUEOS
+        </h1>
+
+        <p class="subtitulo-encargado">
+            Información actualizada del evento
+        </p>
+
+
+        <!-- RESUMEN GENERAL -->
+
+        <div class="dashboard-resumen">
+
+            <div class="dashboard-tarjeta">
+                <span>CAPACIDAD</span>
+                <strong id="dash-capacidad">
+                    0
+                </strong>
+            </div>
+
+            <div class="dashboard-tarjeta">
+                <span>ASIGNADOS</span>
+                <strong id="dash-asignados">
+                    0
+                </strong>
+            </div>
+
+            <div class="dashboard-tarjeta">
+                <span>INGRESADOS</span>
+                <strong id="dash-ingresados">
+                    0
+                </strong>
+            </div>
+
+            <div class="dashboard-tarjeta">
+                <span>DISPONIBLES</span>
+                <strong id="dash-disponibles">
+                    0
+                </strong>
+            </div>
+
+        </div>
+
+
+        <!-- LISTA DE PARQUEOS -->
+
+        <h2 class="titulo-parqueos-dashboard">
+            PARQUEOS
+        </h2>
+
+        <div id="lista-parqueos-dashboard">
+
+            <p>
+                Cargando información...
+            </p>
+
+        </div>
+
+
+        <button
+            id="btn-actualizar-dashboard"
+            class="btn-principal"
+            type="button"
+        >
+            ↻ ACTUALIZAR
+        </button>
+
+
+        <button
+            id="btn-volver-encargado"
+            class="btn-volver"
+            type="button"
+        >
+            VOLVER AL CONTROL
+        </button>
+
+    </div>
+
+</section>
 
 
     <!-- ===================================== -->
@@ -478,7 +575,7 @@
     <!-- NUESTRO JAVASCRIPT -->
     <!-- ===================================== -->
 
-    <script src="js/app.js?v=13"></script>
+    <script src="js/app.js?v=14"></script>
 
 </body>
 
