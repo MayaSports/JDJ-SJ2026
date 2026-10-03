@@ -241,6 +241,85 @@
 
     </section>
 
+    <!-- ===================================== -->
+<!-- LOGIN DEL ENCARGADO -->
+<!-- ===================================== -->
+
+<section
+    id="pantalla-login-encargado"
+    class="pantalla"
+>
+
+    <div class="encargado-contenido">
+
+        <h1>
+            ACCESO ENCARGADO
+        </h1>
+
+        <p class="subtitulo-encargado">
+            Ingresa tus credenciales para continuar
+        </p>
+
+        <form id="form-login-encargado">
+
+            <div class="campo">
+
+                <label for="usuario-encargado">
+                    Usuario
+                </label>
+
+                <input
+                    type="text"
+                    id="usuario-encargado"
+                    placeholder="Ej: encargado1"
+                    autocomplete="username"
+                    required
+                >
+
+            </div>
+
+            <div class="campo">
+
+                <label for="pin-encargado">
+                    PIN
+                </label>
+
+                <input
+                    type="password"
+                    id="pin-encargado"
+                    placeholder="Ingresa tu PIN"
+                    inputmode="numeric"
+                    autocomplete="current-password"
+                    required
+                >
+
+            </div>
+
+            <p
+                id="mensaje-login"
+                class="mensaje-escaner"
+            ></p>
+
+            <button
+                type="submit"
+                class="btn-principal"
+            >
+                INGRESAR
+            </button>
+
+        </form>
+
+        <button
+            id="btn-volver-login"
+            class="btn-volver"
+            type="button"
+        >
+            VOLVER AL INICIO
+        </button>
+
+    </div>
+
+</section>
 
     <!-- ===================================== -->
     <!-- PANTALLA DEL ENCARGADO -->
@@ -270,7 +349,7 @@
                     id="btn-escanear-qr"
                     class="btn-escanear"
                 >
-                    📷 ESCANEAR CÓDIGO QR
+                     ESCANEAR CÓDIGO QR
                 </button>
 
 
@@ -399,7 +478,7 @@
     <!-- NUESTRO JAVASCRIPT -->
     <!-- ===================================== -->
 
-    <script src="js/app.js?v=11"></script>
+    <script src="js/app.js?v=13"></script>
 
 </body>
 

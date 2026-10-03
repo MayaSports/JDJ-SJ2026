@@ -21,6 +21,11 @@ const pantallaAsignacion =
 const pantallaEncargado =
     document.getElementById("pantalla-encargado");
 
+    const pantallaLoginEncargado =
+    document.getElementById(
+        "pantalla-login-encargado"
+    );
+
 
 // Botones principales
 const btnRegistrar =
@@ -31,6 +36,32 @@ const btnEncargado =
 
 const btnVolverInicio =
     document.getElementById("btn-volver-inicio");
+
+// Elementos del login de encargado
+const formLoginEncargado =
+    document.getElementById(
+        "form-login-encargado"
+    );
+
+const usuarioEncargado =
+    document.getElementById(
+        "usuario-encargado"
+    );
+
+const pinEncargado =
+    document.getElementById(
+        "pin-encargado"
+    );
+
+const mensajeLogin =
+    document.getElementById(
+        "mensaje-login"
+    );
+
+const btnVolverLogin =
+    document.getElementById(
+        "btn-volver-login"
+    );
 
 
 // Formulario
@@ -152,8 +183,130 @@ btnEncargado.addEventListener(
         pantallaInicio.style.display =
             "none";
 
-        pantallaEncargado.style.display =
+        pantallaLoginEncargado.style.display =
             "block";
+
+        mensajeLogin.textContent =
+            "";
+
+        formLoginEncargado.reset();
+
+    }
+);
+
+// ========================================
+// LOGIN DEL ENCARGADO
+// ========================================
+
+formLoginEncargado.addEventListener(
+    "submit",
+    async function (event) {
+
+        event.preventDefault();
+
+        const usuario =
+            usuarioEncargado.value.trim();
+
+        const pin =
+            pinEncargado.value.trim();
+
+
+        if (
+            usuario === "" ||
+            pin === ""
+        ) {
+
+            mensajeLogin.textContent =
+                "Ingresa tu usuario y PIN.";
+
+            return;
+        }
+
+
+        try {
+
+            mensajeLogin.textContent =
+                "Verificando acceso...";
+
+
+            const respuesta =
+                await fetch(
+                    URL_API +
+                    "?accion=login" +
+                    "&usuario=" +
+                    encodeURIComponent(usuario) +
+                    "&pin=" +
+                    encodeURIComponent(pin)
+                );
+
+
+            const datos =
+                await respuesta.json();
+
+
+            console.log(
+                "Login encargado:",
+                datos
+            );
+
+
+            if (datos.exito !== true) {
+
+                mensajeLogin.textContent =
+                    datos.mensaje ||
+                    "Usuario o PIN incorrecto.";
+
+                return;
+            }
+
+
+            // ACCESO CORRECTO
+            mensajeLogin.textContent =
+                "";
+
+
+            formLoginEncargado.reset();
+
+
+            pantallaLoginEncargado.style.display =
+                "none";
+
+
+            pantallaEncargado.style.display =
+                "block";
+
+
+        } catch (error) {
+
+            console.error(
+                "Error en login:",
+                error
+            );
+
+
+            mensajeLogin.textContent =
+                "No fue posible verificar el acceso.";
+
+        }
+
+    }
+);
+
+btnVolverLogin.addEventListener(
+    "click",
+    function () {
+
+        formLoginEncargado.reset();
+
+        mensajeLogin.textContent =
+            "";
+
+        pantallaLoginEncargado.style.display =
+            "none";
+
+        pantallaInicio.style.display =
+            "flex";
+
     }
 );
 
