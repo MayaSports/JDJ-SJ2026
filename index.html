@@ -9,132 +9,107 @@
         content="width=device-width, initial-scale=1.0"
     >
 
+    <meta
+        name="theme-color"
+        content="#173f96"
+    >
+
     <title>JDJ San Juan 2026</title>
 
     <link
         rel="stylesheet"
-        href="css/estilos.css?v=18"
+        href="css/estilos.css?v=20"
     >
 </head>
 
 <body>
 
-<!-- ===================================== -->
-<!-- PANTALLA DE INICIO -->
-<!-- ===================================== -->
+    <!-- =====================================================
+         PANTALLA DE INICIO
+    ====================================================== -->
 
-<main
-    id="pantalla-inicio"
-    class="contenedor-principal"
->
-
-    <!-- HERO / IDENTIDAD -->
-    <div class="inicio-hero">
-
-        <div class="logo">
-            <img
-                src="img/logo-jdj.png"
-                alt="Logo JDJ San Juan 2026"
-            >
-        </div>
-
-        <div class="inicio-evento">
-            JDJ · SAN JUAN 2026
-        </div>
-
-        <div class="bienvenida">
-
-            <h1>
-                ¡Bienvenido!
-            </h1>
-
-            <p>
-                Gestión de parqueo
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <!-- ACCIONES PRINCIPALES -->
-    <div class="inicio-acciones">
-
-        <button
-            id="btn-registrar"
-            class="inicio-accion-principal"
-            type="button"
-        >
-
-            <span class="inicio-accion-icono">
-                🚗
-            </span>
-
-            <span class="inicio-accion-texto">
-
-                <strong>
-                    Registrar vehículo
-                </strong>
-
-                <small>
-                    Obtén tu parqueo asignado
-                </small>
-
-            </span>
-
-            <span class="inicio-flecha">
-                →
-            </span>
-
-        </button>
-
-
-        <button
-            class="inicio-ayuda"
-            type="button"
-        >
-
-            <span class="inicio-ayuda-icono">
-                ?
-            </span>
-
-            <span>
-                ¿Necesitas ayuda?
-            </span>
-
-        </button>
-
-    </div>
-
-
-    <!-- ACCESO DEL PERSONAL -->
-    <button
-        id="btn-encargado"
-        class="inicio-encargado"
-        type="button"
+    <main
+        id="pantalla-inicio"
+        class="contenedor-principal"
     >
 
-        <span class="inicio-encargado-icono">
-            ♙
-        </span>
+        <div class="inicio-hero">
 
-        <span>
-            Acceso para encargados
-        </span>
+            <div class="logo">
+                <img
+                    src="img/logo-jdj.png"
+                    alt="Logo JDJ San Juan 2026"
+                >
+            </div>
 
-    </button>
+            <div class="inicio-evento">
+                JDJ · SAN JUAN 2026
+            </div>
+
+            <div class="bienvenida">
+                <h1>¡Bienvenido!</h1>
+                <p>Gestión de parqueo</p>
+            </div>
+
+        </div>
 
 
-    <p class="inicio-footer">
-        JDJ San Juan 2026
-    </p>
+        <div class="inicio-acciones">
 
-</main>
+            <button
+                id="btn-registrar"
+                class="inicio-accion-principal"
+                type="button"
+            >
+                <span
+                    class="inicio-accion-icono"
+                    aria-hidden="true"
+                >
+                    🚗
+                </span>
+
+                <span class="inicio-accion-texto">
+                    <strong>Registrar vehículo</strong>
+                    <small>Obtén tu parqueo asignado</small>
+                </span>
+
+                <span
+                    class="inicio-flecha"
+                    aria-hidden="true"
+                >
+                    →
+                </span>
+            </button>
+
+        </div>
 
 
-    <!-- ===================================== -->
-    <!-- PANTALLA DE REGISTRO -->
-    <!-- ===================================== -->
+        <button
+            id="btn-encargado"
+            class="inicio-encargado"
+            type="button"
+        >
+            <span
+                class="inicio-encargado-icono"
+                aria-hidden="true"
+            >
+                ♙
+            </span>
+
+            <span>Acceso para encargados</span>
+        </button>
+
+
+        <p class="inicio-footer">
+            JDJ San Juan 2026
+        </p>
+
+    </main>
+
+
+    <!-- =====================================================
+         PANTALLA DE REGISTRO
+    ====================================================== -->
 
     <section
         id="pantalla-registro"
@@ -154,6 +129,7 @@
 
         </div>
 
+
         <form id="form-registro">
 
             <div class="campo">
@@ -166,10 +142,12 @@
                     type="text"
                     id="nombre-piloto"
                     placeholder="Ej: Candy Cholotío"
+                    autocomplete="name"
                     required
                 >
 
             </div>
+
 
             <div class="campo">
 
@@ -181,7 +159,6 @@
                     id="tipo-vehiculo"
                     required
                 >
-
                     <option value="">
                         Selecciona una opción
                     </option>
@@ -201,10 +178,10 @@
                     <option value="bus">
                         Bus
                     </option>
-
                 </select>
 
             </div>
+
 
             <button
                 type="submit"
@@ -218,9 +195,9 @@
     </section>
 
 
-    <!-- ===================================== -->
-    <!-- PANTALLA DE ASIGNACIÓN -->
-    <!-- ===================================== -->
+    <!-- =====================================================
+         PANTALLA DE ASIGNACIÓN
+    ====================================================== -->
 
     <section
         id="pantalla-asignacion"
@@ -229,18 +206,24 @@
 
         <div class="asignacion-contenido">
 
-            <div class="check-asignacion">
+            <div
+                class="check-asignacion"
+                aria-hidden="true"
+            >
                 ✓
             </div>
+
 
             <h1>
                 PARQUEO ASIGNADO
             </h1>
 
+
             <p class="mensaje-asignacion">
                 Hemos encontrado el mejor<br>
                 parqueo disponible para ti
             </p>
+
 
             <div class="tarjeta-asignacion">
 
@@ -252,7 +235,13 @@
                     JDJ-XXXXXX
                 </p>
 
-                <div id="qr-codigo"></div>
+
+                <!-- QR generado dinámicamente -->
+                <div
+                    id="qr-codigo"
+                    aria-label="Código QR de ingreso"
+                ></div>
+
 
                 <div class="datos-parqueo">
 
@@ -270,6 +259,7 @@
 
                 </div>
 
+
                 <p class="instruccion-qr">
                     Presenta este código en el parqueo
                     para confirmar tu ingreso
@@ -277,21 +267,30 @@
 
             </div>
 
+
             <div class="tiempo-asignacion">
                 Válido por 30 minutos
             </div>
+
 
             <p class="instruccion-ruta">
                 Dirígete al parqueo asignado con la ubicación exacta
             </p>
 
+
             <div class="botones-ruta">
 
-                <button id="btn-maps">
+                <button
+                    id="btn-maps"
+                    type="button"
+                >
                     Abrir en Google Maps
                 </button>
 
-                <button id="btn-waze">
+                <button
+                    id="btn-waze"
+                    type="button"
+                >
                     Abrir en Waze
                 </button>
 
@@ -301,89 +300,97 @@
 
     </section>
 
-    <!-- ===================================== -->
-<!-- LOGIN DEL ENCARGADO -->
-<!-- ===================================== -->
 
-<section
-    id="pantalla-login-encargado"
-    class="pantalla"
->
+    <!-- =====================================================
+         LOGIN DEL ENCARGADO
+    ====================================================== -->
 
-    <div class="encargado-contenido">
+    <section
+        id="pantalla-login-encargado"
+        class="pantalla"
+    >
 
-        <h1>
-            ACCESO ENCARGADO
-        </h1>
+        <div class="encargado-contenido">
 
-        <p class="subtitulo-encargado">
-            Ingresa tus credenciales para continuar
-        </p>
+            <h1>
+                ACCESO ENCARGADO
+            </h1>
 
-        <form id="form-login-encargado">
+            <p class="subtitulo-encargado">
+                Ingresa tus credenciales para continuar
+            </p>
 
-            <div class="campo">
 
-                <label for="usuario-encargado">
-                    Usuario
-                </label>
+            <form id="form-login-encargado">
 
-                <input
-                    type="text"
-                    id="usuario-encargado"
-                    placeholder="Ej: encargado1"
-                    autocomplete="username"
-                    required
+                <div class="campo">
+
+                    <label for="usuario-encargado">
+                        Usuario
+                    </label>
+
+                    <input
+                        type="text"
+                        id="usuario-encargado"
+                        placeholder="Ej: encargado1"
+                        autocomplete="username"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label for="pin-encargado">
+                        PIN
+                    </label>
+
+                    <input
+                        type="password"
+                        id="pin-encargado"
+                        placeholder="Ingresa tu PIN"
+                        inputmode="numeric"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                </div>
+
+
+                <p
+                    id="mensaje-login"
+                    class="mensaje-escaner"
+                    aria-live="polite"
+                ></p>
+
+
+                <button
+                    type="submit"
+                    class="btn-principal"
                 >
+                    INGRESAR
+                </button>
 
-            </div>
+            </form>
 
-            <div class="campo">
-
-                <label for="pin-encargado">
-                    PIN
-                </label>
-
-                <input
-                    type="password"
-                    id="pin-encargado"
-                    placeholder="Ingresa tu PIN"
-                    inputmode="numeric"
-                    autocomplete="current-password"
-                    required
-                >
-
-            </div>
-
-            <p
-                id="mensaje-login"
-                class="mensaje-escaner"
-            ></p>
 
             <button
-                type="submit"
-                class="btn-principal"
+                id="btn-volver-login"
+                class="btn-volver"
+                type="button"
             >
-                INGRESAR
+                VOLVER AL INICIO
             </button>
 
-        </form>
+        </div>
 
-        <button
-            id="btn-volver-login"
-            class="btn-volver"
-            type="button"
-        >
-            VOLVER AL INICIO
-        </button>
+    </section>
 
-    </div>
 
-</section>
-
-    <!-- ===================================== -->
-    <!-- PANTALLA DEL ENCARGADO -->
-    <!-- ===================================== -->
+    <!-- =====================================================
+         PANTALLA DEL ENCARGADO
+    ====================================================== -->
 
     <section
         id="pantalla-encargado"
@@ -401,20 +408,22 @@
             </p>
 
 
-            <div class="tarjeta-busqueda">
+            <!-- ================================
+                 BÚSQUEDA / ESCÁNER
+            ================================= -->
 
-                <!-- BOTÓN PARA ACTIVAR CÁMARA -->
+            <div class="tarjeta-busqueda">
 
                 <button
                     id="btn-escanear-qr"
                     class="btn-escanear"
+                    type="button"
                 >
-                     ESCANEAR CÓDIGO QR
+                    ESCANEAR CÓDIGO QR
                 </button>
 
 
-                <!-- AQUÍ APARECERÁ LA CÁMARA -->
-
+                <!-- Cámara -->
                 <div
                     id="lector-qr"
                     class="lector-qr"
@@ -424,11 +433,11 @@
                 <p
                     id="mensaje-escaner"
                     class="mensaje-escaner"
+                    aria-live="polite"
                 ></p>
 
 
-                <!-- TAMBIÉN PODREMOS ESCRIBIR EL CÓDIGO -->
-
+                <!-- Búsqueda manual -->
                 <label for="codigo-busqueda">
                     Código de Ingreso
                 </label>
@@ -440,9 +449,11 @@
                     autocomplete="off"
                 >
 
+
                 <button
                     id="btn-buscar-codigo"
                     class="btn-principal"
+                    type="button"
                 >
                     BUSCAR VEHÍCULO
                 </button>
@@ -450,20 +461,26 @@
             </div>
 
 
-            <!-- RESULTADO -->
+            <!-- ================================
+                 RESULTADO DE BÚSQUEDA
+            ================================= -->
 
             <div
                 id="resultado-busqueda"
                 class="resultado-busqueda"
             >
 
-                <div class="check-encontrado">
+                <div
+                    class="check-encontrado"
+                    aria-hidden="true"
+                >
                     ✓
                 </div>
 
                 <h2>
                     VEHÍCULO ENCONTRADO
                 </h2>
+
 
                 <div class="datos-vehiculo">
 
@@ -494,25 +511,35 @@
 
                 </div>
 
+
                 <button
                     id="btn-confirmar-ingreso"
                     class="btn-confirmar"
+                    type="button"
                 >
                     CONFIRMAR INGRESO
                 </button>
 
             </div>
 
+
+            <!-- ================================
+                 ACCIONES DEL ENCARGADO
+            ================================= -->
+
             <button
-    id="btn-dashboard"
-    class="btn-principal"
-    type="button"
->
-     VER DASHBOARD
-</button>
+                id="btn-dashboard"
+                class="btn-principal"
+                type="button"
+            >
+                VER DASHBOARD
+            </button>
+
+
             <button
                 id="btn-volver-inicio"
                 class="btn-volver"
+                type="button"
             >
                 VOLVER AL INICIO
             </button>
@@ -521,324 +548,356 @@
 
     </section>
 
-    <!-- ===================================== -->
-<!-- DASHBOARD DE PARQUEOS V3 -->
-<!-- ===================================== -->
 
-<section
-    id="pantalla-dashboard"
-    class="pantalla"
->
+    <!-- =====================================================
+         DASHBOARD DE PARQUEOS
+    ====================================================== -->
 
-    <div class="dashboard-app">
+    <section
+        id="pantalla-dashboard"
+        class="pantalla"
+    >
 
-        <!-- ENCABEZADO -->
-        <header class="dashboard-header">
+        <div class="dashboard-app">
 
-            <div>
-                <span class="dashboard-eyebrow">
-                    JDJ · SAN JUAN 2026
-                </span>
+            <!-- ================================
+                 ENCABEZADO
+            ================================= -->
 
-                <h1>
-                    Estado de parqueos
-                </h1>
-
-                <p>
-                    Información actualizada del evento
-                </p>
-            </div>
-
-            <div
-                class="dashboard-live"
-                title="Sistema activo"
-            >
-                <span></span>
-                EN VIVO
-            </div>
-
-        </header>
-
-
-        <!-- RESUMEN -->
-        <div class="dashboard-resumen">
-
-            <div class="dashboard-tarjeta">
-
-                <div class="dashboard-icono">
-                    P
-                </div>
+            <header class="dashboard-header">
 
                 <div>
-                    <span>CAPACIDAD</span>
 
-                    <strong id="dash-capacidad">
-                        0
-                    </strong>
-                </div>
-
-            </div>
-
-
-            <div class="dashboard-tarjeta">
-
-                <div class="dashboard-icono">
-                    →
-                </div>
-
-                <div>
-                    <span>ASIGNADOS</span>
-
-                    <strong id="dash-asignados">
-                        0
-                    </strong>
-                </div>
-
-            </div>
-
-
-            <div class="dashboard-tarjeta">
-
-                <div class="dashboard-icono dashboard-icono-verde">
-                    ✓
-                </div>
-
-                <div>
-                    <span>INGRESADOS</span>
-
-                    <strong id="dash-ingresados">
-                        0
-                    </strong>
-                </div>
-
-            </div>
-
-
-            <div class="dashboard-tarjeta">
-
-                <div class="dashboard-icono dashboard-icono-disponible">
-                    +
-                </div>
-
-                <div>
-                    <span>DISPONIBLES</span>
-
-                    <strong id="dash-disponibles">
-                        0
-                    </strong>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- OCUPACIÓN GENERAL -->
-        <div class="dashboard-ocupacion-general">
-
-            <div class="dashboard-ocupacion-header">
-
-                <div>
-                    <span class="dashboard-seccion-label">
-                        OCUPACIÓN GENERAL
+                    <span class="dashboard-eyebrow">
+                        JDJ · SAN JUAN 2026
                     </span>
 
-                    <small>
-                        Espacios comprometidos
-                    </small>
+                    <h1>
+                        Estado de parqueos
+                    </h1>
+
+                    <p>
+                        Información actualizada del evento
+                    </p>
+
                 </div>
 
-                <strong id="dash-porcentaje-general">
-                    0%
-                </strong>
-
-            </div>
-
-
-            <div class="dashboard-barra-general">
 
                 <div
-                    id="dash-barra-general-progreso"
-                    class="dashboard-barra-general-progreso"
-                ></div>
+                    class="dashboard-live"
+                    title="Sistema activo"
+                >
+                    <span aria-hidden="true"></span>
+                    EN VIVO
+                </div>
+
+            </header>
+
+
+            <!-- ================================
+                 RESUMEN GENERAL
+            ================================= -->
+
+            <div class="dashboard-resumen">
+
+                <div class="dashboard-tarjeta">
+
+                    <div
+                        class="dashboard-icono"
+                        aria-hidden="true"
+                    >
+                        P
+                    </div>
+
+                    <div>
+                        <span>CAPACIDAD</span>
+                        <strong id="dash-capacidad">0</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-tarjeta">
+
+                    <div
+                        class="dashboard-icono"
+                        aria-hidden="true"
+                    >
+                        →
+                    </div>
+
+                    <div>
+                        <span>ASIGNADOS</span>
+                        <strong id="dash-asignados">0</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-tarjeta">
+
+                    <div
+                        class="dashboard-icono dashboard-icono-verde"
+                        aria-hidden="true"
+                    >
+                        ✓
+                    </div>
+
+                    <div>
+                        <span>INGRESADOS</span>
+                        <strong id="dash-ingresados">0</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-tarjeta">
+
+                    <div
+                        class="dashboard-icono dashboard-icono-disponible"
+                        aria-hidden="true"
+                    >
+                        +
+                    </div>
+
+                    <div>
+                        <span>DISPONIBLES</span>
+                        <strong id="dash-disponibles">0</strong>
+                    </div>
+
+                </div>
 
             </div>
 
 
-            <div class="dashboard-ocupacion-leyenda">
+            <!-- ================================
+                 OCUPACIÓN GENERAL
+            ================================= -->
 
-                <span>
-                    Asignados + ingresados
-                </span>
+            <div class="dashboard-ocupacion-general">
 
-                <span id="dash-espacios-general">
-                    0 de 0 espacios
+                <div class="dashboard-ocupacion-header">
+
+                    <div>
+
+                        <span class="dashboard-seccion-label">
+                            OCUPACIÓN GENERAL
+                        </span>
+
+                        <small>
+                            Espacios comprometidos
+                        </small>
+
+                    </div>
+
+                    <strong id="dash-porcentaje-general">
+                        0%
+                    </strong>
+
+                </div>
+
+
+                <div class="dashboard-barra-general">
+
+                    <div
+                        id="dash-barra-general-progreso"
+                        class="dashboard-barra-general-progreso"
+                    ></div>
+
+                </div>
+
+
+                <div class="dashboard-ocupacion-leyenda">
+
+                    <span>
+                        Asignados + ingresados
+                    </span>
+
+                    <span id="dash-espacios-general">
+                        0 de 0 espacios
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================================
+                 LISTA DE PARQUEOS
+            ================================= -->
+
+            <div class="dashboard-lista-header">
+
+                <div>
+
+                    <h2>
+                        Parqueos
+                    </h2>
+
+                    <p>
+                        Disponibilidad por ubicación
+                    </p>
+
+                </div>
+
+
+                <span
+                    id="dash-total-parqueos"
+                    class="dashboard-total-parqueos"
+                >
+                    0
                 </span>
 
             </div>
 
-        </div>
 
+            <!-- Las tarjetas se generan desde app.js -->
+            <div id="lista-parqueos-dashboard">
 
-        <!-- PARQUEOS -->
-        <div class="dashboard-lista-header">
-
-            <div>
-                <h2>
-                    Parqueos
-                </h2>
-
-                <p>
-                    Disponibilidad por ubicación
+                <p class="dashboard-cargando">
+                    Cargando información...
                 </p>
+
             </div>
 
-            <span
-                id="dash-total-parqueos"
-                class="dashboard-total-parqueos"
-            >
-                0
-            </span>
+
+            <!-- Evita que la navegación tape la última tarjeta -->
+            <div class="dashboard-nav-space"></div>
 
         </div>
 
 
-        <div id="lista-parqueos-dashboard">
+        <!-- ================================
+             NAVEGACIÓN INFERIOR
+        ================================= -->
 
-            <p class="dashboard-cargando">
-                Cargando información...
-            </p>
+        <nav
+            class="dashboard-nav"
+            aria-label="Navegación del dashboard"
+        >
 
-        </div>
+            <!-- CONTROL -->
 
-
-        <!-- ESPACIO PARA NAV INFERIOR -->
-        <div class="dashboard-nav-space"></div>
-
-    </div>
-
-
-    <!-- NAVEGACIÓN INFERIOR -->
-    <nav class="dashboard-nav">
-
-    <!-- CONTROL -->
-    <button
-        id="btn-volver-encargado"
-        type="button"
-        class="dashboard-nav-item"
-    >
-
-        <span class="dashboard-nav-icon">
-
-            <svg
-                viewBox="0 0 24 24"
-                aria-hidden="true"
+            <button
+                id="btn-volver-encargado"
+                type="button"
+                class="dashboard-nav-item"
             >
-                <path
-                    d="M4 7h16M4 12h10M4 17h7"
-                />
-            </svg>
 
-        </span>
+                <span
+                    class="dashboard-nav-icon"
+                    aria-hidden="true"
+                >
 
-        <span class="dashboard-nav-texto">
-            Control
-        </span>
+                    <svg viewBox="0 0 24 24">
+                        <path d="M4 7h16M4 12h10M4 17h7"></path>
+                    </svg>
 
-    </button>
+                </span>
+
+                <span class="dashboard-nav-texto">
+                    Control
+                </span>
+
+            </button>
 
 
-    <!-- PARQUEOS / ACTIVO -->
-    <button
-        type="button"
-        class="dashboard-nav-item dashboard-nav-activo"
-    >
+            <!-- PARQUEOS -->
 
-        <span class="dashboard-nav-icon">
-
-            <svg
-                viewBox="0 0 24 24"
-                aria-hidden="true"
+            <button
+                type="button"
+                class="dashboard-nav-item dashboard-nav-activo"
+                aria-current="page"
             >
-                <rect
-                    x="4"
-                    y="4"
-                    width="16"
-                    height="16"
-                    rx="3"
-                />
 
-                <path
-                    d="M9 17V7h4a3 3 0 0 1 0 6H9"
-                />
-            </svg>
+                <span
+                    class="dashboard-nav-icon"
+                    aria-hidden="true"
+                >
 
-        </span>
+                    <svg viewBox="0 0 24 24">
 
-        <span class="dashboard-nav-texto">
-            Parqueos
-        </span>
+                        <rect
+                            x="4"
+                            y="4"
+                            width="16"
+                            height="16"
+                            rx="3"
+                        ></rect>
 
-    </button>
+                        <path
+                            d="M9 17V7h4a3 3 0 0 1 0 6H9"
+                        ></path>
+
+                    </svg>
+
+                </span>
+
+                <span class="dashboard-nav-texto">
+                    Parqueos
+                </span>
+
+            </button>
 
 
-    <!-- ACTUALIZAR -->
-    <button
-        id="btn-actualizar-dashboard"
-        type="button"
-        class="dashboard-nav-item"
-    >
+            <!-- ACTUALIZAR -->
 
-        <span class="dashboard-nav-icon">
-
-            <svg
-                viewBox="0 0 24 24"
-                aria-hidden="true"
+            <button
+                id="btn-actualizar-dashboard"
+                type="button"
+                class="dashboard-nav-item"
             >
-                <path
-                    d="M20 6v5h-5"
-                />
 
-                <path
-                    d="M18.5 15a7 7 0 1 1-.7-7.7L20 11"
-                />
-            </svg>
+                <span
+                    class="dashboard-nav-icon"
+                    aria-hidden="true"
+                >
 
-        </span>
+                    <svg viewBox="0 0 24 24">
 
-        <span class="dashboard-nav-texto">
-            Actualizar
-        </span>
+                        <path
+                            d="M20 6v5h-5"
+                        ></path>
 
-    </button>
+                        <path
+                            d="M18.5 15a7 7 0 1 1-.7-7.7L20 11"
+                        ></path>
 
-</nav>
+                    </svg>
 
-</section>
+                </span>
 
-    <!-- ===================================== -->
-    <!-- LIBRERÍA PARA GENERAR QR -->
-    <!-- ===================================== -->
+                <span class="dashboard-nav-texto">
+                    Actualizar
+                </span>
 
+            </button>
+
+        </nav>
+
+    </section>
+
+
+    <!-- =====================================================
+         LIBRERÍAS
+    ====================================================== -->
+
+    <!-- Generación de códigos QR -->
     <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
-    </script>
+        src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+    ></script>
 
-
-    <!-- ===================================== -->
-    <!-- LIBRERÍA PARA ESCANEAR QR -->
-    <!-- ===================================== -->
-
+    <!-- Lectura de códigos QR -->
     <script
-        src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js">
-    </script>
+        src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"
+    ></script>
 
 
-    <!-- ===================================== -->
-    <!-- NUESTRO JAVASCRIPT -->
-    <!-- ===================================== -->
+    <!-- =====================================================
+         JAVASCRIPT PRINCIPAL
+    ====================================================== -->
 
-    <script src="js/app.js?v=15"></script>
+    <script src="js/app.js?v=16"></script>
 
 </body>
 
