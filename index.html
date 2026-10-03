@@ -13,20 +13,23 @@
 
     <link
         rel="stylesheet"
-        href="css/estilos.css?v=18"
+        href="css/estilos.css?v=17"
     >
 </head>
 
 <body>
 
-    <!-- ===================================== -->
-    <!-- PANTALLA DE INICIO -->
-    <!-- ===================================== -->
+<!-- ===================================== -->
+<!-- PANTALLA DE INICIO -->
+<!-- ===================================== -->
 
-    <main
-        id="pantalla-inicio"
-        class="contenedor-principal"
-    >
+<main
+    id="pantalla-inicio"
+    class="contenedor-principal"
+>
+
+    <!-- HERO / IDENTIDAD -->
+    <div class="inicio-hero">
 
         <div class="logo">
             <img
@@ -35,45 +38,98 @@
             >
         </div>
 
+        <div class="inicio-evento">
+            JDJ · SAN JUAN 2026
+        </div>
+
         <div class="bienvenida">
 
-            <div class="evento-badge">
-    JDJ · SAN JUAN 2026
-</div>
-
-            <h1>BIENVENIDO</h1>
+            <h1>
+                ¡Bienvenido!
+            </h1>
 
             <p>
-                GESTIÓN DE PARQUEO
+                Gestión de parqueo
             </p>
 
         </div>
 
-        <div class="botones">
+    </div>
 
-            <button
-                id="btn-registrar"
-                class="btn-principal"
-            >
-                REGISTRAR VEHÍCULO
-            </button>
 
-            <button
-                class="btn-secundario"
-            >
-                ¿NECESITAS AYUDA?
-            </button>
+    <!-- ACCIONES PRINCIPALES -->
+    <div class="inicio-acciones">
 
-            <button
-                id="btn-encargado"
-                class="btn-acceso-encargado"
-            >
-                ACCESO ENCARGADO
-            </button>
+        <button
+            id="btn-registrar"
+            class="inicio-accion-principal"
+            type="button"
+        >
 
-        </div>
+            <span class="inicio-accion-icono">
+                🚗
+            </span>
 
-    </main>
+            <span class="inicio-accion-texto">
+
+                <strong>
+                    Registrar vehículo
+                </strong>
+
+                <small>
+                    Obtén tu parqueo asignado
+                </small>
+
+            </span>
+
+            <span class="inicio-flecha">
+                →
+            </span>
+
+        </button>
+
+
+        <button
+            class="inicio-ayuda"
+            type="button"
+        >
+
+            <span class="inicio-ayuda-icono">
+                ?
+            </span>
+
+            <span>
+                ¿Necesitas ayuda?
+            </span>
+
+        </button>
+
+    </div>
+
+
+    <!-- ACCESO DEL PERSONAL -->
+    <button
+        id="btn-encargado"
+        class="inicio-encargado"
+        type="button"
+    >
+
+        <span class="inicio-encargado-icono">
+            ♙
+        </span>
+
+        <span>
+            Acceso para encargados
+        </span>
+
+    </button>
+
+
+    <p class="inicio-footer">
+        JDJ San Juan 2026
+    </p>
+
+</main>
 
 
     <!-- ===================================== -->
