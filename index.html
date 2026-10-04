@@ -173,22 +173,47 @@
 
 <button
     id="btn-ayuda"
-    class="inicio-ayuda"
+    class="inicio-accion-ayuda"
     type="button"
-    aria-label="Abrir ayuda"
+    aria-label="Obtener ayuda"
 >
-    <span
-        class="inicio-ayuda-icono"
-        aria-hidden="true"
-    >
-        ?
+    <span class="inicio-ayuda-icono-card" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22">
+            <circle
+                cx="12"
+                cy="12"
+                r="9"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+            ></circle>
+
+            <path
+                d="M9.7 9a2.4 2.4 0 0 1 4.6 1c0 1.8-2.3 2.1-2.3 3.7"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+            ></path>
+
+            <circle
+                cx="12"
+                cy="17"
+                r="1"
+                fill="currentColor"
+            ></circle>
+        </svg>
     </span>
 
-    <span>
-        ¿Necesitas ayuda?
+    <span class="inicio-ayuda-texto">
+        <strong>¿Necesitas ayuda?</strong>
+        <small>Guía rápida y contacto por WhatsApp</small>
+    </span>
+
+    <span class="inicio-ayuda-flecha" aria-hidden="true">
+        ›
     </span>
 </button>
-
 
     <!-- =====================================================
          PANTALLA DE REGISTRO
