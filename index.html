@@ -18,7 +18,7 @@
 
     <link
         rel="stylesheet"
-        href="css/estilos.css?v=25"
+        href="css/estilos.css?v=26"
     >
 </head>
 
@@ -561,54 +561,60 @@
 
 
     <!-- =====================================================
-         ASIGNACIÓN
-    ====================================================== -->
+     ASIGNACIÓN
+====================================================== -->
 
-    <section
-        id="pantalla-asignacion"
-        class="pantalla"
-    >
+<section
+    id="pantalla-asignacion"
+    class="pantalla"
+>
 
-        <div class="asignacion-contenido">
+    <div class="asignacion-app">
+
+        <!-- Estado -->
+
+        <header class="asignacion-header">
 
             <div
-                class="check-asignacion"
+                class="asignacion-check"
                 aria-hidden="true"
             >
-                ✓
+                <svg viewBox="0 0 24 24">
+                    <path d="M5 12.5l4.2 4.2L19 7"></path>
+                </svg>
             </div>
 
-            <h1>PARQUEO ASIGNADO</h1>
+            <span class="asignacion-eyebrow">
+                REGISTRO COMPLETADO
+            </span>
 
-            <p class="mensaje-asignacion">
-                Hemos encontrado el mejor<br>
-                parqueo disponible para ti
+            <h1>
+                ¡Parqueo asignado!
+            </h1>
+
+            <p>
+                Todo está listo para tu llegada a
+                JDJ San Juan 2026.
             </p>
 
-
-            <div class="tarjeta-asignacion">
-
-                <h2>Código de Ingreso</h2>
-
-                <p id="codigo-ingreso">
-                    JDJ-XXXXXX
-                </p>
-
-                <div
-                    id="qr-codigo"
-                    aria-label="Código QR de ingreso"
-                ></div>
+        </header>
 
 
-                <div class="datos-parqueo">
+        <!-- Parqueo principal -->
 
-                    <span id="tipo-asignado">
-                        BUS
+        <section class="asignacion-parqueo">
+
+            <div class="asignacion-parqueo-superior">
+
+                <div>
+
+                    <span class="asignacion-label">
+                        TU PARQUEO
                     </span>
 
-                    <h3 id="codigo-parqueo">
+                    <h2 id="codigo-parqueo">
                         B01
-                    </h3>
+                    </h2>
 
                     <p id="nombre-parqueo">
                         Parqueo Municipal
@@ -617,21 +623,42 @@
                 </div>
 
 
-                <p class="instruccion-qr">
-                    Presenta este código en el parqueo
-                    para confirmar tu ingreso
-                </p>
+                <span id="tipo-asignado">
+                    BUS
+                </span>
 
             </div>
 
 
-            <div class="tiempo-asignacion">
-                Válido por 30 minutos
-            </div>
+            <div class="asignacion-ruta-info">
 
-            <p class="instruccion-ruta">
-                Dirígete al parqueo asignado con la ubicación exacta
-            </p>
+                <span
+                    class="asignacion-ruta-icono"
+                    aria-hidden="true"
+                >
+                    <svg viewBox="0 0 24 24">
+
+                        <path
+                            d="M12 21s7-5.2 7-12a7 7 0 1 0-14 0c0 6.8 7 12 7 12z"
+                        ></path>
+
+                        <circle
+                            cx="12"
+                            cy="9"
+                            r="2.3"
+                        ></circle>
+
+                    </svg>
+                </span>
+
+                <div>
+                    <strong>Ubicación lista</strong>
+                    <small>
+                        Abre tu aplicación de navegación
+                    </small>
+                </div>
+
+            </div>
 
 
             <div class="botones-ruta">
@@ -640,21 +667,147 @@
                     id="btn-maps"
                     type="button"
                 >
-                    Abrir en Google Maps
+                    <span
+                        class="ruta-boton-icono"
+                        aria-hidden="true"
+                    >
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 21s7-5.2 7-12a7 7 0 1 0-14 0c0 6.8 7 12 7 12z"></path>
+                            <circle cx="12" cy="9" r="2.2"></circle>
+                        </svg>
+                    </span>
+
+                    <span>
+                        <strong>Google Maps</strong>
+                        <small>Abrir ubicación</small>
+                    </span>
                 </button>
+
 
                 <button
                     id="btn-waze"
                     type="button"
                 >
-                    Abrir en Waze
+                    <span
+                        class="ruta-boton-icono"
+                        aria-hidden="true"
+                    >
+                        <svg viewBox="0 0 24 24">
+                            <path d="M5 13a7 7 0 1 1 13.5 2.5c-.7 1.6-2 2.9-3.6 3.6H9.5L6 21v-3.5A6.8 6.8 0 0 1 5 13z"></path>
+                            <circle cx="10" cy="12" r=".8"></circle>
+                            <circle cx="15" cy="12" r=".8"></circle>
+                            <path d="M10 15c1.3 1 2.7 1 4 0"></path>
+                        </svg>
+                    </span>
+
+                    <span>
+                        <strong>Waze</strong>
+                        <small>Iniciar navegación</small>
+                    </span>
                 </button>
 
             </div>
 
+        </section>
+
+
+        <!-- Pase digital -->
+
+        <section class="asignacion-pase">
+
+            <div class="asignacion-pase-header">
+
+                <div>
+                    <span class="asignacion-label">
+                        PASE DE INGRESO
+                    </span>
+
+                    <h2>
+                        Tu código JDJ
+                    </h2>
+                </div>
+
+
+                <span class="asignacion-pase-estado">
+                    ACTIVO
+                </span>
+
+            </div>
+
+
+            <div class="asignacion-codigo">
+
+                <span>CÓDIGO</span>
+
+                <strong id="codigo-ingreso">
+                    JDJ-XXXXXX
+                </strong>
+
+            </div>
+
+
+            <div class="asignacion-qr-contenedor">
+
+                <div
+                    id="qr-codigo"
+                    aria-label="Código QR de ingreso"
+                ></div>
+
+            </div>
+
+
+            <div class="asignacion-qr-ayuda">
+
+                <span
+                    class="asignacion-qr-ayuda-icono"
+                    aria-hidden="true"
+                >
+                    <svg viewBox="0 0 24 24">
+                        <path d="M4 5h5M4 5v5M20 5h-5M20 5v5M4 19h5M4 19v-5M20 19h-5M20 19v-5"></path>
+                    </svg>
+                </span>
+
+                <div>
+                    <strong>Presenta este QR al llegar</strong>
+
+                    <p>
+                        El encargado lo escaneará para
+                        confirmar tu ingreso al parqueo.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Recomendación -->
+
+        <div class="asignacion-aviso">
+
+            <span
+                class="asignacion-aviso-icono"
+                aria-hidden="true"
+            >
+                i
+            </span>
+
+            <p>
+                Mantén esta pantalla disponible durante
+                tu llegada. También puedes tomar una
+                captura de tu código QR.
+            </p>
+
         </div>
 
-    </section>
+
+        <p class="asignacion-footer">
+            JDJ San Juan 2026
+        </p>
+
+    </div>
+
+</section>
 
 
 

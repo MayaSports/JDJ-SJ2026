@@ -1393,35 +1393,81 @@ img {
 ========================================================= */
 
 #pantalla-asignacion {
+    position: relative;
+
+    min-height: 100dvh;
+
     padding:
-        30px
-        20px
-        calc(40px + env(safe-area-inset-bottom));
+        0
+        0
+        calc(35px + env(safe-area-inset-bottom));
+
+    overflow-x: hidden;
 
     background:
         linear-gradient(
             180deg,
-            #ffffff,
-            #f5f8fd
+            #edf4ff 0%,
+            #f7f9fd 30%,
+            #f5f8fd 100%
         );
 }
 
 
-.asignacion-contenido {
+#pantalla-asignacion::before {
+    content: "";
+
+    position: absolute;
+
+    width: 350px;
+    height: 350px;
+
+    top: -270px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background:
+        rgba(47, 103, 216, 0.14);
+
+    border-radius: 50%;
+
+    filter: blur(12px);
+
+    pointer-events: none;
+}
+
+
+.asignacion-app {
+    position: relative;
+    z-index: 1;
+
     width: 100%;
     max-width: 520px;
 
-    margin:
-        0 auto;
+    margin: 0 auto;
+
+    padding:
+        calc(29px + env(safe-area-inset-top))
+        17px
+        0;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.asignacion-header {
+    margin-bottom: 22px;
 
     text-align: center;
 }
 
 
-.check-asignacion,
-.check-encontrado {
-    width: 58px;
-    height: 58px;
+.asignacion-check {
+    width: 57px;
+    height: 57px;
 
     display: flex;
     justify-content: center;
@@ -1429,262 +1475,273 @@ img {
 
     margin:
         0 auto
-        11px;
+        13px;
 
     color: #ffffff;
 
     background:
         linear-gradient(
             135deg,
-            #23a943,
-            #55d875
+            #25a94b,
+            #4bcb6b
         );
+
+    border:
+        5px solid
+        rgba(255, 255, 255, 0.85);
 
     border-radius: 50%;
 
-    font-size: 31px;
+    box-shadow:
+        0 8px 20px
+        rgba(40, 167, 69, 0.20);
+}
+
+
+.asignacion-check svg {
+    width: 27px;
+    height: 27px;
+
+    fill: none;
+
+    stroke: currentColor;
+    stroke-width: 2.3;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+.asignacion-eyebrow {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #7188ae;
+
+    font-size: 8px;
     font-weight: 800;
 
-    box-shadow:
-        0 9px 22px
-        rgba(40, 167, 69, 0.24);
+    letter-spacing: 1.2px;
 }
 
 
-.asignacion-contenido h1 {
-    color: var(--azul);
+.asignacion-header h1 {
+    margin: 0;
 
-    font-size: 29px;
+    color: #17366f;
+
+    font-size: 28px;
     font-weight: 850;
 
-    letter-spacing: -0.6px;
+    line-height: 1.08;
+
+    letter-spacing: -0.7px;
 }
 
 
-.mensaje-asignacion {
+.asignacion-header p {
+    max-width: 330px;
+
     margin:
-        8px
-        0
-        21px;
+        7px auto
+        0;
 
-    color:
-        var(--texto-secundario);
+    color: #7f8ca3;
 
-    font-size: 15px;
+    font-size: 12px;
+
     line-height: 1.45;
 }
 
 
-/* TARJETA */
+/* =========================================================
+   TARJETA PARQUEO
+========================================================= */
 
-.tarjeta-asignacion {
-    position: relative;
-
-    padding:
-        24px
-        21px;
-
-    overflow: hidden;
-
-    background:
-        rgba(255, 255, 255, 0.98);
-
-    border:
-        1px solid
-        rgba(23, 63, 150, 0.09);
-
-    border-radius: 21px;
-
-    box-shadow:
-        var(--sombra);
-}
-
-
-.tarjeta-asignacion::before {
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    left: 0;
-
+.asignacion-parqueo {
     width: 100%;
-    height: 4px;
 
-    background:
-        linear-gradient(
-            90deg,
-            var(--azul),
-            var(--azul-claro)
-        );
-}
+    margin-bottom: 13px;
 
-
-.tarjeta-asignacion h2 {
-    color:
-        var(--texto-secundario);
-
-    font-size: 12px;
-    font-weight: 750;
-
-    text-transform: uppercase;
-
-    letter-spacing: 1px;
-}
-
-
-#codigo-ingreso {
-    margin:
-        6px
-        0
-        14px;
-
-    color:
-        var(--verde);
-
-    font-size: 26px;
-    font-weight: 850;
-
-    letter-spacing: 1px;
-}
-
-
-/* QR */
-
-#qr-codigo {
-    width: 235px;
-    max-width: 100%;
-    min-height: 235px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    margin:
-        15px
-        auto
-        20px;
-
-    padding: 14px;
-
-    background: #ffffff;
-
-    border-radius: 17px;
-
-    box-shadow:
-        inset
-        0 0 0 1px
-        #e7edf8,
-        0 7px 22px
-        rgba(20, 33, 61, 0.07);
-}
-
-
-#qr-codigo img,
-#qr-codigo canvas {
-    max-width: 100%;
-
-    height: auto !important;
-}
-
-
-/* DATOS */
-
-#tipo-asignado {
-    display: inline-flex;
-
-    padding:
-        6px
-        19px;
-
-    color: #ffffff;
+    padding: 19px;
 
     background:
         linear-gradient(
             135deg,
-            var(--azul),
-            var(--azul-claro)
+            #173f96 0%,
+            #2459b9 100%
         );
+
+    border-radius: 21px;
+
+    box-shadow:
+        0 10px 25px
+        rgba(23, 63, 150, 0.19);
+}
+
+
+.asignacion-parqueo-superior {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 15px;
+}
+
+
+.asignacion-label {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #8293ae;
+
+    font-size: 8px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+
+.asignacion-parqueo .asignacion-label {
+    color:
+        rgba(255, 255, 255, 0.60);
+}
+
+
+#pantalla-asignacion #codigo-parqueo {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 34px;
+    font-weight: 850;
+
+    line-height: 1;
+
+    letter-spacing: -0.5px;
+}
+
+
+#pantalla-asignacion #nombre-parqueo {
+    margin-top: 6px;
+
+    color:
+        rgba(255, 255, 255, 0.76);
+
+    font-size: 12px;
+    font-weight: 500;
+}
+
+
+#pantalla-asignacion #tipo-asignado {
+    display: inline-flex;
+    align-items: center;
+
+    flex-shrink: 0;
+
+    margin: 0;
+
+    padding:
+        6px
+        10px;
+
+    color: #ffffff;
+
+    background:
+        rgba(255, 255, 255, 0.14);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.13);
 
     border-radius: 999px;
 
-    font-size: 10px;
+    font-size: 8px;
     font-weight: 800;
 
     letter-spacing: 0.7px;
 }
 
 
-#codigo-parqueo {
-    margin-top: 10px;
+.asignacion-ruta-info {
+    display: flex;
+    align-items: center;
 
-    color:
-        var(--azul);
+    gap: 9px;
 
-    font-size: 29px;
-    font-weight: 850;
-}
+    margin-top: 18px;
+    padding-top: 15px;
 
-
-#nombre-parqueo {
-    margin-top: 2px;
-
-    color:
-        var(--texto-secundario);
-
-    font-size: 15px;
-}
-
-
-.instruccion-qr {
-    margin-top: 17px;
-
-    color:
-        var(--texto-secundario);
-
-    font-size: 13px;
-    line-height: 1.4;
-}
-
-
-.tiempo-asignacion {
-    margin:
-        15px
-        0;
-
-    padding: 11px;
-
-    color: #197237;
-
-    background: #eaf8ee;
-
-    border:
+    border-top:
         1px solid
-        #c7ebd0;
+        rgba(255, 255, 255, 0.13);
+}
 
-    border-radius: 12px;
 
-    font-size: 13px;
+.asignacion-ruta-icono {
+    width: 33px;
+    height: 33px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-shrink: 0;
+
+    color: #ffffff;
+
+    background:
+        rgba(255, 255, 255, 0.12);
+
+    border-radius: 10px;
+}
+
+
+.asignacion-ruta-icono svg {
+    width: 18px;
+    height: 18px;
+
+    fill: none;
+
+    stroke: currentColor;
+    stroke-width: 1.7;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+.asignacion-ruta-info div {
+    min-width: 0;
+}
+
+
+.asignacion-ruta-info strong {
+    display: block;
+
+    color: #ffffff;
+
+    font-size: 10px;
     font-weight: 750;
 }
 
 
-.instruccion-ruta {
-    margin:
-        19px
-        0
-        12px;
+.asignacion-ruta-info small {
+    display: block;
+
+    margin-top: 2px;
 
     color:
-        var(--texto-secundario);
+        rgba(255, 255, 255, 0.60);
 
-    font-size: 13px;
-    line-height: 1.4;
+    font-size: 8.5px;
 }
 
 
 /* =========================================================
-   8. GOOGLE MAPS Y WAZE
+   BOTONES MAPS / WAZE
 ========================================================= */
 
 .botones-ruta {
@@ -1694,44 +1751,483 @@ img {
         1fr
         1fr;
 
-    gap: 10px;
+    gap: 8px;
+
+    margin-top: 13px;
 }
 
 
+#pantalla-asignacion
 .botones-ruta button {
+    min-width: 0;
+    min-height: 53px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    padding:
+        9px
+        10px;
+
+    color: #23395f;
+
+    text-align: left;
+
+    background: #ffffff;
+
     border: none;
 
-    color: #ffffff;
+    border-radius: 13px;
 
-    font-size: 13px;
+    box-shadow: none;
+
+    cursor: pointer;
+
+    transition:
+        transform 150ms ease,
+        background 150ms ease;
 }
 
 
-#btn-maps {
-    background:
-        linear-gradient(
-            135deg,
-            #208b3a,
-            #45bf62
-        );
-
-    box-shadow:
-        0 7px 18px
-        rgba(32, 139, 58, 0.20);
+#pantalla-asignacion
+.botones-ruta button:active {
+    transform: scale(0.97);
 }
 
 
-#btn-waze {
-    background:
-        linear-gradient(
-            135deg,
-            #1598ce,
-            #5ac8ef
-        );
+.ruta-boton-icono {
+    width: 31px;
+    height: 31px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-shrink: 0;
+
+    color: var(--azul);
+
+    background: #edf3ff;
+
+    border-radius: 9px;
+}
+
+
+#btn-waze .ruta-boton-icono {
+    color: #148bbd;
+
+    background: #e9f8fd;
+}
+
+
+.ruta-boton-icono svg {
+    width: 17px;
+    height: 17px;
+
+    fill: none;
+
+    stroke: currentColor;
+    stroke-width: 1.65;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+#pantalla-asignacion
+.botones-ruta button > span:last-child {
+    min-width: 0;
+}
+
+
+#pantalla-asignacion
+.botones-ruta strong {
+    display: block;
+
+    overflow: hidden;
+
+    color: #253b60;
+
+    font-size: 9.5px;
+    font-weight: 800;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+#pantalla-asignacion
+.botones-ruta small {
+    display: block;
+
+    margin-top: 2px;
+
+    overflow: hidden;
+
+    color: #8997ad;
+
+    font-size: 7.5px;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   PASE DIGITAL
+========================================================= */
+
+.asignacion-pase {
+    width: 100%;
+
+    padding:
+        19px
+        18px;
+
+    background: #ffffff;
+
+    border:
+        1px solid
+        #e6ebf4;
+
+    border-radius: 21px;
 
     box-shadow:
-        0 7px 18px
-        rgba(21, 152, 206, 0.20);
+        0 6px 20px
+        rgba(23, 63, 150, 0.055);
+}
+
+
+.asignacion-pase-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 12px;
+
+    margin-bottom: 16px;
+}
+
+
+.asignacion-pase-header h2 {
+    margin: 0;
+
+    color: #203b69;
+
+    font-size: 17px;
+    font-weight: 800;
+
+    letter-spacing: -0.25px;
+}
+
+
+.asignacion-pase-estado {
+    flex-shrink: 0;
+
+    padding:
+        5px
+        8px;
+
+    color: #288647;
+
+    background: #eaf8ef;
+
+    border-radius: 999px;
+
+    font-size: 7px;
+    font-weight: 850;
+
+    letter-spacing: 0.7px;
+}
+
+
+.asignacion-codigo {
+    margin-bottom: 14px;
+    padding:
+        11px
+        12px;
+
+    text-align: center;
+
+    background: #f6f9fe;
+
+    border:
+        1px solid
+        #e6edf8;
+
+    border-radius: 13px;
+}
+
+
+.asignacion-codigo > span {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: #929fb3;
+
+    font-size: 7px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+
+#pantalla-asignacion #codigo-ingreso {
+    display: block;
+
+    margin: 0;
+
+    color: var(--azul);
+
+    font-size: 22px;
+    font-weight: 850;
+
+    letter-spacing: 1.4px;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   QR
+========================================================= */
+
+.asignacion-qr-contenedor {
+    display: flex;
+    justify-content: center;
+
+    padding:
+        5px
+        0
+        16px;
+}
+
+
+#pantalla-asignacion #qr-codigo {
+    width: 220px;
+    max-width: 100%;
+    min-height: 220px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 0;
+
+    padding: 12px;
+
+    background: #ffffff;
+
+    border:
+        1px solid
+        #e5ebf4;
+
+    border-radius: 17px;
+
+    box-shadow:
+        0 5px 16px
+        rgba(20, 33, 61, 0.055);
+}
+
+
+#pantalla-asignacion
+#qr-codigo img,
+
+#pantalla-asignacion
+#qr-codigo canvas {
+    display: block;
+
+    max-width: 100%;
+
+    height: auto !important;
+}
+
+
+.asignacion-qr-ayuda {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 10px;
+
+    padding:
+        12px
+        13px;
+
+    background: #f1f6ff;
+
+    border:
+        1px solid
+        #e1eafb;
+
+    border-radius: 13px;
+}
+
+
+.asignacion-qr-ayuda-icono {
+    width: 31px;
+    height: 31px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-shrink: 0;
+
+    color: var(--azul);
+
+    background: #e0eaff;
+
+    border-radius: 9px;
+}
+
+
+.asignacion-qr-ayuda-icono svg {
+    width: 17px;
+    height: 17px;
+
+    fill: none;
+
+    stroke: currentColor;
+    stroke-width: 1.8;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+.asignacion-qr-ayuda strong {
+    display: block;
+
+    color: #344d75;
+
+    font-size: 10px;
+    font-weight: 800;
+}
+
+
+.asignacion-qr-ayuda p {
+    margin-top: 3px;
+
+    color: #7d8ca4;
+
+    font-size: 8.5px;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   AVISO
+========================================================= */
+
+.asignacion-aviso {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 9px;
+
+    margin-top: 13px;
+
+    padding:
+        11px
+        12px;
+
+    color: #687995;
+
+    background:
+        rgba(255, 255, 255, 0.68);
+
+    border:
+        1px solid
+        #e5eaf2;
+
+    border-radius: 13px;
+}
+
+
+.asignacion-aviso-icono {
+    width: 20px;
+    height: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-shrink: 0;
+
+    color: var(--azul);
+
+    background: #e2ebfb;
+
+    border-radius: 50%;
+
+    font-size: 10px;
+    font-weight: 800;
+}
+
+
+.asignacion-aviso p {
+    margin: 0;
+
+    font-size: 8.5px;
+
+    line-height: 1.45;
+}
+
+
+.asignacion-footer {
+    margin-top: 20px;
+
+    color: #a2adbf;
+
+    font-size: 8px;
+    font-weight: 650;
+
+    text-align: center;
+
+    letter-spacing: 0.7px;
+}
+
+
+/* =========================================================
+   RESPONSIVE ASIGNACIÓN
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .asignacion-app {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+
+    .asignacion-header h1 {
+        font-size: 25px;
+    }
+
+
+    #pantalla-asignacion
+    #codigo-parqueo {
+        font-size: 31px;
+    }
+
+
+    #pantalla-asignacion
+    #qr-codigo {
+        width: 205px;
+        min-height: 205px;
+    }
+
+
+    .asignacion-parqueo,
+    .asignacion-pase {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
 }
 
 
