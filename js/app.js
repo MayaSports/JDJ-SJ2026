@@ -1,6 +1,6 @@
 // =========================================================
 // JDJ SAN JUAN 2026
-// FRONTEND - APP.JS
+// FRONTEND - APP.JS V2
 // =========================================================
 
 
@@ -34,9 +34,32 @@ const pantallaEncargado =
 const pantallaDashboard =
     document.getElementById("pantalla-dashboard");
 
+const pantallaItinerario =
+    document.getElementById("pantalla-itinerario");
+
+const pantallaAyuda =
+    document.getElementById("pantalla-ayuda");
+
 
 // =========================================================
-// 3. ELEMENTOS DE INICIO
+// 3. SPLASH Y LOADER GLOBAL
+// =========================================================
+
+const splashJDJ =
+    document.getElementById("splash-jdj");
+
+const loaderGlobal =
+    document.getElementById("loader-global");
+
+const loaderTitulo =
+    document.getElementById("loader-titulo");
+
+const loaderMensaje =
+    document.getElementById("loader-mensaje");
+
+
+// =========================================================
+// 4. ELEMENTOS DE INICIO
 // =========================================================
 
 const btnRegistrar =
@@ -45,13 +68,19 @@ const btnRegistrar =
 const btnEncargado =
     document.getElementById("btn-encargado");
 
-    const btnVolverRegistro =
+const btnItinerario =
+    document.getElementById("btn-itinerario");
+
+const btnAyuda =
+    document.getElementById("btn-ayuda");
+
+
+// =========================================================
+// 5. ELEMENTOS DE REGISTRO
+// =========================================================
+
+const btnVolverRegistro =
     document.getElementById("btn-volver-registro");
-
-
-// =========================================================
-// 4. ELEMENTOS DE REGISTRO
-// =========================================================
 
 const formRegistro =
     document.getElementById("form-registro");
@@ -62,9 +91,12 @@ const nombrePiloto =
 const tipoVehiculo =
     document.getElementById("tipo-vehiculo");
 
+const btnContinuarRegistro =
+    document.getElementById("btn-continuar-registro");
+
 
 // =========================================================
-// 5. ELEMENTOS DE ASIGNACIÓN
+// 6. ELEMENTOS DE ASIGNACIÓN
 // =========================================================
 
 const codigoIngreso =
@@ -90,7 +122,7 @@ const btnWaze =
 
 
 // =========================================================
-// 6. ELEMENTOS DEL LOGIN
+// 7. ELEMENTOS DEL LOGIN
 // =========================================================
 
 const formLoginEncargado =
@@ -110,7 +142,7 @@ const btnVolverLogin =
 
 
 // =========================================================
-// 7. ELEMENTOS DEL CONTROL DE INGRESO
+// 8. ELEMENTOS DEL CONTROL DE INGRESO
 // =========================================================
 
 const btnEscanearQR =
@@ -154,7 +186,7 @@ const btnVolverInicio =
 
 
 // =========================================================
-// 8. ELEMENTOS DEL DASHBOARD
+// 9. ELEMENTOS DEL DASHBOARD
 // =========================================================
 
 const btnDashboard =
@@ -191,15 +223,12 @@ const dashTotalParqueos =
     document.getElementById("dash-total-parqueos");
 
 const listaParqueosDashboard =
-    document.getElementById("lista-parqueos-dashboard");// =========================================================
-// ELEMENTOS DEL ITINERARIO
+    document.getElementById("lista-parqueos-dashboard");
+
+
 // =========================================================
-
-const btnItinerario =
-    document.getElementById("btn-itinerario");
-
-const pantallaItinerario =
-    document.getElementById("pantalla-itinerario");
+// 10. ELEMENTOS DEL ITINERARIO
+// =========================================================
 
 const btnVolverItinerario =
     document.getElementById("btn-volver-itinerario");
@@ -219,19 +248,20 @@ const itinerarioTotal =
 const listaItinerario =
     document.getElementById("lista-itinerario");
 
-    // =====================================================
-// AYUDA
-// =====================================================
 
-const btnAyuda = document.getElementById("btn-ayuda");
-const pantallaAyuda = document.getElementById("pantalla-ayuda");
-const btnWhatsAppAyuda = document.getElementById("btn-whatsapp-ayuda");
-const btnVolverAyuda = document.getElementById("btn-volver-ayuda");
+// =========================================================
+// 11. ELEMENTOS DE AYUDA
+// =========================================================
 
+const btnWhatsAppAyuda =
+    document.getElementById("btn-whatsapp-ayuda");
+
+const btnVolverAyuda =
+    document.getElementById("btn-volver-ayuda");
 
 
 // =========================================================
-// 9. VARIABLES DEL SISTEMA
+// 12. VARIABLES DEL SISTEMA
 // =========================================================
 
 let escanerQR = null;
@@ -244,32 +274,55 @@ let longitudParqueo = null;
 
 
 // =========================================================
-// 10. FUNCIONES GENERALES
+// 13. FUNCIONES GENERALES
 // =========================================================
 
 function ocultarPantallas() {
 
-    pantallaInicio.style.display = "none";
-    pantallaRegistro.style.display = "none";
-    pantallaAsignacion.style.display = "none";
-    pantallaLoginEncargado.style.display = "none";
-    pantallaEncargado.style.display = "none";
-    pantallaDashboard.style.display = "none";
-    pantallaItinerario.style.display = "none";
-    pantallaAyuda.style.display = "none";
+    const pantallas = [
+        pantallaInicio,
+        pantallaRegistro,
+        pantallaAsignacion,
+        pantallaLoginEncargado,
+        pantallaEncargado,
+        pantallaDashboard,
+        pantallaItinerario,
+        pantallaAyuda
+    ];
+
+    pantallas.forEach(function (pantalla) {
+
+        if (pantalla) {
+            pantalla.style.display = "none";
+        }
+
+    });
 }
 
 
-function mostrarInicio() {
+function mostrarPantalla(pantalla, tipoDisplay = "block") {
 
     ocultarPantallas();
 
-    pantallaInicio.style.display = "flex";
+    if (pantalla) {
+        pantalla.style.display = tipoDisplay;
+    }
 
     window.scrollTo({
         top: 0,
         behavior: "smooth"
     });
+}
+
+
+function mostrarInicio() {
+
+    detenerEscaner();
+
+    mostrarPantalla(
+        pantallaInicio,
+        "flex"
+    );
 }
 
 
@@ -312,322 +365,638 @@ function formatearTipoVehiculo(tipo) {
 
 
 // =========================================================
-// 11. NAVEGACIÓN DESDE INICIO
+// 14. LOADER GLOBAL
 // =========================================================
 
-btnRegistrar.addEventListener(
-    "click",
-    function () {
+function mostrarLoader(
+    titulo = "Cargando...",
+    mensaje = "Espera un momento"
+) {
 
-        ocultarPantallas();
-
-        pantallaRegistro.style.display = "block";
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
+    if (!loaderGlobal) {
+        return;
     }
-);
 
-
-btnEncargado.addEventListener(
-    "click",
-    function () {
-
-        ocultarPantallas();
-
-        formLoginEncargado.reset();
-
-        mensajeLogin.textContent = "";
-
-        pantallaLoginEncargado.style.display = "block";
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
+    if (loaderTitulo) {
+        loaderTitulo.textContent = titulo;
     }
-);
 
-btnVolverRegistro.addEventListener("click", function () {
-    mostrarInicio();
-});
-
-// =========================================================
-// ABRIR ITINERARIO
-// =========================================================
-
-btnItinerario.addEventListener(
-    "click",
-    function () {
-
-        ocultarPantallas();
-
-        pantallaItinerario.style.display =
-            "block";
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-
-        cargarItinerario();
+    if (loaderMensaje) {
+        loaderMensaje.textContent = mensaje;
     }
-);
 
-// =========================================================
-// VOLVER DESDE ITINERARIO
-// =========================================================
+    loaderGlobal.classList.add("activo");
 
-btnVolverItinerario.addEventListener(
-    "click",
-    function () {
-
-        mostrarInicio();
-    }
-);
-
-// =====================================================
-// ABRIR AYUDA
-// =====================================================
-
-btnAyuda.addEventListener("click", function () {
-    ocultarPantallas();
-
-    pantallaAyuda.style.display = "block";
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-});
-
-// =====================================================
-// VOLVER DESDE AYUDA
-// =====================================================
-
-btnVolverAyuda.addEventListener("click", function () {
-    mostrarInicio();
-});
-
-// =====================================================
-// CONTACTO POR WHATSAPP
-// =====================================================
-
-btnWhatsAppAyuda.addEventListener("click", function () {
-
-    const numeroWhatsApp = "50241151019";
-
-    const mensajeWhatsApp =
-        "Hola, voy para la JDJ SAN JUAN 26 necesito ayuda";
-
-    const urlWhatsApp =
-        "https://wa.me/" +
-        numeroWhatsApp +
-        "?text=" +
-        encodeURIComponent(mensajeWhatsApp);
-
-    window.open(
-        urlWhatsApp,
-        "_blank",
-        "noopener,noreferrer"
+    loaderGlobal.setAttribute(
+        "aria-hidden",
+        "false"
     );
-});
+
+    document.body.classList.add(
+        "loader-activo"
+    );
+}
+
+
+function ocultarLoader() {
+
+    if (!loaderGlobal) {
+        return;
+    }
+
+    loaderGlobal.classList.remove("activo");
+
+    loaderGlobal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+    document.body.classList.remove(
+        "loader-activo"
+    );
+}
 
 
 // =========================================================
-// 12. LOGIN DEL ENCARGADO
+// 15. CAMBIAR TEXTO SIN DESTRUIR ICONOS
 // =========================================================
 
-formLoginEncargado.addEventListener(
-    "submit",
-    async function (event) {
+function cambiarTextoBoton(
+    boton,
+    texto
+) {
 
-        event.preventDefault();
+    if (!boton) {
+        return;
+    }
 
-        const usuario =
-            usuarioEncargado.value.trim();
+    const candidatos = [
+        ".btn-texto",
+        ".control-boton-texto",
+        ".control-confirmar-texto",
+        ".dashboard-nav-texto"
+    ];
 
-        const pin =
-            pinEncargado.value.trim();
+    for (const selector of candidatos) {
 
+        const elemento =
+            boton.querySelector(selector);
 
-        if (usuario === "" || pin === "") {
+        if (elemento) {
 
-            mensajeLogin.textContent =
-                "Ingresa tu usuario y PIN.";
+            elemento.textContent = texto;
 
             return;
         }
+    }
+
+    /*
+     * Si el botón contiene SVG u otros elementos,
+     * NO usamos textContent sobre el botón completo,
+     * porque destruiríamos el icono.
+     */
+
+    const spans =
+        boton.querySelectorAll("span");
+
+    if (spans.length > 0) {
+
+        for (const span of spans) {
+
+            if (
+                !span.querySelector("svg") &&
+                !span.classList.contains("mini-loader")
+            ) {
+
+                span.textContent = texto;
+
+                return;
+            }
+        }
+    }
+
+    /*
+     * Solo se usa textContent directamente si
+     * el botón no tiene estructura interna.
+     */
+
+    if (!boton.querySelector("svg")) {
+        boton.textContent = texto;
+    }
+}
 
 
-        try {
+// =========================================================
+// 16. ESTADO DE BOTONES
+// =========================================================
 
-            mensajeLogin.textContent =
-                "Verificando acceso...";
+function bloquearBoton(
+    boton,
+    bloqueado = true
+) {
+
+    if (!boton) {
+        return;
+    }
+
+    boton.disabled = bloqueado;
+
+    if (bloqueado) {
+
+        boton.classList.add(
+            "boton-cargando"
+        );
+
+        boton.setAttribute(
+            "aria-busy",
+            "true"
+        );
+
+    } else {
+
+        boton.classList.remove(
+            "boton-cargando"
+        );
+
+        boton.removeAttribute(
+            "aria-busy"
+        );
+    }
+}
 
 
-            const respuesta =
-                await fetch(
-                    URL_API +
-                    "?accion=login" +
-                    "&usuario=" +
-                    encodeURIComponent(usuario) +
-                    "&pin=" +
-                    encodeURIComponent(pin)
-                );
+// =========================================================
+// 17. SPLASH INICIAL
+// =========================================================
 
+function iniciarSplash() {
 
-            const datos =
-                await respuesta.json();
+    if (!splashJDJ) {
+        mostrarInicio();
+        return;
+    }
 
+    splashJDJ.setAttribute(
+        "aria-hidden",
+        "false"
+    );
 
-            console.log(
-                "Login encargado:",
-                datos
+    splashJDJ.classList.add(
+        "splash-visible"
+    );
+
+    setTimeout(function () {
+
+        splashJDJ.classList.add(
+            "splash-saliendo"
+        );
+
+        setTimeout(function () {
+
+            splashJDJ.classList.remove(
+                "splash-visible",
+                "splash-saliendo"
             );
 
+            splashJDJ.setAttribute(
+                "aria-hidden",
+                "true"
+            );
 
-            if (datos.exito !== true) {
+        }, 450);
+
+    }, 1100);
+}
+
+
+// =========================================================
+// 18. NAVEGACIÓN DESDE INICIO
+// =========================================================
+
+if (btnRegistrar) {
+
+    btnRegistrar.addEventListener(
+        "click",
+        function () {
+
+            mostrarPantalla(
+                pantallaRegistro
+            );
+
+            setTimeout(function () {
+
+                if (nombrePiloto) {
+                    nombrePiloto.focus();
+                }
+
+            }, 300);
+        }
+    );
+}
+
+
+if (btnEncargado) {
+
+    btnEncargado.addEventListener(
+        "click",
+        function () {
+
+            if (formLoginEncargado) {
+                formLoginEncargado.reset();
+            }
+
+            if (mensajeLogin) {
+                mensajeLogin.textContent = "";
+            }
+
+            mostrarPantalla(
+                pantallaLoginEncargado
+            );
+
+            setTimeout(function () {
+
+                if (usuarioEncargado) {
+                    usuarioEncargado.focus();
+                }
+
+            }, 300);
+        }
+    );
+}
+
+
+if (btnVolverRegistro) {
+
+    btnVolverRegistro.addEventListener(
+        "click",
+        mostrarInicio
+    );
+}
+
+
+// =========================================================
+// 19. ITINERARIO
+// =========================================================
+
+if (btnItinerario) {
+
+    btnItinerario.addEventListener(
+        "click",
+        function () {
+
+            mostrarPantalla(
+                pantallaItinerario
+            );
+
+            cargarItinerario();
+        }
+    );
+}
+
+
+if (btnVolverItinerario) {
+
+    btnVolverItinerario.addEventListener(
+        "click",
+        mostrarInicio
+    );
+}
+
+
+// =========================================================
+// 20. AYUDA
+// =========================================================
+
+if (btnAyuda) {
+
+    btnAyuda.addEventListener(
+        "click",
+        function () {
+
+            mostrarPantalla(
+                pantallaAyuda
+            );
+        }
+    );
+}
+
+
+if (btnVolverAyuda) {
+
+    btnVolverAyuda.addEventListener(
+        "click",
+        mostrarInicio
+    );
+}
+
+
+// =========================================================
+// 21. WHATSAPP
+// =========================================================
+
+if (btnWhatsAppAyuda) {
+
+    btnWhatsAppAyuda.addEventListener(
+        "click",
+        function () {
+
+            const numeroWhatsApp =
+                "50241151019";
+
+            const mensajeWhatsApp =
+                "Hola, voy para la JDJ SAN JUAN 26 necesito ayuda";
+
+            const urlWhatsApp =
+                "https://wa.me/" +
+                numeroWhatsApp +
+                "?text=" +
+                encodeURIComponent(
+                    mensajeWhatsApp
+                );
+
+            window.open(
+                urlWhatsApp,
+                "_blank",
+                "noopener,noreferrer"
+            );
+        }
+    );
+}
+
+
+// =========================================================
+// 22. LOGIN DEL ENCARGADO
+// =========================================================
+
+if (formLoginEncargado) {
+
+    formLoginEncargado.addEventListener(
+        "submit",
+        async function (event) {
+
+            event.preventDefault();
+
+            const usuario =
+                usuarioEncargado.value.trim();
+
+            const pin =
+                pinEncargado.value.trim();
+
+            if (
+                usuario === "" ||
+                pin === ""
+            ) {
 
                 mensajeLogin.textContent =
-                    datos.mensaje ||
-                    "Usuario o PIN incorrecto.";
+                    "Ingresa tu usuario y PIN.";
 
                 return;
             }
 
+            const botonSubmit =
+                formLoginEncargado.querySelector(
+                    'button[type="submit"]'
+                );
 
-            // Acceso correcto
+            try {
+
+                mensajeLogin.textContent =
+                    "";
+
+                bloquearBoton(
+                    botonSubmit,
+                    true
+                );
+
+                mostrarLoader(
+                    "Verificando acceso",
+                    "Estamos validando tus datos..."
+                );
+
+                const respuesta =
+                    await fetch(
+                        URL_API +
+                        "?accion=login" +
+                        "&usuario=" +
+                        encodeURIComponent(usuario) +
+                        "&pin=" +
+                        encodeURIComponent(pin)
+                    );
+
+                if (!respuesta.ok) {
+                    throw new Error(
+                        "Error HTTP " +
+                        respuesta.status
+                    );
+                }
+
+                const datos =
+                    await respuesta.json();
+
+                console.log(
+                    "Login encargado:",
+                    datos
+                );
+
+                if (datos.exito !== true) {
+
+                    mensajeLogin.textContent =
+                        datos.mensaje ||
+                        "Usuario o PIN incorrecto.";
+
+                    return;
+                }
+
+                formLoginEncargado.reset();
+
+                mensajeLogin.textContent =
+                    "";
+
+                limpiarControlIngreso();
+
+                mostrarPantalla(
+                    pantallaEncargado
+                );
+
+            } catch (error) {
+
+                console.error(
+                    "Error en login:",
+                    error
+                );
+
+                mensajeLogin.textContent =
+                    "No fue posible verificar el acceso.";
+
+            } finally {
+
+                ocultarLoader();
+
+                bloquearBoton(
+                    botonSubmit,
+                    false
+                );
+            }
+        }
+    );
+}
+
+
+// =========================================================
+// 23. VOLVER DESDE LOGIN
+// =========================================================
+
+if (btnVolverLogin) {
+
+    btnVolverLogin.addEventListener(
+        "click",
+        function () {
 
             formLoginEncargado.reset();
 
-            mensajeLogin.textContent = "";
-
-            ocultarPantallas();
-
-            pantallaEncargado.style.display =
-                "block";
-
-
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-
-        } catch (error) {
-
-            console.error(
-                "Error en login:",
-                error
-            );
-
-
             mensajeLogin.textContent =
-                "No fue posible verificar el acceso.";
+                "";
+
+            mostrarInicio();
         }
-    }
-);
+    );
+}
 
 
 // =========================================================
-// 13. VOLVER DESDE LOGIN
+// 24. VOLVER DESDE CONTROL
 // =========================================================
 
-btnVolverLogin.addEventListener(
-    "click",
-    function () {
+if (btnVolverInicio) {
 
-        formLoginEncargado.reset();
+    btnVolverInicio.addEventListener(
+        "click",
+        function () {
 
-        mensajeLogin.textContent = "";
+            detenerEscaner();
 
-        mostrarInicio();
-    }
-);
+            limpiarControlIngreso();
 
-
-// =========================================================
-// 14. VOLVER DESDE CONTROL
-// =========================================================
-
-btnVolverInicio.addEventListener(
-    "click",
-    function () {
-
-        detenerEscaner();
-
-        limpiarControlIngreso();
-
-        mostrarInicio();
-    }
-);
+            mostrarInicio();
+        }
+    );
+}
 
 
 // =========================================================
-// 15. LIMPIAR CONTROL DE INGRESO
+// 25. LIMPIAR CONTROL DE INGRESO
 // =========================================================
 
 function limpiarControlIngreso() {
 
     codigoSeleccionado = "";
 
-    codigoBusqueda.value = "";
+    if (codigoBusqueda) {
+        codigoBusqueda.value = "";
+    }
 
-    mensajeEscaner.textContent = "";
+    if (mensajeEscaner) {
+        mensajeEscaner.textContent = "";
+    }
 
-    resultadoBusqueda.style.display =
-        "none";
+    if (resultadoBusqueda) {
+        resultadoBusqueda.style.display =
+            "none";
+    }
 
-    encargadoNombre.textContent = "-";
-    encargadoTipo.textContent = "-";
-    encargadoCodigoParqueo.textContent = "-";
-    encargadoNombreParqueo.textContent = "-";
-    encargadoEstado.textContent = "-";
+    if (encargadoNombre) {
+        encargadoNombre.textContent = "-";
+    }
 
-    btnConfirmarIngreso.disabled = true;
+    if (encargadoTipo) {
+        encargadoTipo.textContent = "-";
+    }
 
-    btnConfirmarIngreso.textContent =
-        "CONFIRMAR INGRESO";
+    if (encargadoCodigoParqueo) {
+        encargadoCodigoParqueo.textContent =
+            "-";
+    }
+
+    if (encargadoNombreParqueo) {
+        encargadoNombreParqueo.textContent =
+            "-";
+    }
+
+    if (encargadoEstado) {
+        encargadoEstado.textContent = "-";
+    }
+
+    if (btnConfirmarIngreso) {
+
+        btnConfirmarIngreso.disabled =
+            true;
+
+        cambiarTextoBoton(
+            btnConfirmarIngreso,
+            "CONFIRMAR INGRESO"
+        );
+    }
 }
 
 
 // =========================================================
-// 16. ACTIVAR / DESACTIVAR CÁMARA
+// 26. ACTIVAR / DESACTIVAR CÁMARA
 // =========================================================
 
-btnEscanearQR.addEventListener(
-    "click",
-    function () {
+if (btnEscanearQR) {
 
-        if (escanerActivo === true) {
+    btnEscanearQR.addEventListener(
+        "click",
+        function () {
 
-            detenerEscaner();
+            if (escanerActivo) {
 
-            return;
+                detenerEscaner();
+
+                return;
+            }
+
+            iniciarEscaner();
         }
-
-
-        iniciarEscaner();
-    }
-);
+    );
+}
 
 
 function iniciarEscaner() {
 
-    lectorQR.style.display = "block";
+    if (
+        !lectorQR ||
+        typeof Html5Qrcode === "undefined"
+    ) {
+
+        if (mensajeEscaner) {
+
+            mensajeEscaner.textContent =
+                "El lector QR no está disponible.";
+        }
+
+        return;
+    }
+
+    lectorQR.style.display =
+        "block";
 
     mensajeEscaner.textContent =
         "Solicitando acceso a la cámara...";
 
-    btnEscanearQR.textContent =
-        "CERRAR CÁMARA";
+    cambiarTextoBoton(
+        btnEscanearQR,
+        "CERRAR CÁMARA"
+    );
 
+    btnEscanearQR.classList.add(
+        "camara-activa"
+    );
 
     escanerQR =
-        new Html5Qrcode("lector-qr");
-
+        new Html5Qrcode(
+            "lector-qr"
+        );
 
     const configuracion = {
 
@@ -639,61 +1008,75 @@ function iniciarEscaner() {
         }
     };
 
-
     escanerQR
         .start(
             {
-                facingMode: "environment"
+                facingMode:
+                    "environment"
             },
+
             configuracion,
+
             codigoDetectado,
+
             function () {
                 // Se ignoran los intentos
-                // donde aún no se detecta un QR.
+                // donde todavía no hay QR.
             }
         )
-        .then(
-            function () {
+        .then(function () {
 
-                escanerActivo = true;
+            escanerActivo = true;
 
-                mensajeEscaner.textContent =
-                    "Cámara activa. Apunta al código QR.";
-            }
-        )
-        .catch(
-            function (error) {
+            mensajeEscaner.textContent =
+                "Cámara activa. Apunta al código QR.";
+        })
+        .catch(function (error) {
 
-                console.error(
-                    "Error al abrir cámara:",
-                    error
-                );
+            console.error(
+                "Error al abrir cámara:",
+                error
+            );
 
+            mensajeEscaner.textContent =
+                "No fue posible abrir la cámara. Revisa los permisos.";
 
-                mensajeEscaner.textContent =
-                    "No fue posible abrir la cámara.";
+            cambiarTextoBoton(
+                btnEscanearQR,
+                "ESCANEAR CÓDIGO QR"
+            );
 
+            btnEscanearQR.classList.remove(
+                "camara-activa"
+            );
 
-                btnEscanearQR.textContent =
-                    "ESCANEAR CÓDIGO QR";
+            lectorQR.style.display =
+                "none";
 
-
-                lectorQR.style.display =
-                    "none";
-
-
-                escanerQR = null;
-                escanerActivo = false;
-            }
-        );
+            escanerQR = null;
+            escanerActivo = false;
+        });
 }
 
 
 // =========================================================
-// 17. DETENER CÁMARA
+// 27. DETENER CÁMARA
 // =========================================================
 
 function detenerEscaner() {
+
+    if (!btnEscanearQR || !lectorQR) {
+        return;
+    }
+
+    cambiarTextoBoton(
+        btnEscanearQR,
+        "ESCANEAR CÓDIGO QR"
+    );
+
+    btnEscanearQR.classList.remove(
+        "camara-activa"
+    );
 
     if (
         escanerQR === null ||
@@ -703,53 +1086,46 @@ function detenerEscaner() {
         lectorQR.style.display =
             "none";
 
-        btnEscanearQR.textContent =
-            "ESCANEAR CÓDIGO QR";
-
         return;
     }
 
+    const lectorActual =
+        escanerQR;
 
-    escanerQR
+    escanerActivo = false;
+    escanerQR = null;
+
+    lectorActual
         .stop()
-        .then(
-            function () {
+        .then(function () {
 
-                escanerQR.clear();
-
-                escanerQR = null;
-                escanerActivo = false;
-
-                lectorQR.style.display =
-                    "none";
-
-                btnEscanearQR.textContent =
-                    "ESCANEAR CÓDIGO QR";
-            }
-        )
-        .catch(
-            function (error) {
-
-                console.error(
-                    "Error al detener cámara:",
+            try {
+                lectorActual.clear();
+            } catch (error) {
+                console.warn(
+                    "No fue necesario limpiar el lector.",
                     error
                 );
-
-                escanerQR = null;
-                escanerActivo = false;
-
-                lectorQR.style.display =
-                    "none";
-
-                btnEscanearQR.textContent =
-                    "ESCANEAR CÓDIGO QR";
             }
-        );
+
+            lectorQR.style.display =
+                "none";
+        })
+        .catch(function (error) {
+
+            console.error(
+                "Error al detener cámara:",
+                error
+            );
+
+            lectorQR.style.display =
+                "none";
+        });
 }
 
 
 // =========================================================
-// 18. QR DETECTADO
+// 28. QR DETECTADO
 // =========================================================
 
 function codigoDetectado(textoQR) {
@@ -759,14 +1135,14 @@ function codigoDetectado(textoQR) {
             .trim()
             .toUpperCase();
 
-
     console.log(
         "QR detectado:",
         codigo
     );
 
-
-    if (!codigo.startsWith("JDJ-")) {
+    if (
+        !codigo.startsWith("JDJ-")
+    ) {
 
         mensajeEscaner.textContent =
             "Este QR no pertenece al sistema JDJ.";
@@ -774,77 +1150,85 @@ function codigoDetectado(textoQR) {
         return;
     }
 
-
     codigoBusqueda.value =
         codigo;
-
 
     mensajeEscaner.textContent =
         "Código detectado correctamente ✓";
 
-
     detenerEscaner();
 
+    setTimeout(function () {
 
-    setTimeout(
+        buscarVehiculo(codigo);
+
+    }, 350);
+}
+
+
+// =========================================================
+// 29. BÚSQUEDA MANUAL
+// =========================================================
+
+if (btnBuscarCodigo) {
+
+    btnBuscarCodigo.addEventListener(
+        "click",
         function () {
 
-            buscarVehiculo(codigo);
+            const codigo =
+                codigoBusqueda.value
+                    .trim()
+                    .toUpperCase();
 
-        },
-        500
+            if (codigo === "") {
+
+                mensajeEscaner.textContent =
+                    "Ingresa un código JDJ.";
+
+                codigoBusqueda.focus();
+
+                return;
+            }
+
+            buscarVehiculo(codigo);
+        }
+    );
+}
+
+
+if (codigoBusqueda) {
+
+    codigoBusqueda.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (
+                event.key !== "Enter"
+            ) {
+                return;
+            }
+
+            event.preventDefault();
+
+            btnBuscarCodigo.click();
+        }
+    );
+
+    codigoBusqueda.addEventListener(
+        "input",
+        function () {
+
+            codigoBusqueda.value =
+                codigoBusqueda.value
+                    .toUpperCase();
+        }
     );
 }
 
 
 // =========================================================
-// 19. BÚSQUEDA MANUAL
-// =========================================================
-
-btnBuscarCodigo.addEventListener(
-    "click",
-    function () {
-
-        const codigo =
-            codigoBusqueda.value
-                .trim()
-                .toUpperCase();
-
-
-        if (codigo === "") {
-
-            alert(
-                "Ingresa un código."
-            );
-
-            return;
-        }
-
-
-        buscarVehiculo(codigo);
-    }
-);
-
-
-// Permitir buscar presionando Enter
-
-codigoBusqueda.addEventListener(
-    "keydown",
-    function (event) {
-
-        if (event.key !== "Enter") {
-            return;
-        }
-
-        event.preventDefault();
-
-        btnBuscarCodigo.click();
-    }
-);
-
-
-// =========================================================
-// 20. BUSCAR VEHÍCULO
+// 30. BUSCAR VEHÍCULO
 // =========================================================
 
 async function buscarVehiculo(codigo) {
@@ -854,19 +1238,29 @@ async function buscarVehiculo(codigo) {
     resultadoBusqueda.style.display =
         "none";
 
-
     btnConfirmarIngreso.disabled =
         true;
 
-    btnConfirmarIngreso.textContent =
-        "CONFIRMAR INGRESO";
-
+    cambiarTextoBoton(
+        btnConfirmarIngreso,
+        "CONFIRMAR INGRESO"
+    );
 
     try {
+
+        bloquearBoton(
+            btnBuscarCodigo,
+            true
+        );
 
         mensajeEscaner.textContent =
             "Buscando vehículo...";
 
+        mostrarLoader(
+            "Buscando registro",
+            "Estamos consultando el código " +
+            codigo
+        );
 
         const respuesta =
             await fetch(
@@ -876,18 +1270,25 @@ async function buscarVehiculo(codigo) {
                 encodeURIComponent(codigo)
             );
 
+        if (!respuesta.ok) {
+
+            throw new Error(
+                "Error HTTP " +
+                respuesta.status
+            );
+        }
 
         const datos =
             await respuesta.json();
-
 
         console.log(
             "Vehículo encontrado:",
             datos
         );
 
-
-        if (datos.encontrado !== true) {
+        if (
+            datos.encontrado !== true
+        ) {
 
             mensajeEscaner.textContent =
                 datos.mensaje ||
@@ -896,12 +1297,10 @@ async function buscarVehiculo(codigo) {
             return;
         }
 
-
-        // -----------------------------------------
-        // Revisar estado
-        // -----------------------------------------
-
-        if (datos.estado === "ASIGNADO") {
+        if (
+            datos.estado ===
+            "ASIGNADO"
+        ) {
 
             codigoSeleccionado =
                 datos.codigo;
@@ -909,34 +1308,40 @@ async function buscarVehiculo(codigo) {
             btnConfirmarIngreso.disabled =
                 false;
 
-            btnConfirmarIngreso.textContent =
-                "CONFIRMAR INGRESO";
+            cambiarTextoBoton(
+                btnConfirmarIngreso,
+                "CONFIRMAR INGRESO"
+            );
 
-        } else if (datos.estado === "INGRESADO") {
+        } else if (
+            datos.estado ===
+            "INGRESADO"
+        ) {
 
-            codigoSeleccionado = "";
+            codigoSeleccionado =
+                "";
 
             btnConfirmarIngreso.disabled =
                 true;
 
-            btnConfirmarIngreso.textContent =
-                "VEHÍCULO YA INGRESADO";
+            cambiarTextoBoton(
+                btnConfirmarIngreso,
+                "VEHÍCULO YA INGRESADO"
+            );
 
         } else {
 
-            codigoSeleccionado = "";
+            codigoSeleccionado =
+                "";
 
             btnConfirmarIngreso.disabled =
                 true;
 
-            btnConfirmarIngreso.textContent =
-                "NO DISPONIBLE";
+            cambiarTextoBoton(
+                btnConfirmarIngreso,
+                "NO DISPONIBLE"
+            );
         }
-
-
-        // -----------------------------------------
-        // Mostrar datos del vehículo
-        // -----------------------------------------
 
         encargadoNombre.textContent =
             datos.nombre || "-";
@@ -955,13 +1360,16 @@ async function buscarVehiculo(codigo) {
         encargadoEstado.textContent =
             datos.estado || "-";
 
-
         resultadoBusqueda.style.display =
             "block";
 
-
         mensajeEscaner.textContent =
             "Vehículo encontrado ✓";
+
+        resultadoBusqueda.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest"
+        });
 
     } catch (error) {
 
@@ -970,225 +1378,262 @@ async function buscarVehiculo(codigo) {
             error
         );
 
-
         mensajeEscaner.textContent =
             "No fue posible consultar el vehículo.";
+
+    } finally {
+
+        ocultarLoader();
+
+        bloquearBoton(
+            btnBuscarCodigo,
+            false
+        );
     }
 }
 
 
 // =========================================================
-// 21. CONFIRMAR INGRESO
+// 31. CONFIRMAR INGRESO
 // =========================================================
 
-btnConfirmarIngreso.addEventListener(
-    "click",
-    async function () {
+if (btnConfirmarIngreso) {
 
-        if (codigoSeleccionado === "") {
+    btnConfirmarIngreso.addEventListener(
+        "click",
+        async function () {
 
-            alert(
-                "Primero debes buscar un vehículo."
-            );
+            if (
+                codigoSeleccionado === ""
+            ) {
 
-            return;
-        }
+                mensajeEscaner.textContent =
+                    "Primero debes buscar un vehículo.";
 
+                return;
+            }
 
-        try {
+            const codigoAConfirmar =
+                codigoSeleccionado;
 
-            btnConfirmarIngreso.disabled =
-                true;
+            try {
 
-            btnConfirmarIngreso.textContent =
-                "CONFIRMANDO...";
+                btnConfirmarIngreso.disabled =
+                    true;
 
-
-            const respuesta =
-                await fetch(
-                    URL_API +
-                    "?accion=confirmar" +
-                    "&codigo=" +
-                    encodeURIComponent(
-                        codigoSeleccionado
-                    )
+                cambiarTextoBoton(
+                    btnConfirmarIngreso,
+                    "CONFIRMANDO..."
                 );
 
-
-            const datos =
-                await respuesta.json();
-
-
-            console.log(
-                "Confirmar ingreso:",
-                datos
-            );
-
-
-            if (datos.exito !== true) {
-
-                alert(
-                    datos.mensaje ||
-                    "No se pudo confirmar el ingreso."
+                mostrarLoader(
+                    "Confirmando ingreso",
+                    "Estamos registrando la llegada del vehículo..."
                 );
 
+                const respuesta =
+                    await fetch(
+                        URL_API +
+                        "?accion=confirmar" +
+                        "&codigo=" +
+                        encodeURIComponent(
+                            codigoAConfirmar
+                        )
+                    );
+
+                if (!respuesta.ok) {
+
+                    throw new Error(
+                        "Error HTTP " +
+                        respuesta.status
+                    );
+                }
+
+                const datos =
+                    await respuesta.json();
+
+                console.log(
+                    "Confirmar ingreso:",
+                    datos
+                );
+
+                if (
+                    datos.exito !== true
+                ) {
+
+                    mensajeEscaner.textContent =
+                        datos.mensaje ||
+                        "No se pudo confirmar el ingreso.";
+
+                    btnConfirmarIngreso.disabled =
+                        false;
+
+                    cambiarTextoBoton(
+                        btnConfirmarIngreso,
+                        "CONFIRMAR INGRESO"
+                    );
+
+                    return;
+                }
+
+                encargadoEstado.textContent =
+                    datos.estado ||
+                    "INGRESADO";
+
+                mensajeEscaner.textContent =
+                    "✓ Ingreso confirmado correctamente";
+
+                btnConfirmarIngreso.disabled =
+                    true;
+
+                cambiarTextoBoton(
+                    btnConfirmarIngreso,
+                    "INGRESO CONFIRMADO"
+                );
+
+                codigoSeleccionado =
+                    "";
+
+            } catch (error) {
+
+                console.error(
+                    "Error al confirmar ingreso:",
+                    error
+                );
+
+                mensajeEscaner.textContent =
+                    "No fue posible confirmar el ingreso.";
 
                 btnConfirmarIngreso.disabled =
                     false;
 
-                btnConfirmarIngreso.textContent =
-                    "CONFIRMAR INGRESO";
+                cambiarTextoBoton(
+                    btnConfirmarIngreso,
+                    "CONFIRMAR INGRESO"
+                );
+
+            } finally {
+
+                ocultarLoader();
+            }
+        }
+    );
+}
+
+
+// =========================================================
+// 32. REGISTRO DE VEHÍCULO
+// =========================================================
+
+if (formRegistro) {
+
+    formRegistro.addEventListener(
+        "submit",
+        async function (event) {
+
+            event.preventDefault();
+
+            const nombre =
+                nombrePiloto.value.trim();
+
+            const tipo =
+                tipoVehiculo.value.trim();
+
+            if (nombre === "") {
+
+                nombrePiloto.focus();
 
                 return;
             }
 
+            if (tipo === "") {
 
-            // -----------------------------------------
-            // Ingreso confirmado
-            // -----------------------------------------
+                tipoVehiculo.focus();
 
-            encargadoEstado.textContent =
-                datos.estado || "INGRESADO";
+                return;
+            }
 
+            try {
 
-            mensajeEscaner.textContent =
-                "✓ Ingreso confirmado correctamente";
-
-
-            btnConfirmarIngreso.disabled =
-                true;
-
-
-            btnConfirmarIngreso.textContent =
-                "INGRESO CONFIRMADO";
-
-
-            // Ya no se puede volver a confirmar
-            // el mismo vehículo sin una nueva búsqueda.
-
-            codigoSeleccionado = "";
-
-
-            alert(
-                "Ingreso confirmado correctamente."
-            );
-
-        } catch (error) {
-
-            console.error(
-                "Error al confirmar ingreso:",
-                error
-            );
-
-
-            alert(
-                "No fue posible confirmar el ingreso."
-            );
-
-
-            btnConfirmarIngreso.disabled =
-                false;
-
-
-            btnConfirmarIngreso.textContent =
-                "CONFIRMAR INGRESO";
-        }
-    }
-);
-
-
-// =========================================================
-// 22. REGISTRO DE VEHÍCULO
-// =========================================================
-
-formRegistro.addEventListener(
-    "submit",
-    async function (event) {
-
-        event.preventDefault();
-
-
-        const nombre =
-            nombrePiloto.value.trim();
-
-        const tipo =
-            tipoVehiculo.value.trim();
-
-
-        if (nombre === "") {
-
-            alert(
-                "Ingresa el nombre del piloto."
-            );
-
-            return;
-        }
-
-
-        if (tipo === "") {
-
-            alert(
-                "Selecciona un tipo de vehículo."
-            );
-
-            return;
-        }
-
-
-        try {
-
-            const respuesta =
-                await fetch(
-                    URL_API +
-                    "?accion=registrar" +
-                    "&nombre=" +
-                    encodeURIComponent(nombre) +
-                    "&tipo=" +
-                    encodeURIComponent(tipo)
+                bloquearBoton(
+                    btnContinuarRegistro,
+                    true
                 );
 
+                mostrarLoader(
+                    "Buscando tu parqueo",
+                    "Estamos encontrando el mejor espacio para tu vehículo..."
+                );
 
-            const datos =
-                await respuesta.json();
+                const respuesta =
+                    await fetch(
+                        URL_API +
+                        "?accion=registrar" +
+                        "&nombre=" +
+                        encodeURIComponent(nombre) +
+                        "&tipo=" +
+                        encodeURIComponent(tipo)
+                    );
 
+                if (!respuesta.ok) {
 
-            console.log(
-                "Registro:",
-                datos
-            );
+                    throw new Error(
+                        "Error HTTP " +
+                        respuesta.status
+                    );
+                }
 
+                const datos =
+                    await respuesta.json();
 
-            if (datos.exito !== true) {
+                console.log(
+                    "Registro:",
+                    datos
+                );
+
+                if (
+                    datos.exito !== true
+                ) {
+
+                    alert(
+                        datos.mensaje ||
+                        "No se pudo realizar el registro."
+                    );
+
+                    return;
+                }
+
+                mostrarAsignacion(
+                    datos
+                );
+
+            } catch (error) {
+
+                console.error(
+                    "Error registrando vehículo:",
+                    error
+                );
 
                 alert(
-                    datos.mensaje ||
-                    "No se pudo realizar el registro."
+                    "No fue posible realizar el registro. Intenta nuevamente."
                 );
 
-                return;
+            } finally {
+
+                ocultarLoader();
+
+                bloquearBoton(
+                    btnContinuarRegistro,
+                    false
+                );
             }
-
-
-            mostrarAsignacion(datos);
-
-        } catch (error) {
-
-            console.error(
-                "Error registrando vehículo:",
-                error
-            );
-
-
-            alert(
-                "No fue posible realizar el registro."
-            );
         }
-    }
-);
+    );
+}
 
 
 // =========================================================
-// 23. MOSTRAR ASIGNACIÓN
+// 33. MOSTRAR ASIGNACIÓN
 // =========================================================
 
 function mostrarAsignacion(datos) {
@@ -1196,22 +1641,16 @@ function mostrarAsignacion(datos) {
     codigoIngreso.textContent =
         datos.codigo;
 
-
     tipoAsignado.textContent =
         formatearTipoVehiculo(
             datos.tipoVehiculo
         ).toUpperCase();
 
-
     codigoParqueo.textContent =
         datos.codigoParqueo;
 
-
     nombreParqueo.textContent =
         datos.nombreParqueo;
-
-
-    // Guardar coordenadas
 
     latitudParqueo =
         datos.latitud;
@@ -1219,164 +1658,185 @@ function mostrarAsignacion(datos) {
     longitudParqueo =
         datos.longitud;
 
+    qrCodigo.innerHTML =
+        "";
 
-    // Limpiar QR anterior
+    if (
+        typeof QRCode !==
+        "undefined"
+    ) {
 
-    qrCodigo.innerHTML = "";
+        new QRCode(
+            qrCodigo,
+            {
+                text: datos.codigo,
+                width: 220,
+                height: 220,
+                correctLevel:
+                    QRCode.CorrectLevel.H
+            }
+        );
 
+    } else {
 
-    // Generar QR real
-
-    new QRCode(
-        qrCodigo,
-        {
-            text: datos.codigo,
-            width: 220,
-            height: 220
-        }
-    );
-
+        qrCodigo.textContent =
+            datos.codigo;
+    }
 
     formRegistro.reset();
 
-
-    ocultarPantallas();
-
-    pantallaAsignacion.style.display =
-        "block";
-
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+    mostrarPantalla(
+        pantallaAsignacion
+    );
 }
 
 
 // =========================================================
-// 24. GOOGLE MAPS
+// 34. GOOGLE MAPS
 // =========================================================
 
-btnGoogleMaps.addEventListener(
-    "click",
-    function () {
+if (btnGoogleMaps) {
 
-        if (
-            latitudParqueo === null ||
-            longitudParqueo === null
-        ) {
+    btnGoogleMaps.addEventListener(
+        "click",
+        function () {
 
-            alert(
-                "No se encontró la ubicación del parqueo."
+            if (
+                latitudParqueo === null ||
+                longitudParqueo === null ||
+                latitudParqueo === "" ||
+                longitudParqueo === ""
+            ) {
+
+                alert(
+                    "No se encontró la ubicación del parqueo."
+                );
+
+                return;
+            }
+
+            const destino =
+                latitudParqueo +
+                "," +
+                longitudParqueo;
+
+            const urlMaps =
+                "https://www.google.com/maps/dir/?api=1" +
+                "&destination=" +
+                encodeURIComponent(
+                    destino
+                );
+
+            window.open(
+                urlMaps,
+                "_blank",
+                "noopener,noreferrer"
+            );
+        }
+    );
+}
+
+
+// =========================================================
+// 35. WAZE
+// =========================================================
+
+if (btnWaze) {
+
+    btnWaze.addEventListener(
+        "click",
+        function () {
+
+            if (
+                latitudParqueo === null ||
+                longitudParqueo === null ||
+                latitudParqueo === "" ||
+                longitudParqueo === ""
+            ) {
+
+                alert(
+                    "No se encontró la ubicación del parqueo."
+                );
+
+                return;
+            }
+
+            const destino =
+                latitudParqueo +
+                "," +
+                longitudParqueo;
+
+            const urlWaze =
+                "https://www.waze.com/ul?ll=" +
+                encodeURIComponent(
+                    destino
+                ) +
+                "&navigate=yes";
+
+            window.open(
+                urlWaze,
+                "_blank",
+                "noopener,noreferrer"
+            );
+        }
+    );
+}
+
+
+// =========================================================
+// 36. ABRIR DASHBOARD
+// =========================================================
+
+if (btnDashboard) {
+
+    btnDashboard.addEventListener(
+        "click",
+        function () {
+
+            detenerEscaner();
+
+            mostrarPantalla(
+                pantallaDashboard
             );
 
-            return;
-        }
-
-
-        const destino =
-            latitudParqueo +
-            "," +
-            longitudParqueo;
-
-
-        const urlMaps =
-            "https://www.google.com/maps/dir/?api=1" +
-            "&destination=" +
-            encodeURIComponent(destino);
-
-
-        window.open(
-            urlMaps,
-            "_blank",
-            "noopener,noreferrer"
-        );
-    }
-);
-
-
-// =========================================================
-// 25. WAZE
-// =========================================================
-
-btnWaze.addEventListener(
-    "click",
-    function () {
-
-        if (
-            latitudParqueo === null ||
-            longitudParqueo === null
-        ) {
-
-            alert(
-                "No se encontró la ubicación del parqueo."
+            cargarDashboard(
+                true
             );
-
-            return;
         }
-
-
-        const destino =
-            latitudParqueo +
-            "," +
-            longitudParqueo;
-
-
-        const urlWaze =
-            "https://www.waze.com/ul?ll=" +
-            encodeURIComponent(destino) +
-            "&navigate=yes";
-
-
-        window.open(
-            urlWaze,
-            "_blank",
-            "noopener,noreferrer"
-        );
-    }
-);
+    );
+}
 
 
 // =========================================================
-// 26. ABRIR DASHBOARD
+// 37. CARGAR DASHBOARD
 // =========================================================
 
-btnDashboard.addEventListener(
-    "click",
-    function () {
-
-        detenerEscaner();
-
-        ocultarPantallas();
-
-        pantallaDashboard.style.display =
-            "block";
-
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-
-
-        cargarDashboard();
-    }
-);
-
-
-// =========================================================
-// 27. CARGAR DASHBOARD
-// =========================================================
-
-async function cargarDashboard() {
+async function cargarDashboard(
+    usarLoaderGlobal = false
+) {
 
     try {
 
-        listaParqueosDashboard.innerHTML =
-            '<p class="dashboard-cargando">' +
-            'Cargando información...' +
-            '</p>';
+        listaParqueosDashboard.innerHTML = `
+            <div class="dashboard-cargando">
+                <span
+                    class="mini-loader"
+                    aria-hidden="true"
+                ></span>
 
+                <p>
+                    Cargando información...
+                </p>
+            </div>
+        `;
+
+        if (usarLoaderGlobal) {
+
+            mostrarLoader(
+                "Actualizando parqueos",
+                "Consultando la disponibilidad en tiempo real..."
+            );
+        }
 
         const respuesta =
             await fetch(
@@ -1384,32 +1844,38 @@ async function cargarDashboard() {
                 "?accion=dashboard"
             );
 
+        if (!respuesta.ok) {
+
+            throw new Error(
+                "Error HTTP " +
+                respuesta.status
+            );
+        }
 
         const datos =
             await respuesta.json();
-
 
         console.log(
             "Dashboard:",
             datos
         );
 
+        if (
+            datos.exito !== true
+        ) {
 
-        if (datos.exito !== true) {
-
-            listaParqueosDashboard.innerHTML =
-                '<p class="dashboard-cargando">' +
-                'No fue posible cargar el dashboard.' +
-                '</p>';
+            listaParqueosDashboard.innerHTML = `
+                <p class="dashboard-cargando">
+                    No fue posible cargar el dashboard.
+                </p>
+            `;
 
             return;
         }
 
-
         actualizarResumenDashboard(
             datos
         );
-
 
         mostrarParqueosDashboard(
             datos.parqueos
@@ -1422,56 +1888,84 @@ async function cargarDashboard() {
             error
         );
 
+        listaParqueosDashboard.innerHTML = `
+            <p class="dashboard-cargando">
+                No fue posible cargar la información.
+            </p>
+        `;
 
-        listaParqueosDashboard.innerHTML =
-            '<p class="dashboard-cargando">' +
-            'No fue posible cargar la información.' +
-            '</p>';
+    } finally {
+
+        if (usarLoaderGlobal) {
+            ocultarLoader();
+        }
     }
 }
 
 
 // =========================================================
-// 28. RESUMEN DEL DASHBOARD
+// 38. RESUMEN DEL DASHBOARD
 // =========================================================
 
-function actualizarResumenDashboard(datos) {
+function actualizarResumenDashboard(
+    datos
+) {
+
+    const resumen =
+        datos.resumen || {};
 
     const capacidad =
-        Number(datos.resumen.capacidad) || 0;
+        Number(
+            resumen.capacidad
+        ) || 0;
 
     const asignados =
-        Number(datos.resumen.asignados) || 0;
+        Number(
+            resumen.asignados
+        ) || 0;
 
     const ingresados =
-        Number(datos.resumen.ingresados) || 0;
+        Number(
+            resumen.ingresados
+        ) || 0;
 
     const disponibles =
-        Number(datos.resumen.disponibles) || 0;
+        Number(
+            resumen.disponibles
+        ) || 0;
 
+    /*
+     * IMPORTANTE:
+     * Un espacio ya está comprometido tanto si
+     * está ASIGNADO como si ya está INGRESADO.
+     */
 
     const ocupados =
-        asignados + ingresados;
+        asignados +
+        ingresados;
 
-
-    let porcentaje = 0;
-
+    let porcentaje =
+        0;
 
     if (capacidad > 0) {
 
         porcentaje =
             Math.round(
-                (ocupados / capacidad) * 100
+                (
+                    ocupados /
+                    capacidad
+                ) * 100
             );
     }
-
 
     porcentaje =
         Math.max(
             0,
-            Math.min(porcentaje, 100)
+            Math.min(
+                porcentaje,
+                100
+            )
         );
-
 
     dashCapacidad.textContent =
         capacidad;
@@ -1485,14 +1979,11 @@ function actualizarResumenDashboard(datos) {
     dashDisponibles.textContent =
         disponibles;
 
-
     dashPorcentajeGeneral.textContent =
         porcentaje + "%";
 
-
     dashBarraGeneralProgreso.style.width =
         porcentaje + "%";
-
 
     dashEspaciosGeneral.textContent =
         ocupados +
@@ -1500,102 +1991,113 @@ function actualizarResumenDashboard(datos) {
         capacidad +
         " espacios";
 
-
     dashTotalParqueos.textContent =
-        Array.isArray(datos.parqueos)
+        Array.isArray(
+            datos.parqueos
+        )
             ? datos.parqueos.length
             : 0;
 }
 
 
 // =========================================================
-// 29. MOSTRAR PARQUEOS DEL DASHBOARD
+// 39. MOSTRAR PARQUEOS
 // =========================================================
 
-function mostrarParqueosDashboard(parqueos) {
+function mostrarParqueosDashboard(
+    parqueos
+) {
 
-    listaParqueosDashboard.innerHTML = "";
-
+    listaParqueosDashboard.innerHTML =
+        "";
 
     if (
         !Array.isArray(parqueos) ||
         parqueos.length === 0
     ) {
 
-        listaParqueosDashboard.innerHTML =
-            '<p class="dashboard-cargando">' +
-            'No hay parqueos activos.' +
-            '</p>';
+        listaParqueosDashboard.innerHTML = `
+            <p class="dashboard-cargando">
+                No hay parqueos activos.
+            </p>
+        `;
 
         return;
     }
 
+    parqueos.forEach(
+        function (parqueo) {
 
-    for (let i = 0; i < parqueos.length; i++) {
-
-        crearTarjetaParqueo(
-            parqueos[i]
-        );
-    }
+            crearTarjetaParqueo(
+                parqueo
+            );
+        }
+    );
 }
 
 
 // =========================================================
-// 30. CREAR TARJETA DE PARQUEO
+// 40. CREAR TARJETA DE PARQUEO
 // =========================================================
 
-function crearTarjetaParqueo(parqueo) {
+function crearTarjetaParqueo(
+    parqueo
+) {
 
     const capacidad =
-        Number(parqueo.capacidad) || 0;
+        Number(
+            parqueo.capacidad
+        ) || 0;
 
     const asignados =
-        Number(parqueo.asignados) || 0;
+        Number(
+            parqueo.asignados
+        ) || 0;
 
     const ingresados =
-        Number(parqueo.ingresados) || 0;
-
+        Number(
+            parqueo.ingresados
+        ) || 0;
 
     const ocupados =
-        asignados + ingresados;
-
+        asignados +
+        ingresados;
 
     const disponibles =
         Math.max(
-            capacidad - ocupados,
+            capacidad -
+            ocupados,
             0
         );
 
-
-    let porcentaje = 0;
-
+    let porcentaje =
+        0;
 
     if (capacidad > 0) {
 
         porcentaje =
             Math.round(
-                (ocupados / capacidad) * 100
+                (
+                    ocupados /
+                    capacidad
+                ) * 100
             );
     }
-
 
     porcentaje =
         Math.max(
             0,
-            Math.min(porcentaje, 100)
+            Math.min(
+                porcentaje,
+                100
+            )
         );
-
-
-    // -----------------------------------------
-    // Estado visual
-    // -----------------------------------------
 
     let estado =
         "disponible";
 
     let textoEstado =
         "Disponible";
-
 
     if (disponibles === 0) {
 
@@ -1605,7 +2107,9 @@ function crearTarjetaParqueo(parqueo) {
         textoEstado =
             "Lleno";
 
-    } else if (porcentaje >= 85) {
+    } else if (
+        porcentaje >= 85
+    ) {
 
         estado =
             "precaucion";
@@ -1614,15 +2118,10 @@ function crearTarjetaParqueo(parqueo) {
             "Poco espacio";
     }
 
-
     const tipo =
         formatearTipoVehiculo(
             parqueo.tipoVehiculo
         );
-
-
-    // Datos escapados antes de insertarlos
-    // dentro del HTML de la tarjeta.
 
     const nombreSeguro =
         escaparHTML(
@@ -1639,18 +2138,15 @@ function crearTarjetaParqueo(parqueo) {
             tipo
         );
 
-
     const tarjeta =
         document.createElement(
             "article"
         );
 
-
     tarjeta.className =
         "dashboard-parqueo " +
         "estado-" +
         estado;
-
 
     tarjeta.innerHTML = `
 
@@ -1662,6 +2158,7 @@ function crearTarjetaParqueo(parqueo) {
 
                     <span
                         class="dashboard-estado-punto"
+                        aria-hidden="true"
                     ></span>
 
                     <h3>
@@ -1729,7 +2226,6 @@ function crearTarjetaParqueo(parqueo) {
         </div>
     `;
 
-
     listaParqueosDashboard.appendChild(
         tarjeta
     );
@@ -1737,67 +2233,92 @@ function crearTarjetaParqueo(parqueo) {
 
 
 // =========================================================
-// 31. ACTUALIZAR DASHBOARD
+// 41. ACTUALIZAR DASHBOARD
 // =========================================================
 
-btnActualizarDashboard.addEventListener(
-    "click",
-    async function () {
+if (btnActualizarDashboard) {
 
-        btnActualizarDashboard.disabled =
-            true;
+    btnActualizarDashboard.addEventListener(
+        "click",
+        async function () {
 
+            bloquearBoton(
+                btnActualizarDashboard,
+                true
+            );
 
-        try {
+            try {
 
-            await cargarDashboard();
+                await cargarDashboard(
+                    true
+                );
 
-        } finally {
+            } finally {
 
-            btnActualizarDashboard.disabled =
-                false;
+                bloquearBoton(
+                    btnActualizarDashboard,
+                    false
+                );
+            }
         }
-    }
-);
+    );
+}
 
 
 // =========================================================
-// 32. VOLVER DEL DASHBOARD AL CONTROL
+// 42. VOLVER DEL DASHBOARD
 // =========================================================
 
-btnVolverEncargado.addEventListener(
-    "click",
-    function () {
+if (btnVolverEncargado) {
 
-        ocultarPantallas();
+    btnVolverEncargado.addEventListener(
+        "click",
+        function () {
 
-        pantallaEncargado.style.display =
-            "block";
+            mostrarPantalla(
+                pantallaEncargado
+            );
+        }
+    );
+}
 
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-    }
-);
 
 // =========================================================
-// CARGAR ITINERARIO
+// 43. CARGAR ITINERARIO
 // =========================================================
 
 async function cargarItinerario() {
 
+    if (!listaItinerario) {
+        return;
+    }
+
     listaItinerario.innerHTML = `
-        <p class="itinerario-cargando">
-            Cargando itinerario...
-        </p>
+        <div class="itinerario-cargando">
+
+            <span
+                class="mini-loader"
+                aria-hidden="true"
+            ></span>
+
+            <p>
+                Cargando itinerario...
+            </p>
+
+        </div>
     `;
 
-    itinerarioTotal.textContent = "0";
-
+    if (itinerarioTotal) {
+        itinerarioTotal.textContent =
+            "0";
+    }
 
     try {
+
+        mostrarLoader(
+            "Cargando itinerario",
+            "Preparando las actividades de JDJ..."
+        );
 
         const respuesta =
             await fetch(
@@ -1805,18 +2326,25 @@ async function cargarItinerario() {
                 "?accion=itinerario"
             );
 
+        if (!respuesta.ok) {
+
+            throw new Error(
+                "Error HTTP " +
+                respuesta.status
+            );
+        }
 
         const datos =
             await respuesta.json();
-
 
         console.log(
             "Itinerario:",
             datos
         );
 
-
-        if (datos.exito !== true) {
+        if (
+            datos.exito !== true
+        ) {
 
             mostrarErrorItinerario(
                 datos.mensaje ||
@@ -1826,29 +2354,52 @@ async function cargarItinerario() {
             return;
         }
 
-
         if (
-            !Array.isArray(datos.actividades) ||
-            datos.actividades.length === 0
+            !Array.isArray(
+                datos.actividades
+            )
         ) {
 
-            mostrarItinerarioVacio();
+            mostrarErrorItinerario(
+                "No hay actividades disponibles."
+            );
 
             return;
         }
 
+        const actividades =
+            datos.actividades;
+
+        if (
+            actividades.length === 0
+        ) {
+
+            listaItinerario.innerHTML = `
+                <div class="itinerario-vacio">
+
+                    <strong>
+                        Aún no hay actividades
+                    </strong>
+
+                    <p>
+                        El itinerario se publicará próximamente.
+                    </p>
+
+                </div>
+            `;
+
+            return;
+        }
 
         itinerarioTotal.textContent =
-            datos.actividades.length;
+            actividades.length;
 
-
-        mostrarFechaItinerario(
-            datos.actividades[0].fecha
+        actualizarFechaItinerario(
+            actividades
         );
 
-
         mostrarActividadesItinerario(
-            datos.actividades
+            actividades
         );
 
     } catch (error) {
@@ -1858,420 +2409,38 @@ async function cargarItinerario() {
             error
         );
 
-
         mostrarErrorItinerario(
-            "No fue posible consultar el itinerario."
-        );
-    }
-}
-
-// =========================================================
-// MOSTRAR FECHA DEL EVENTO
-// =========================================================
-
-function mostrarFechaItinerario(fechaTexto) {
-
-    if (!fechaTexto) {
-
-        itinerarioDiaSemana.textContent =
-            "EVENTO";
-
-        itinerarioDia.textContent =
-            "—";
-
-        itinerarioMes.textContent =
-            "—";
-
-        return;
-    }
-
-
-    const partes =
-        String(fechaTexto)
-            .split("-");
-
-
-    if (partes.length !== 3) {
-
-        itinerarioDiaSemana.textContent =
-            "EVENTO";
-
-        itinerarioDia.textContent =
-            fechaTexto;
-
-        itinerarioMes.textContent =
-            "";
-
-        return;
-    }
-
-
-    const anio =
-        Number(partes[0]);
-
-    const mes =
-        Number(partes[1]);
-
-    const dia =
-        Number(partes[2]);
-
-
-    /*
-       Usamos mediodía para evitar problemas
-       de zona horaria al interpretar la fecha.
-    */
-
-    const fecha =
-        new Date(
-            anio,
-            mes - 1,
-            dia,
-            12,
-            0,
-            0
+            "No fue posible cargar el itinerario."
         );
 
+    } finally {
 
-    const nombreDia =
-        new Intl.DateTimeFormat(
-            "es-GT",
-            {
-                weekday: "long"
-            }
-        )
-        .format(fecha)
-        .toUpperCase();
-
-
-    const nombreMes =
-        new Intl.DateTimeFormat(
-            "es-GT",
-            {
-                month: "long"
-            }
-        )
-        .format(fecha)
-        .toUpperCase();
-
-
-    itinerarioDiaSemana.textContent =
-        nombreDia;
-
-
-    itinerarioDia.textContent =
-        String(dia)
-            .padStart(2, "0");
-
-
-    itinerarioMes.textContent =
-        nombreMes +
-        " " +
-        anio;
+        ocultarLoader();
+    }
 }
 
-// =========================================================
-// MOSTRAR ACTIVIDADES
-// =========================================================
-
-function mostrarActividadesItinerario(actividades) {
-
-    listaItinerario.innerHTML = "";
-
-
-    actividades.forEach(
-        function (actividad, indice) {
-
-            const item =
-                crearActividadItinerario(
-                    actividad,
-                    indice,
-                    actividades.length
-                );
-
-
-            listaItinerario.appendChild(
-                item
-            );
-        }
-    );
-}
 
 // =========================================================
-// CREAR ACTIVIDAD DEL ITINERARIO
+// 44. MOSTRAR ERROR DE ITINERARIO
 // =========================================================
 
-function crearActividadItinerario(
-    actividad,
-    indice,
-    total
+function mostrarErrorItinerario(
+    mensaje
 ) {
 
-    const item =
-        document.createElement("article");
-
-
-    item.className =
-        "itinerario-item";
-
-
-    if (indice === 0) {
-
-        item.classList.add(
-            "itinerario-item-primero"
-        );
+    if (!listaItinerario) {
+        return;
     }
-
-
-    if (indice === total - 1) {
-
-        item.classList.add(
-            "itinerario-item-ultimo"
-        );
-    }
-
-
-    // -----------------------------------------
-    // HORA
-    // -----------------------------------------
-
-    const hora =
-        document.createElement("div");
-
-    hora.className =
-        "itinerario-hora";
-
-    hora.textContent =
-        formatearHoraItinerario(
-            actividad.hora
-        );
-
-
-    // -----------------------------------------
-    // LÍNEA
-    // -----------------------------------------
-
-    const linea =
-        document.createElement("div");
-
-    linea.className =
-        "itinerario-linea";
-
-
-    const punto =
-        document.createElement("span");
-
-    punto.className =
-        "itinerario-punto";
-
-
-    linea.appendChild(
-        punto
-    );
-
-
-    // -----------------------------------------
-    // CONTENIDO
-    // -----------------------------------------
-
-    const contenido =
-        document.createElement("div");
-
-    contenido.className =
-        "itinerario-actividad";
-
-
-    const titulo =
-        document.createElement("h3");
-
-    titulo.textContent =
-        actividad.actividad ||
-        "Actividad";
-
-
-    contenido.appendChild(
-        titulo
-    );
-
-
-    // -----------------------------------------
-    // LUGAR
-    // -----------------------------------------
-
-    if (actividad.lugar) {
-
-        const lugar =
-            document.createElement("div");
-
-        lugar.className =
-            "itinerario-lugar";
-
-
-        lugar.innerHTML = `
-            <svg
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-            >
-                <path
-                    d="
-                        M12 21s7-5.2 7-12
-                        a7 7 0 1 0-14 0
-                        c0 6.8 7 12 7 12z
-                    "
-                ></path>
-
-                <circle
-                    cx="12"
-                    cy="9"
-                    r="2.3"
-                ></circle>
-            </svg>
-        `;
-
-
-        const textoLugar =
-            document.createElement("span");
-
-        textoLugar.textContent =
-            actividad.lugar;
-
-
-        lugar.appendChild(
-            textoLugar
-        );
-
-
-        contenido.appendChild(
-            lugar
-        );
-    }
-
-
-    // -----------------------------------------
-    // DESCRIPCIÓN
-    // -----------------------------------------
-
-    if (actividad.descripcion) {
-
-        const descripcion =
-            document.createElement("p");
-
-        descripcion.textContent =
-            actividad.descripcion;
-
-
-        contenido.appendChild(
-            descripcion
-        );
-    }
-
-
-    // -----------------------------------------
-    // ARMAR ITEM
-    // -----------------------------------------
-
-    item.appendChild(
-        hora
-    );
-
-    item.appendChild(
-        linea
-    );
-
-    item.appendChild(
-        contenido
-    );
-
-
-    return item;
-}
-
-// =========================================================
-// FORMATEAR HORA
-// =========================================================
-
-function formatearHoraItinerario(horaTexto) {
-
-    if (!horaTexto) {
-        return "—";
-    }
-
-
-    const partes =
-        String(horaTexto)
-            .split(":");
-
-
-    if (partes.length < 2) {
-        return horaTexto;
-    }
-
-
-    let hora =
-        Number(partes[0]);
-
-    const minutos =
-        partes[1];
-
-
-    if (Number.isNaN(hora)) {
-        return horaTexto;
-    }
-
-
-    const periodo =
-        hora >= 12
-            ? "PM"
-            : "AM";
-
-
-    hora =
-        hora % 12;
-
-
-    if (hora === 0) {
-        hora = 12;
-    }
-
-
-    return (
-        hora +
-        ":" +
-        minutos +
-        " " +
-        periodo
-    );
-}
-
-// =========================================================
-// ITINERARIO VACÍO
-// =========================================================
-
-function mostrarItinerarioVacio() {
-
-    itinerarioTotal.textContent =
-        "0";
-
-
-    itinerarioDiaSemana.textContent =
-        "EVENTO";
-
-    itinerarioDia.textContent =
-        "—";
-
-    itinerarioMes.textContent =
-        "SIN ACTIVIDADES";
-
 
     listaItinerario.innerHTML = `
-        <div class="itinerario-estado">
+        <div class="itinerario-vacio">
 
             <strong>
-                Aún no hay actividades
+                No pudimos cargar el itinerario
             </strong>
 
             <p>
-                El itinerario del evento
-                estará disponible próximamente.
+                ${escaparHTML(mensaje)}
             </p>
 
         </div>
@@ -2280,56 +2449,334 @@ function mostrarItinerarioVacio() {
 
 
 // =========================================================
-// ERROR DE ITINERARIO
+// 45. ACTUALIZAR FECHA DEL ITINERARIO
 // =========================================================
 
-function mostrarErrorItinerario(mensaje) {
+function actualizarFechaItinerario(
+    actividades
+) {
 
-    itinerarioTotal.textContent =
-        "0";
+    if (
+        !Array.isArray(actividades) ||
+        actividades.length === 0
+    ) {
+        return;
+    }
+
+    const primeraActividad =
+        actividades[0];
+
+    const fechaTexto =
+        primeraActividad.fecha;
+
+    if (!fechaTexto) {
+        return;
+    }
+
+    let fecha;
+
+    /*
+     * Google Apps Script puede devolver la fecha
+     * como ISO o como una cadena de texto.
+     */
+
+    if (
+        /^\d{4}-\d{2}-\d{2}/.test(
+            String(fechaTexto)
+        )
+    ) {
+
+        const partes =
+            String(fechaTexto)
+                .substring(0, 10)
+                .split("-");
+
+        fecha =
+            new Date(
+                Number(partes[0]),
+                Number(partes[1]) - 1,
+                Number(partes[2])
+            );
+
+    } else {
+
+        fecha =
+            new Date(fechaTexto);
+    }
+
+    if (
+        Number.isNaN(
+            fecha.getTime()
+        )
+    ) {
+        return;
+    }
+
+    const dias =
+        [
+            "DOMINGO",
+            "LUNES",
+            "MARTES",
+            "MIÉRCOLES",
+            "JUEVES",
+            "VIERNES",
+            "SÁBADO"
+        ];
+
+    const meses =
+        [
+            "ENERO",
+            "FEBRERO",
+            "MARZO",
+            "ABRIL",
+            "MAYO",
+            "JUNIO",
+            "JULIO",
+            "AGOSTO",
+            "SEPTIEMBRE",
+            "OCTUBRE",
+            "NOVIEMBRE",
+            "DICIEMBRE"
+        ];
+
+    if (itinerarioDiaSemana) {
+
+        itinerarioDiaSemana.textContent =
+            dias[
+                fecha.getDay()
+            ];
+    }
+
+    if (itinerarioDia) {
+
+        itinerarioDia.textContent =
+            fecha.getDate();
+    }
+
+    if (itinerarioMes) {
+
+        itinerarioMes.textContent =
+            meses[
+                fecha.getMonth()
+            ];
+    }
+}
 
 
-    listaItinerario.innerHTML = "";
+// =========================================================
+// 46. MOSTRAR ACTIVIDADES DEL ITINERARIO
+// =========================================================
 
+function mostrarActividadesItinerario(
+    actividades
+) {
 
-    const estado =
-        document.createElement("div");
+    listaItinerario.innerHTML =
+        "";
 
-    estado.className =
-        "itinerario-estado itinerario-error";
+    actividades.forEach(
+        function (
+            actividad,
+            indice
+        ) {
 
+            const tarjeta =
+                crearActividadItinerario(
+                    actividad,
+                    indice
+                );
 
-    const titulo =
-        document.createElement("strong");
-
-    titulo.textContent =
-        "No pudimos cargar el itinerario";
-
-
-    const descripcion =
-        document.createElement("p");
-
-    descripcion.textContent =
-        mensaje;
-
-
-    estado.appendChild(
-        titulo
-    );
-
-    estado.appendChild(
-        descripcion
-    );
-
-
-    listaItinerario.appendChild(
-        estado
+            listaItinerario.appendChild(
+                tarjeta
+            );
+        }
     );
 }
 
 
 // =========================================================
-// 33. ESTADO INICIAL
+// 47. CREAR ACTIVIDAD DEL ITINERARIO
 // =========================================================
 
-limpiarControlIngreso();
+function crearActividadItinerario(
+    actividad,
+    indice
+) {
+
+    const articulo =
+        document.createElement(
+            "article"
+        );
+
+    const colores =
+        [
+            "azul",
+            "verde",
+            "amarillo",
+            "rojo",
+            "naranja"
+        ];
+
+    const color =
+        colores[
+            indice %
+            colores.length
+        ];
+
+    articulo.className =
+        "itinerario-actividad " +
+        "itinerario-actividad-" +
+        color;
+
+    const hora =
+        escaparHTML(
+            actividad.hora ||
+            "--:--"
+        );
+
+    const nombre =
+        escaparHTML(
+            actividad.actividad ||
+            "Actividad"
+        );
+
+    const lugar =
+        escaparHTML(
+            actividad.lugar ||
+            "Lugar por confirmar"
+        );
+
+    const descripcion =
+        escaparHTML(
+            actividad.descripcion ||
+            ""
+        );
+
+    articulo.innerHTML = `
+
+        <div class="itinerario-hora">
+
+            <span>
+                ${hora}
+            </span>
+
+        </div>
+
+
+        <div class="itinerario-actividad-contenido">
+
+            <div class="itinerario-actividad-superior">
+
+                <span
+                    class="itinerario-punto"
+                    aria-hidden="true"
+                ></span>
+
+                <h3>
+                    ${nombre}
+                </h3>
+
+            </div>
+
+
+            <div class="itinerario-lugar">
+
+                <svg
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                >
+
+                    <path
+                        d="M12 21s7-5.2 7-12a7 7 0 1 0-14 0c0 6.8 7 12 7 12z"
+                    ></path>
+
+                    <circle
+                        cx="12"
+                        cy="9"
+                        r="2.3"
+                    ></circle>
+
+                </svg>
+
+                <span>
+                    ${lugar}
+                </span>
+
+            </div>
+
+
+            ${
+                descripcion !== ""
+                    ? `
+                        <p class="itinerario-descripcion">
+                            ${descripcion}
+                        </p>
+                    `
+                    : ""
+            }
+
+        </div>
+    `;
+
+    return articulo;
+}
+
+
+// =========================================================
+// 48. INICIALIZACIÓN
+// =========================================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        /*
+         * Se garantiza que el loader esté oculto
+         * al iniciar la página.
+         */
+
+        ocultarLoader();
+
+        /*
+         * Todas las pantallas secundarias comienzan
+         * ocultas y mostramos el inicio.
+         */
+
+        ocultarPantallas();
+
+        if (pantallaInicio) {
+            pantallaInicio.style.display =
+                "flex";
+        }
+
+        /*
+         * Estado inicial del panel del encargado.
+         */
+
+        if (resultadoBusqueda) {
+            resultadoBusqueda.style.display =
+                "none";
+        }
+
+        if (lectorQR) {
+            lectorQR.style.display =
+                "none";
+        }
+
+        if (btnConfirmarIngreso) {
+
+            btnConfirmarIngreso.disabled =
+                true;
+        }
+
+        /*
+         * Splash de entrada.
+         */
+
+        iniciarSplash();
+
+        console.log(
+            "JDJ San Juan 2026 - Sistema iniciado V2"
+        );
+    }
+);
