@@ -45,6 +45,9 @@ const btnRegistrar =
 const btnEncargado =
     document.getElementById("btn-encargado");
 
+    const btnVolverRegistro =
+    document.getElementById("btn-volver-registro");
+
 
 // =========================================================
 // 4. ELEMENTOS DE REGISTRO
@@ -346,6 +349,10 @@ btnEncargado.addEventListener(
         });
     }
 );
+
+btnVolverRegistro.addEventListener("click", function () {
+    mostrarInicio();
+});
 
 // =========================================================
 // ABRIR ITINERARIO

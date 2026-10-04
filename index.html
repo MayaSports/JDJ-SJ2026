@@ -248,89 +248,315 @@
 
 
     <!-- =====================================================
-         REGISTRO
-    ====================================================== -->
+     REGISTRO
+====================================================== -->
 
-    <section
-        id="pantalla-registro"
-        class="pantalla"
-    >
+<section
+    id="pantalla-registro"
+    class="pantalla"
+>
 
-        <div class="encabezado-registro">
+    <div class="registro-app">
 
-            <h1>
-                REGISTRO DE<br>
-                VEHÍCULO
-            </h1>
+        <!-- Encabezado -->
 
-            <p>Por favor completa los datos:</p>
+        <header class="registro-header">
+
+            <button
+                id="btn-volver-registro"
+                class="registro-volver"
+                type="button"
+                aria-label="Volver al inicio"
+            >
+                <svg
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                >
+                    <path d="M15 18l-6-6 6-6"></path>
+                </svg>
+            </button>
+
+
+            <div class="registro-header-identidad">
+
+                <span class="registro-eyebrow">
+                    JDJ · SAN JUAN 2026
+                </span>
+
+                <span class="registro-paso">
+                    PASO 1 DE 2
+                </span>
+
+            </div>
+
+        </header>
+
+
+        <!-- Título -->
+
+        <section class="registro-presentacion">
+
+            <div
+                class="registro-icono-principal"
+                aria-hidden="true"
+            >
+                <svg viewBox="0 0 24 24">
+
+                    <path
+                        d="M5 17h14M6.5 17l1-5h9l1 5"
+                    ></path>
+
+                    <path
+                        d="M8 12l1.2-3h5.6l1.2 3"
+                    ></path>
+
+                    <circle
+                        cx="8"
+                        cy="17"
+                        r="1.5"
+                    ></circle>
+
+                    <circle
+                        cx="16"
+                        cy="17"
+                        r="1.5"
+                    ></circle>
+
+                </svg>
+            </div>
+
+
+            <div>
+
+                <h1>
+                    Registra tu vehículo
+                </h1>
+
+                <p>
+                    Cuéntanos cómo llegarás al evento
+                    para asignarte el parqueo adecuado.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Progreso -->
+
+        <div class="registro-progreso">
+
+            <div class="registro-progreso-info">
+
+                <span>
+                    Datos del vehículo
+                </span>
+
+                <strong>
+                    1 / 2
+                </strong>
+
+            </div>
+
+            <div class="registro-progreso-barra">
+
+                <span></span>
+
+            </div>
 
         </div>
 
 
+        <!-- Formulario -->
+
         <form id="form-registro">
 
-            <div class="campo">
+            <div class="registro-form-header">
+
+                <span class="registro-form-eyebrow">
+                    INFORMACIÓN
+                </span>
+
+                <h2>
+                    Datos del piloto
+                </h2>
+
+                <p>
+                    Completa la información para continuar.
+                </p>
+
+            </div>
+
+
+            <!-- Nombre -->
+
+            <div class="campo registro-campo">
 
                 <label for="nombre-piloto">
-                    Nombre del Piloto/Encargado
+                    Nombre del piloto o encargado
                 </label>
 
-                <input
-                    type="text"
-                    id="nombre-piloto"
-                    placeholder="Ej: Candy Cholotío"
-                    autocomplete="name"
-                    required
-                >
+
+                <div class="registro-input-wrapper">
+
+                    <span
+                        class="registro-input-icono"
+                        aria-hidden="true"
+                    >
+                        <svg viewBox="0 0 24 24">
+
+                            <circle
+                                cx="12"
+                                cy="8"
+                                r="3.5"
+                            ></circle>
+
+                            <path
+                                d="M5 20c.5-4 3-6 7-6s6.5 2 7 6"
+                            ></path>
+
+                        </svg>
+                    </span>
+
+
+                    <input
+                        type="text"
+                        id="nombre-piloto"
+                        placeholder="Ej: Candy Cholotío"
+                        autocomplete="name"
+                        required
+                    >
+
+                </div>
 
             </div>
 
 
-            <div class="campo">
+            <!-- Tipo de vehículo -->
+
+            <div class="campo registro-campo">
 
                 <label for="tipo-vehiculo">
-                    Tipo de Vehículo
+                    Tipo de vehículo
                 </label>
 
-                <select
-                    id="tipo-vehiculo"
-                    required
-                >
-                    <option value="">
-                        Selecciona una opción
-                    </option>
 
-                    <option value="motocicleta">
-                        Motocicleta
-                    </option>
+                <div class="registro-input-wrapper">
 
-                    <option value="liviano">
-                        Vehículo Liviano
-                    </option>
+                    <span
+                        class="registro-input-icono"
+                        aria-hidden="true"
+                    >
+                        <svg viewBox="0 0 24 24">
 
-                    <option value="microbus">
-                        Microbús
-                    </option>
+                            <path
+                                d="M4 16h16"
+                            ></path>
 
-                    <option value="bus">
-                        Bus
-                    </option>
-                </select>
+                            <path
+                                d="M6 16l1.5-5h9L18 16"
+                            ></path>
+
+                            <path
+                                d="M9 11l1-3h4l1 3"
+                            ></path>
+
+                            <circle
+                                cx="7"
+                                cy="17"
+                                r="1.5"
+                            ></circle>
+
+                            <circle
+                                cx="17"
+                                cy="17"
+                                r="1.5"
+                            ></circle>
+
+                        </svg>
+                    </span>
+
+
+                    <select
+                        id="tipo-vehiculo"
+                        required
+                    >
+                        <option value="">
+                            Selecciona una opción
+                        </option>
+
+                        <option value="motocicleta">
+                            Motocicleta
+                        </option>
+
+                        <option value="liviano">
+                            Vehículo Liviano
+                        </option>
+
+                        <option value="microbus">
+                            Microbús
+                        </option>
+
+                        <option value="bus">
+                            Bus
+                        </option>
+                    </select>
+
+                </div>
 
             </div>
 
+
+            <!-- Información -->
+
+            <div class="registro-aviso">
+
+                <span
+                    class="registro-aviso-icono"
+                    aria-hidden="true"
+                >
+                    i
+                </span>
+
+                <p>
+                    Utilizaremos estos datos únicamente
+                    para asignarte el parqueo más adecuado
+                    para tu vehículo.
+                </p>
+
+            </div>
+
+
+            <!-- Continuar -->
 
             <button
                 type="submit"
-                class="btn-principal"
+                class="btn-principal registro-continuar"
             >
-                CONTINUAR
+
+                <span>
+                    Continuar
+                </span>
+
+                <svg
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                >
+                    <path d="M9 6l6 6-6 6"></path>
+                </svg>
+
             </button>
 
         </form>
 
-    </section>
+
+        <p class="registro-footer">
+            JDJ San Juan 2026
+        </p>
+
+    </div>
+
+</section>
 
 
 

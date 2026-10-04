@@ -607,47 +607,674 @@ img {
 ========================================================= */
 
 #pantalla-registro {
-    padding-top: 48px;
+    position: relative;
+
+    min-height: 100dvh;
+
+    padding:
+        0
+        0
+        calc(30px + env(safe-area-inset-bottom));
+
+    overflow-x: hidden;
 
     background:
         linear-gradient(
             180deg,
-            #ffffff,
-            #f5f8fd
+            #eef4ff 0%,
+            #f7f9fd 30%,
+            #f5f8fd 100%
         );
 }
 
 
-.encabezado-registro {
+#pantalla-registro::before {
+    content: "";
+
+    position: absolute;
+
+    width: 330px;
+    height: 330px;
+
+    top: -245px;
+    right: -150px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(47, 103, 216, 0.14);
+
+    filter: blur(10px);
+
+    pointer-events: none;
+}
+
+
+.registro-app {
+    position: relative;
+    z-index: 1;
+
     width: 100%;
     max-width: 520px;
 
-    margin:
-        0 auto
-        25px;
+    margin: 0 auto;
 
-    text-align: center;
+    padding:
+        calc(20px + env(safe-area-inset-top))
+        18px
+        0;
 }
 
 
-.encabezado-registro h1 {
-    margin-bottom: 9px;
+/* =========================================================
+   HEADER
+========================================================= */
+
+.registro-header {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    margin-bottom: 27px;
+}
+
+
+.registro-volver {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-shrink: 0;
+
+    padding: 0;
+
+    color: #35527f;
+
+    background:
+        rgba(255, 255, 255, 0.88);
+
+    border:
+        1px solid
+        rgba(23, 63, 150, 0.09);
+
+    border-radius: 13px;
+
+    box-shadow:
+        0 4px 12px
+        rgba(23, 63, 150, 0.06);
+
+    cursor: pointer;
+
+    transition:
+        transform 150ms ease,
+        background 150ms ease;
+}
+
+
+.registro-volver svg {
+    width: 20px;
+    height: 20px;
+
+    fill: none;
+
+    stroke: currentColor;
+    stroke-width: 1.9;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+.registro-volver:active {
+    transform: scale(0.94);
+}
+
+
+.registro-header-identidad {
+    min-width: 0;
+    flex: 1;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+.registro-eyebrow {
+    color: #6d80a1;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: 1.15px;
+}
+
+
+.registro-paso {
+    flex-shrink: 0;
+
+    padding: 6px 9px;
 
     color: var(--azul);
 
-    font-size: 31px;
-    font-weight: 850;
+    background: #e8f0ff;
 
-    line-height: 1.02;
+    border-radius: 999px;
 
-    letter-spacing: -0.8px;
+    font-size: 8px;
+    font-weight: 800;
+
+    letter-spacing: 0.65px;
 }
 
 
-.encabezado-registro p {
-    color: var(--texto-secundario);
+/* =========================================================
+   PRESENTACIÓN
+========================================================= */
 
-    font-size: 15px;
+.registro-presentacion {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    margin-bottom: 24px;
+}
+
+
+.registro-icono-principal {
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-shrink: 0;
+
+    color: var(--azul);
+
+    background: #e6efff;
+
+    border:
+        1px solid
+        rgba(23, 63, 150, 0.07);
+
+    border-radius: 16px;
+}
+
+
+.registro-icono-principal svg {
+    width: 27px;
+    height: 27px;
+
+    fill: none;
+
+    stroke: currentColor;
+    stroke-width: 1.65;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+.registro-presentacion h1 {
+    margin: 0;
+
+    color: #17366f;
+
+    font-size: 27px;
+    font-weight: 800;
+
+    line-height: 1.08;
+
+    letter-spacing: -0.65px;
+}
+
+
+.registro-presentacion p {
+    max-width: 350px;
+
+    margin-top: 6px;
+
+    color: #7e8ca4;
+
+    font-size: 12px;
+
+    line-height: 1.45;
+}
+
+
+/* =========================================================
+   PROGRESO
+========================================================= */
+
+.registro-progreso {
+    margin-bottom: 17px;
+}
+
+
+.registro-progreso-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 7px;
+
+    color: #8290a7;
+
+    font-size: 9px;
+    font-weight: 700;
+}
+
+
+.registro-progreso-info strong {
+    color: #526a91;
+
+    font-size: 9px;
+    font-weight: 800;
+}
+
+
+.registro-progreso-barra {
+    width: 100%;
+    height: 5px;
+
+    overflow: hidden;
+
+    background: #dfe7f3;
+
+    border-radius: 999px;
+}
+
+
+.registro-progreso-barra span {
+    display: block;
+
+    width: 50%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--azul),
+            var(--azul-claro)
+        );
+
+    border-radius: inherit;
+}
+
+
+/* =========================================================
+   FORMULARIO DE REGISTRO
+========================================================= */
+
+#pantalla-registro #form-registro {
+    width: 100%;
+    max-width: none;
+
+    margin: 0;
+
+    padding: 21px 18px 18px;
+
+    background:
+        rgba(255, 255, 255, 0.96);
+
+    border:
+        1px solid
+        rgba(23, 63, 150, 0.08);
+
+    border-radius: 21px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(23, 63, 150, 0.07);
+}
+
+
+.registro-form-header {
+    margin-bottom: 21px;
+
+    text-align: left;
+}
+
+
+.registro-form-eyebrow {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #7890b5;
+
+    font-size: 8px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+
+.registro-form-header h2 {
+    margin: 0;
+
+    color: #203b6a;
+
+    font-size: 18px;
+    font-weight: 800;
+
+    letter-spacing: -0.25px;
+}
+
+
+.registro-form-header p {
+    margin-top: 4px;
+
+    color: #929db0;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   CAMPOS
+========================================================= */
+
+#pantalla-registro .registro-campo {
+    margin-bottom: 17px;
+}
+
+
+#pantalla-registro .registro-campo label {
+    margin-bottom: 8px;
+
+    color: #344d75;
+
+    font-size: 11px;
+    font-weight: 750;
+}
+
+
+.registro-input-wrapper {
+    position: relative;
+
+    width: 100%;
+}
+
+
+.registro-input-icono {
+    position: absolute;
+
+    top: 50%;
+    left: 14px;
+
+    z-index: 2;
+
+    width: 20px;
+    height: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #7588a8;
+
+    transform: translateY(-50%);
+
+    pointer-events: none;
+}
+
+
+.registro-input-icono svg {
+    width: 19px;
+    height: 19px;
+
+    fill: none;
+
+    stroke: currentColor;
+    stroke-width: 1.7;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+#pantalla-registro
+.registro-input-wrapper input,
+
+#pantalla-registro
+.registro-input-wrapper select {
+    width: 100%;
+    height: 55px;
+
+    padding:
+        0
+        42px;
+
+    color: #243957;
+
+    background: #f8faff;
+
+    border:
+        1.5px solid
+        #e2e9f3;
+
+    border-radius: 14px;
+
+    font-size: 13px;
+    font-weight: 500;
+
+    outline: none;
+
+    transition:
+        border-color 170ms ease,
+        box-shadow 170ms ease,
+        background 170ms ease;
+}
+
+
+#pantalla-registro
+.registro-input-wrapper select {
+    padding-right: 35px;
+
+    cursor: pointer;
+}
+
+
+#pantalla-registro
+.registro-input-wrapper input::placeholder {
+    color: #a4afc1;
+}
+
+
+#pantalla-registro
+.registro-input-wrapper input:focus,
+
+#pantalla-registro
+.registro-input-wrapper select:focus {
+    background: #ffffff;
+
+    border-color:
+        var(--azul-claro);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(47, 103, 216, 0.09);
+}
+
+
+.registro-input-wrapper:focus-within
+.registro-input-icono {
+    color: var(--azul);
+}
+
+
+/* =========================================================
+   AVISO
+========================================================= */
+
+.registro-aviso {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 9px;
+
+    margin:
+        3px
+        0
+        19px;
+
+    padding:
+        11px
+        12px;
+
+    color: #667895;
+
+    background: #f1f6ff;
+
+    border:
+        1px solid
+        #e1eafb;
+
+    border-radius: 13px;
+}
+
+
+.registro-aviso-icono {
+    width: 20px;
+    height: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-shrink: 0;
+
+    color: var(--azul);
+
+    background: #dfeaff;
+
+    border-radius: 50%;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+
+.registro-aviso p {
+    margin: 0;
+
+    font-size: 9.5px;
+
+    line-height: 1.45;
+}
+
+
+/* =========================================================
+   CONTINUAR
+========================================================= */
+
+#pantalla-registro
+.registro-continuar {
+    min-height: 56px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 0;
+
+    border-radius: 15px;
+
+    font-size: 13px;
+    font-weight: 800;
+}
+
+
+.registro-continuar svg {
+    width: 18px;
+    height: 18px;
+
+    fill: none;
+
+    stroke: currentColor;
+    stroke-width: 2;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    transition:
+        transform 150ms ease;
+}
+
+
+.registro-continuar:active svg {
+    transform:
+        translateX(3px);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.registro-footer {
+    margin-top: 21px;
+
+    color: #a0acbe;
+
+    font-size: 8px;
+    font-weight: 650;
+
+    text-align: center;
+
+    letter-spacing: 0.7px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .registro-app {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+
+    .registro-presentacion h1 {
+        font-size: 24px;
+    }
+
+
+    .registro-presentacion {
+        gap: 11px;
+    }
+
+
+    .registro-icono-principal {
+        width: 46px;
+        height: 46px;
+    }
+
+
+    #pantalla-registro #form-registro {
+        padding:
+            19px
+            15px
+            16px;
+    }
+
 }
 
 
