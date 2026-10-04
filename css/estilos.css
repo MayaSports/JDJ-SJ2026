@@ -3412,6 +3412,66 @@ button:disabled,
     color: var(--rojo);
 }
 
+/* =========================================================
+   ITINERARIO - SEPARACIÓN POR DÍAS
+   ========================================================= */
+
+.itinerario-separador-dia {
+    margin-top: 30px;
+    margin-bottom: 14px;
+}
+
+.itinerario-separador-dia:first-child {
+    margin-top: 8px;
+}
+
+.itinerario-separador-fecha {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    padding: 14px 16px;
+
+    background: #ffffff;
+
+    border: 1px solid rgba(11, 159, 232, 0.16);
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 24px rgba(16, 63, 107, 0.07);
+}
+
+.itinerario-separador-semana {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+
+    color: var(--azul-fuerte);
+}
+
+.itinerario-separador-principal {
+    display: flex;
+    align-items: baseline;
+    gap: 7px;
+
+    margin-left: auto;
+}
+
+.itinerario-separador-principal strong {
+    font-size: 28px;
+    line-height: 1;
+    font-weight: 900;
+
+    color: var(--azul-oscuro);
+}
+
+.itinerario-separador-principal span {
+    font-size: 13px;
+    font-weight: 800;
+
+    color: var(--azul-fuerte);
+}
+
 
 /* =========================================================
    ESTADOS / INTERACCIÓN
@@ -3610,3 +3670,4 @@ select:focus-visible {
         transition-duration: .01ms !important;
     }
 }
+

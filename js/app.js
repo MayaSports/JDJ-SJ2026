@@ -2447,14 +2447,11 @@ function mostrarErrorItinerario(
     `;
 }
 
-
 // =========================================================
 // 45. ACTUALIZAR FECHA DEL ITINERARIO
 // =========================================================
 
-function actualizarFechaItinerario(
-    actividades
-) {
+function actualizarFechaItinerario(actividades) {
 
     if (
         !Array.isArray(actividades) ||
@@ -2463,103 +2460,233 @@ function actualizarFechaItinerario(
         return;
     }
 
-    const primeraActividad =
-        actividades[0];
-
-    const fechaTexto =
-        primeraActividad.fecha;
-
-    if (!fechaTexto) {
-        return;
-    }
-
-    let fecha;
-
     /*
-     * Google Apps Script puede devolver la fecha
-     * como ISO o como una cadena de texto.
+     * Si solamente existe una fecha,
+     * mantenemos el encabezado grande original.
+     *
+     * Si existen varias fechas,
+     * el encabezado general indicará que
+     * el itinerario tiene varios días.
      */
 
-    if (
-        /^\d{4}-\d{2}-\d{2}/.test(
-            String(fechaTexto)
+    const fechasUnicas = [
+        ...new Set(
+            actividades.map(function (actividad) {
+                return obtenerClaveFecha(
+                    actividad.fecha
+                );
+            })
         )
-    ) {
+    ].filter(Boolean);
 
-        const partes =
-            String(fechaTexto)
-                .substring(0, 10)
-                .split("-");
+    if (fechasUnicas.length === 1) {
 
-        fecha =
-            new Date(
-                Number(partes[0]),
-                Number(partes[1]) - 1,
-                Number(partes[2])
+        const fecha =
+            convertirFechaItinerario(
+                fechasUnicas[0]
             );
+
+        if (!fecha) {
+            return;
+        }
+
+        const datos =
+            obtenerDatosFechaItinerario(
+                fecha
+            );
+
+        if (itinerarioDiaSemana) {
+            itinerarioDiaSemana.textContent =
+                datos.diaSemana;
+        }
+
+        if (itinerarioDia) {
+            itinerarioDia.textContent =
+                datos.dia;
+        }
+
+        if (itinerarioMes) {
+            itinerarioMes.textContent =
+                datos.mes;
+        }
 
     } else {
 
-        fecha =
-            new Date(fechaTexto);
+        if (itinerarioDiaSemana) {
+            itinerarioDiaSemana.textContent =
+                "JDJ SAN JUAN";
+        }
+
+        if (itinerarioDia) {
+            itinerarioDia.textContent =
+                fechasUnicas.length;
+        }
+
+        if (itinerarioMes) {
+            itinerarioMes.textContent =
+                "DÍAS";
+        }
     }
+}
+
+
+// =========================================================
+// FUNCIONES AUXILIARES DE FECHA
+// =========================================================
+
+function obtenerClaveFecha(fechaTexto) {
+
+    if (!fechaTexto) {
+        return "";
+    }
+
+    const texto =
+        String(fechaTexto).trim();
+
+    /*
+     * Si viene en formato ISO:
+     * 2026-11-14
+     * 2026-11-14T06:00:00...
+     */
+
+    if (
+        /^\d{4}-\d{2}-\d{2}/.test(texto)
+    ) {
+
+        return texto.substring(0, 10);
+    }
+
+    /*
+     * Si viene como otra cadena válida,
+     * intentamos convertirla.
+     */
+
+    const fecha =
+        new Date(texto);
 
     if (
         Number.isNaN(
             fecha.getTime()
         )
     ) {
-        return;
+        return texto;
     }
 
-    const dias =
-        [
-            "DOMINGO",
-            "LUNES",
-            "MARTES",
-            "MIÉRCOLES",
-            "JUEVES",
-            "VIERNES",
-            "SÁBADO"
-        ];
+    const anio =
+        fecha.getFullYear();
 
-    const meses =
-        [
-            "ENERO",
-            "FEBRERO",
-            "MARZO",
-            "ABRIL",
-            "MAYO",
-            "JUNIO",
-            "JULIO",
-            "AGOSTO",
-            "SEPTIEMBRE",
-            "OCTUBRE",
-            "NOVIEMBRE",
-            "DICIEMBRE"
-        ];
+    const mes =
+        String(
+            fecha.getMonth() + 1
+        ).padStart(2, "0");
 
-    if (itinerarioDiaSemana) {
+    const dia =
+        String(
+            fecha.getDate()
+        ).padStart(2, "0");
 
-        itinerarioDiaSemana.textContent =
-            dias[
-                fecha.getDay()
-            ];
+    return (
+        anio +
+        "-" +
+        mes +
+        "-" +
+        dia
+    );
+}
+
+
+function convertirFechaItinerario(
+    fechaTexto
+) {
+
+    if (!fechaTexto) {
+        return null;
     }
 
-    if (itinerarioDia) {
+    const texto =
+        String(fechaTexto);
 
-        itinerarioDia.textContent =
-            fecha.getDate();
+    if (
+        /^\d{4}-\d{2}-\d{2}/.test(texto)
+    ) {
+
+        const partes =
+            texto
+                .substring(0, 10)
+                .split("-");
+
+        const fecha =
+            new Date(
+                Number(partes[0]),
+                Number(partes[1]) - 1,
+                Number(partes[2])
+            );
+
+        if (
+            Number.isNaN(
+                fecha.getTime()
+            )
+        ) {
+            return null;
+        }
+
+        return fecha;
     }
 
-    if (itinerarioMes) {
+    const fecha =
+        new Date(texto);
 
-        itinerarioMes.textContent =
-            meses[
-                fecha.getMonth()
-            ];
+    if (
+        Number.isNaN(
+            fecha.getTime()
+        )
+    ) {
+        return null;
     }
+
+    return fecha;
+}
+
+
+function obtenerDatosFechaItinerario(
+    fecha
+) {
+
+    const dias = [
+        "DOMINGO",
+        "LUNES",
+        "MARTES",
+        "MIÉRCOLES",
+        "JUEVES",
+        "VIERNES",
+        "SÁBADO"
+    ];
+
+    const meses = [
+        "ENERO",
+        "FEBRERO",
+        "MARZO",
+        "ABRIL",
+        "MAYO",
+        "JUNIO",
+        "JULIO",
+        "AGOSTO",
+        "SEPTIEMBRE",
+        "OCTUBRE",
+        "NOVIEMBRE",
+        "DICIEMBRE"
+    ];
+
+    return {
+        diaSemana:
+            dias[fecha.getDay()],
+
+        dia:
+            fecha.getDate(),
+
+        mes:
+            meses[fecha.getMonth()]
+    };
 }
 
 
@@ -2571,28 +2698,205 @@ function mostrarActividadesItinerario(
     actividades
 ) {
 
-    listaItinerario.innerHTML =
-        "";
+    listaItinerario.innerHTML = "";
 
-    actividades.forEach(
-        function (
-            actividad,
-            indice
-        ) {
+    /*
+     * Creamos una copia para no modificar
+     * directamente el arreglo recibido.
+     */
 
-            const tarjeta =
-                crearActividadItinerario(
-                    actividad,
-                    indice
+    const actividadesOrdenadas =
+        [...actividades];
+
+    /*
+     * Ordenamos primero por fecha
+     * y después por hora.
+     */
+
+    actividadesOrdenadas.sort(
+        function (a, b) {
+
+            const fechaA =
+                obtenerClaveFecha(
+                    a.fecha
                 );
 
+            const fechaB =
+                obtenerClaveFecha(
+                    b.fecha
+                );
+
+            if (fechaA !== fechaB) {
+
+                return fechaA.localeCompare(
+                    fechaB
+                );
+            }
+
+            return String(
+                a.hora || ""
+            ).localeCompare(
+                String(
+                    b.hora || ""
+                )
+            );
+        }
+    );
+
+
+    /*
+     * Agrupamos las actividades
+     * según su fecha.
+     */
+
+    const grupos = {};
+
+    actividadesOrdenadas.forEach(
+        function (actividad) {
+
+            const fecha =
+                obtenerClaveFecha(
+                    actividad.fecha
+                );
+
+            if (!grupos[fecha]) {
+                grupos[fecha] = [];
+            }
+
+            grupos[fecha].push(
+                actividad
+            );
+        }
+    );
+
+
+    const fechas =
+        Object.keys(grupos);
+
+
+    /*
+     * Si solamente existe un día,
+     * mantenemos exactamente el diseño
+     * que ya teníamos.
+     */
+
+    if (fechas.length === 1) {
+
+        grupos[fechas[0]].forEach(
+            function (
+                actividad,
+                indice
+            ) {
+
+                const tarjeta =
+                    crearActividadItinerario(
+                        actividad,
+                        indice
+                    );
+
+                listaItinerario.appendChild(
+                    tarjeta
+                );
+            }
+        );
+
+        return;
+    }
+
+
+    /*
+     * Si existen varios días,
+     * creamos una sección independiente
+     * para cada fecha.
+     */
+
+    fechas.forEach(
+        function (
+            fechaTexto,
+            indiceDia
+        ) {
+
+            const fecha =
+                convertirFechaItinerario(
+                    fechaTexto
+                );
+
+            if (!fecha) {
+                return;
+            }
+
+            const datosFecha =
+                obtenerDatosFechaItinerario(
+                    fecha
+                );
+
+
+            // -----------------------------
+            // ENCABEZADO DEL DÍA
+            // -----------------------------
+
+            const encabezado =
+                document.createElement(
+                    "div"
+                );
+
+            encabezado.className =
+                "itinerario-separador-dia";
+
+            encabezado.innerHTML = `
+
+                <div class="itinerario-separador-fecha">
+
+                    <span class="itinerario-separador-semana">
+                        ${datosFecha.diaSemana}
+                    </span>
+
+                    <div class="itinerario-separador-principal">
+
+                        <strong>
+                            ${datosFecha.dia}
+                        </strong>
+
+                        <span>
+                            ${datosFecha.mes}
+                        </span>
+
+                    </div>
+
+                </div>
+
+            `;
+
             listaItinerario.appendChild(
-                tarjeta
+                encabezado
+            );
+
+
+            // -----------------------------
+            // ACTIVIDADES DEL DÍA
+            // -----------------------------
+
+            grupos[fechaTexto].forEach(
+                function (
+                    actividad,
+                    indiceActividad
+                ) {
+
+                    const tarjeta =
+                        crearActividadItinerario(
+                            actividad,
+                            indiceActividad +
+                            indiceDia
+                        );
+
+                    listaItinerario.appendChild(
+                        tarjeta
+                    );
+                }
             );
         }
     );
 }
-
 
 // =========================================================
 // 47. CREAR ACTIVIDAD DEL ITINERARIO
