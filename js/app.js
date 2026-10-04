@@ -259,6 +259,30 @@ const btnWhatsAppAyuda =
 const btnVolverAyuda =
     document.getElementById("btn-volver-ayuda");
 
+// =========================================================
+// 11.1 MODAL DE INGRESO CONFIRMADO
+// =========================================================
+
+const modalIngresoConfirmado =
+    document.getElementById(
+        "modal-ingreso-confirmado"
+    );
+
+const modalIngresoParqueo =
+    document.getElementById(
+        "modal-ingreso-parqueo"
+    );
+
+const modalIngresoCodigo =
+    document.getElementById(
+        "modal-ingreso-codigo"
+    );
+
+const btnCerrarIngreso =
+    document.getElementById(
+        "btn-cerrar-ingreso"
+    );
+
 
 // =========================================================
 // 12. VARIABLES DEL SISTEMA
@@ -271,6 +295,18 @@ let codigoSeleccionado = "";
 
 let latitudParqueo = null;
 let longitudParqueo = null;
+
+// =========================================================
+// VIGILANCIA DEL INGRESO DEL PARTICIPANTE
+// =========================================================
+
+let intervaloEstadoParticipante = null;
+
+let codigoParticipanteActual = "";
+
+let parqueoParticipanteActual = "";
+
+let consultandoEstadoParticipante = false;
 
 
 // =========================================================
@@ -1687,6 +1723,232 @@ function mostrarAsignacion(datos) {
 
     mostrarPantalla(
         pantallaAsignacion
+    );
+
+    iniciarVigilanciaIngreso(
+    datos.codigo,
+    datos.nombreParqueo
+);
+}
+
+// =========================================================
+// VIGILAR ESTADO DEL PARTICIPANTE
+// =========================================================
+
+function iniciarVigilanciaIngreso(
+    codigo,
+    parqueo
+) {
+
+    detenerVigilanciaIngreso();
+
+    codigoParticipanteActual =
+        String(codigo || "")
+            .trim()
+            .toUpperCase();
+
+    parqueoParticipanteActual =
+        String(parqueo || "")
+            .trim();
+
+    if (
+        codigoParticipanteActual === ""
+    ) {
+        return;
+    }
+
+    console.log(
+        "Vigilando ingreso:",
+        codigoParticipanteActual
+    );
+
+    /*
+     * Primera consulta después de unos segundos.
+     */
+
+    intervaloEstadoParticipante =
+        setInterval(
+            consultarEstadoParticipante,
+            5000
+        );
+}
+
+
+function detenerVigilanciaIngreso() {
+
+    if (
+        intervaloEstadoParticipante !== null
+    ) {
+
+        clearInterval(
+            intervaloEstadoParticipante
+        );
+
+        intervaloEstadoParticipante =
+            null;
+    }
+
+    consultandoEstadoParticipante =
+        false;
+}
+
+
+async function consultarEstadoParticipante() {
+
+    if (
+        codigoParticipanteActual === "" ||
+        consultandoEstadoParticipante
+    ) {
+        return;
+    }
+
+    consultandoEstadoParticipante = true;
+
+    try {
+
+        const respuesta =
+            await fetch(
+                URL_API +
+                "?accion=buscar" +
+                "&codigo=" +
+                encodeURIComponent(
+                    codigoParticipanteActual
+                ) +
+                "&_=" +
+                Date.now(),
+                {
+                    cache: "no-store"
+                }
+            );
+
+        if (!respuesta.ok) {
+
+            throw new Error(
+                "Error HTTP " +
+                respuesta.status
+            );
+        }
+
+        const datos =
+            await respuesta.json();
+
+        /*
+         * Mientras siga ASIGNADO
+         * no hacemos absolutamente nada.
+         */
+
+        if (
+            datos.encontrado === true &&
+            datos.estado === "INGRESADO"
+        ) {
+
+            detenerVigilanciaIngreso();
+
+            mostrarNotificacionIngreso(
+                datos
+            );
+        }
+
+    } catch (error) {
+
+        /*
+         * Un fallo temporal de Internet
+         * no debe molestar al participante.
+         * Simplemente volveremos a consultar.
+         */
+
+        console.warn(
+            "No se pudo consultar temporalmente el estado:",
+            error
+        );
+
+    } finally {
+
+        consultandoEstadoParticipante =
+            false;
+    }
+}
+
+
+// =========================================================
+// MOSTRAR NOTIFICACIÓN DE INGRESO
+// =========================================================
+
+function mostrarNotificacionIngreso(
+    datos = {}
+) {
+
+    if (!modalIngresoConfirmado) {
+        return;
+    }
+
+    if (modalIngresoParqueo) {
+
+        modalIngresoParqueo.textContent =
+            datos.nombreParqueo ||
+            parqueoParticipanteActual ||
+            "-";
+    }
+
+    if (modalIngresoCodigo) {
+
+        modalIngresoCodigo.textContent =
+            datos.codigo ||
+            codigoParticipanteActual ||
+            "JDJ-";
+    }
+
+    modalIngresoConfirmado.classList.add(
+        "activo"
+    );
+
+    modalIngresoConfirmado.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+    /*
+     * Vibración corta en dispositivos
+     * compatibles.
+     */
+
+    if (
+        "vibrate" in navigator
+    ) {
+
+        navigator.vibrate(
+            [150, 80, 150]
+        );
+    }
+}
+
+
+// =========================================================
+// CERRAR NOTIFICACIÓN DE INGRESO
+// =========================================================
+
+function cerrarNotificacionIngreso() {
+
+    if (!modalIngresoConfirmado) {
+        return;
+    }
+
+    modalIngresoConfirmado.classList.remove(
+        "activo"
+    );
+
+    modalIngresoConfirmado.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+}
+
+
+if (btnCerrarIngreso) {
+
+    btnCerrarIngreso.addEventListener(
+        "click",
+        cerrarNotificacionIngreso
     );
 }
 
