@@ -3671,3 +3671,192 @@ select:focus-visible {
     }
 }
 
+/* =========================================================
+   MODAL - INGRESO CONFIRMADO
+   ========================================================= */
+
+.modal-ingreso {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    padding: 24px;
+}
+
+.modal-ingreso.activo {
+    display: flex;
+}
+
+.modal-ingreso-fondo {
+    position: absolute;
+    inset: 0;
+
+    background: rgba(8, 35, 58, 0.68);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.modal-ingreso-tarjeta {
+    position: relative;
+    z-index: 1;
+
+    width: 100%;
+    max-width: 390px;
+
+    padding: 30px 24px 24px;
+
+    background: #ffffff;
+    border-radius: 26px;
+
+    text-align: center;
+
+    box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.22);
+
+    animation:
+        entradaModalIngreso 0.35s ease;
+}
+
+.modal-ingreso-icono {
+    width: 72px;
+    height: 72px;
+
+    margin: 0 auto 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(57, 168, 82, 0.12);
+}
+
+.modal-ingreso-icono svg {
+    width: 38px;
+    height: 38px;
+
+    fill: none;
+    stroke: var(--verde);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.modal-ingreso-etiqueta {
+    display: inline-block;
+
+    margin-bottom: 10px;
+
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 1.2px;
+
+    color: var(--verde);
+}
+
+.modal-ingreso-tarjeta h2 {
+    margin: 0;
+
+    font-size: 23px;
+    line-height: 1.2;
+
+    color: var(--azul-oscuro);
+}
+
+.modal-ingreso-mensaje {
+    margin: 12px 0 22px;
+
+    font-size: 15px;
+    line-height: 1.5;
+
+    color: #64748b;
+}
+
+.modal-ingreso-parqueo,
+.modal-ingreso-codigo {
+    padding: 14px 16px;
+
+    margin-top: 10px;
+
+    border-radius: 16px;
+
+    background: #f6f9fc;
+}
+
+.modal-ingreso-parqueo span,
+.modal-ingreso-codigo span {
+    display: block;
+
+    margin-bottom: 4px;
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+
+    color: #8291a3;
+}
+
+.modal-ingreso-parqueo strong {
+    font-size: 18px;
+
+    color: var(--azul-oscuro);
+}
+
+.modal-ingreso-codigo strong {
+    font-size: 15px;
+    letter-spacing: 0.5px;
+
+    color: var(--azul-fuerte);
+}
+
+.modal-ingreso-boton {
+    width: 100%;
+
+    margin-top: 22px;
+    padding: 15px;
+
+    border: none;
+    border-radius: 15px;
+
+    background: var(--verde);
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+
+    cursor: pointer;
+}
+
+.modal-ingreso-boton:active {
+    transform: scale(0.98);
+}
+
+@keyframes entradaModalIngreso {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(20px)
+            scale(0.94);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .modal-ingreso-tarjeta {
+        animation: none;
+    }
+}
