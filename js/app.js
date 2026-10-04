@@ -188,7 +188,35 @@ const dashTotalParqueos =
     document.getElementById("dash-total-parqueos");
 
 const listaParqueosDashboard =
-    document.getElementById("lista-parqueos-dashboard");
+    document.getElementById("lista-parqueos-dashboard");// =========================================================
+// ELEMENTOS DEL ITINERARIO
+// =========================================================
+
+const btnItinerario =
+    document.getElementById("btn-itinerario");
+
+const pantallaItinerario =
+    document.getElementById("pantalla-itinerario");
+
+const btnVolverItinerario =
+    document.getElementById("btn-volver-itinerario");
+
+const itinerarioDiaSemana =
+    document.getElementById("itinerario-dia-semana");
+
+const itinerarioDia =
+    document.getElementById("itinerario-dia");
+
+const itinerarioMes =
+    document.getElementById("itinerario-mes");
+
+const itinerarioTotal =
+    document.getElementById("itinerario-total");
+
+const listaItinerario =
+    document.getElementById("lista-itinerario");
+
+
 
 
 // =========================================================
@@ -216,6 +244,7 @@ function ocultarPantallas() {
     pantallaLoginEncargado.style.display = "none";
     pantallaEncargado.style.display = "none";
     pantallaDashboard.style.display = "none";
+    pantallaItinerario.style.display = "none";
 }
 
 
@@ -306,6 +335,40 @@ btnEncargado.addEventListener(
             top: 0,
             behavior: "smooth"
         });
+    }
+);
+
+// =========================================================
+// ABRIR ITINERARIO
+// =========================================================
+
+btnItinerario.addEventListener(
+    "click",
+    function () {
+
+        ocultarPantallas();
+
+        pantallaItinerario.style.display =
+            "block";
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+        cargarItinerario();
+    }
+);
+
+// =========================================================
+// VOLVER DESDE ITINERARIO
+// =========================================================
+
+btnVolverItinerario.addEventListener(
+    "click",
+    function () {
+
+        mostrarInicio();
     }
 );
 
@@ -1655,6 +1718,551 @@ btnVolverEncargado.addEventListener(
         });
     }
 );
+
+// =========================================================
+// CARGAR ITINERARIO
+// =========================================================
+
+async function cargarItinerario() {
+
+    listaItinerario.innerHTML = `
+        <p class="itinerario-cargando">
+            Cargando itinerario...
+        </p>
+    `;
+
+    itinerarioTotal.textContent = "0";
+
+
+    try {
+
+        const respuesta =
+            await fetch(
+                URL_API +
+                "?accion=itinerario"
+            );
+
+
+        const datos =
+            await respuesta.json();
+
+
+        console.log(
+            "Itinerario:",
+            datos
+        );
+
+
+        if (datos.exito !== true) {
+
+            mostrarErrorItinerario(
+                datos.mensaje ||
+                "No fue posible cargar el itinerario."
+            );
+
+            return;
+        }
+
+
+        if (
+            !Array.isArray(datos.actividades) ||
+            datos.actividades.length === 0
+        ) {
+
+            mostrarItinerarioVacio();
+
+            return;
+        }
+
+
+        itinerarioTotal.textContent =
+            datos.actividades.length;
+
+
+        mostrarFechaItinerario(
+            datos.actividades[0].fecha
+        );
+
+
+        mostrarActividadesItinerario(
+            datos.actividades
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Error cargando itinerario:",
+            error
+        );
+
+
+        mostrarErrorItinerario(
+            "No fue posible consultar el itinerario."
+        );
+    }
+}
+
+// =========================================================
+// MOSTRAR FECHA DEL EVENTO
+// =========================================================
+
+function mostrarFechaItinerario(fechaTexto) {
+
+    if (!fechaTexto) {
+
+        itinerarioDiaSemana.textContent =
+            "EVENTO";
+
+        itinerarioDia.textContent =
+            "—";
+
+        itinerarioMes.textContent =
+            "—";
+
+        return;
+    }
+
+
+    const partes =
+        String(fechaTexto)
+            .split("-");
+
+
+    if (partes.length !== 3) {
+
+        itinerarioDiaSemana.textContent =
+            "EVENTO";
+
+        itinerarioDia.textContent =
+            fechaTexto;
+
+        itinerarioMes.textContent =
+            "";
+
+        return;
+    }
+
+
+    const anio =
+        Number(partes[0]);
+
+    const mes =
+        Number(partes[1]);
+
+    const dia =
+        Number(partes[2]);
+
+
+    /*
+       Usamos mediodía para evitar problemas
+       de zona horaria al interpretar la fecha.
+    */
+
+    const fecha =
+        new Date(
+            anio,
+            mes - 1,
+            dia,
+            12,
+            0,
+            0
+        );
+
+
+    const nombreDia =
+        new Intl.DateTimeFormat(
+            "es-GT",
+            {
+                weekday: "long"
+            }
+        )
+        .format(fecha)
+        .toUpperCase();
+
+
+    const nombreMes =
+        new Intl.DateTimeFormat(
+            "es-GT",
+            {
+                month: "long"
+            }
+        )
+        .format(fecha)
+        .toUpperCase();
+
+
+    itinerarioDiaSemana.textContent =
+        nombreDia;
+
+
+    itinerarioDia.textContent =
+        String(dia)
+            .padStart(2, "0");
+
+
+    itinerarioMes.textContent =
+        nombreMes +
+        " " +
+        anio;
+}
+
+// =========================================================
+// MOSTRAR ACTIVIDADES
+// =========================================================
+
+function mostrarActividadesItinerario(actividades) {
+
+    listaItinerario.innerHTML = "";
+
+
+    actividades.forEach(
+        function (actividad, indice) {
+
+            const item =
+                crearActividadItinerario(
+                    actividad,
+                    indice,
+                    actividades.length
+                );
+
+
+            listaItinerario.appendChild(
+                item
+            );
+        }
+    );
+}
+
+// =========================================================
+// CREAR ACTIVIDAD DEL ITINERARIO
+// =========================================================
+
+function crearActividadItinerario(
+    actividad,
+    indice,
+    total
+) {
+
+    const item =
+        document.createElement("article");
+
+
+    item.className =
+        "itinerario-item";
+
+
+    if (indice === 0) {
+
+        item.classList.add(
+            "itinerario-item-primero"
+        );
+    }
+
+
+    if (indice === total - 1) {
+
+        item.classList.add(
+            "itinerario-item-ultimo"
+        );
+    }
+
+
+    // -----------------------------------------
+    // HORA
+    // -----------------------------------------
+
+    const hora =
+        document.createElement("div");
+
+    hora.className =
+        "itinerario-hora";
+
+    hora.textContent =
+        formatearHoraItinerario(
+            actividad.hora
+        );
+
+
+    // -----------------------------------------
+    // LÍNEA
+    // -----------------------------------------
+
+    const linea =
+        document.createElement("div");
+
+    linea.className =
+        "itinerario-linea";
+
+
+    const punto =
+        document.createElement("span");
+
+    punto.className =
+        "itinerario-punto";
+
+
+    linea.appendChild(
+        punto
+    );
+
+
+    // -----------------------------------------
+    // CONTENIDO
+    // -----------------------------------------
+
+    const contenido =
+        document.createElement("div");
+
+    contenido.className =
+        "itinerario-actividad";
+
+
+    const titulo =
+        document.createElement("h3");
+
+    titulo.textContent =
+        actividad.actividad ||
+        "Actividad";
+
+
+    contenido.appendChild(
+        titulo
+    );
+
+
+    // -----------------------------------------
+    // LUGAR
+    // -----------------------------------------
+
+    if (actividad.lugar) {
+
+        const lugar =
+            document.createElement("div");
+
+        lugar.className =
+            "itinerario-lugar";
+
+
+        lugar.innerHTML = `
+            <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+            >
+                <path
+                    d="
+                        M12 21s7-5.2 7-12
+                        a7 7 0 1 0-14 0
+                        c0 6.8 7 12 7 12z
+                    "
+                ></path>
+
+                <circle
+                    cx="12"
+                    cy="9"
+                    r="2.3"
+                ></circle>
+            </svg>
+        `;
+
+
+        const textoLugar =
+            document.createElement("span");
+
+        textoLugar.textContent =
+            actividad.lugar;
+
+
+        lugar.appendChild(
+            textoLugar
+        );
+
+
+        contenido.appendChild(
+            lugar
+        );
+    }
+
+
+    // -----------------------------------------
+    // DESCRIPCIÓN
+    // -----------------------------------------
+
+    if (actividad.descripcion) {
+
+        const descripcion =
+            document.createElement("p");
+
+        descripcion.textContent =
+            actividad.descripcion;
+
+
+        contenido.appendChild(
+            descripcion
+        );
+    }
+
+
+    // -----------------------------------------
+    // ARMAR ITEM
+    // -----------------------------------------
+
+    item.appendChild(
+        hora
+    );
+
+    item.appendChild(
+        linea
+    );
+
+    item.appendChild(
+        contenido
+    );
+
+
+    return item;
+}
+
+// =========================================================
+// FORMATEAR HORA
+// =========================================================
+
+function formatearHoraItinerario(horaTexto) {
+
+    if (!horaTexto) {
+        return "—";
+    }
+
+
+    const partes =
+        String(horaTexto)
+            .split(":");
+
+
+    if (partes.length < 2) {
+        return horaTexto;
+    }
+
+
+    let hora =
+        Number(partes[0]);
+
+    const minutos =
+        partes[1];
+
+
+    if (Number.isNaN(hora)) {
+        return horaTexto;
+    }
+
+
+    const periodo =
+        hora >= 12
+            ? "PM"
+            : "AM";
+
+
+    hora =
+        hora % 12;
+
+
+    if (hora === 0) {
+        hora = 12;
+    }
+
+
+    return (
+        hora +
+        ":" +
+        minutos +
+        " " +
+        periodo
+    );
+}
+
+// =========================================================
+// ITINERARIO VACÍO
+// =========================================================
+
+function mostrarItinerarioVacio() {
+
+    itinerarioTotal.textContent =
+        "0";
+
+
+    itinerarioDiaSemana.textContent =
+        "EVENTO";
+
+    itinerarioDia.textContent =
+        "—";
+
+    itinerarioMes.textContent =
+        "SIN ACTIVIDADES";
+
+
+    listaItinerario.innerHTML = `
+        <div class="itinerario-estado">
+
+            <strong>
+                Aún no hay actividades
+            </strong>
+
+            <p>
+                El itinerario del evento
+                estará disponible próximamente.
+            </p>
+
+        </div>
+    `;
+}
+
+
+// =========================================================
+// ERROR DE ITINERARIO
+// =========================================================
+
+function mostrarErrorItinerario(mensaje) {
+
+    itinerarioTotal.textContent =
+        "0";
+
+
+    listaItinerario.innerHTML = "";
+
+
+    const estado =
+        document.createElement("div");
+
+    estado.className =
+        "itinerario-estado itinerario-error";
+
+
+    const titulo =
+        document.createElement("strong");
+
+    titulo.textContent =
+        "No pudimos cargar el itinerario";
+
+
+    const descripcion =
+        document.createElement("p");
+
+    descripcion.textContent =
+        mensaje;
+
+
+    estado.appendChild(
+        titulo
+    );
+
+    estado.appendChild(
+        descripcion
+    );
+
+
+    listaItinerario.appendChild(
+        estado
+    );
+}
 
 
 // =========================================================

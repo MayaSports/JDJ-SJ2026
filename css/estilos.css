@@ -2942,6 +2942,1005 @@ and
 
 }
 
+/* =========================================================
+   ITINERARIO - BOTÓN EN INICIO
+========================================================= */
+
+.inicio-accion-itinerario {
+    width: 100%;
+    min-height: 64px;
+
+    display: grid;
+
+    grid-template-columns:
+        42px
+        1fr
+        22px;
+
+    align-items: center;
+
+    gap: 11px;
+
+    padding:
+        10px
+        14px;
+
+    color: var(--azul);
+
+    text-align: left;
+
+    background:
+        rgba(255, 255, 255, 0.92);
+
+    border:
+        1px solid
+        rgba(23, 63, 150, 0.10);
+
+    border-radius: 17px;
+
+    box-shadow:
+        0 5px 16px
+        rgba(23, 63, 150, 0.06);
+
+    cursor: pointer;
+
+    transition:
+        transform 150ms ease,
+        box-shadow 150ms ease,
+        border-color 150ms ease;
+}
+
+
+.inicio-accion-itinerario:hover {
+    border-color:
+        rgba(23, 63, 150, 0.18);
+
+    box-shadow:
+        0 8px 20px
+        rgba(23, 63, 150, 0.09);
+}
+
+
+.inicio-accion-itinerario:active {
+    transform:
+        scale(0.98);
+}
+
+
+.inicio-accion-itinerario:focus-visible {
+    outline:
+        3px solid
+        rgba(47, 103, 216, 0.18);
+
+    outline-offset: 3px;
+}
+
+
+/* ICONO */
+
+.inicio-itinerario-icono {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color:
+        var(--azul);
+
+    background:
+        #edf3ff;
+
+    border-radius: 12px;
+}
+
+
+.inicio-itinerario-icono svg {
+    width: 21px;
+    height: 21px;
+}
+
+
+/* TEXTO */
+
+.inicio-itinerario-texto {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+
+.inicio-itinerario-texto strong {
+    color:
+        var(--azul);
+
+    font-size: 14px;
+    font-weight: 750;
+
+    line-height: 1.2;
+}
+
+
+.inicio-itinerario-texto small {
+    color:
+        #8390a6;
+
+    font-size: 10px;
+    font-weight: 500;
+
+    line-height: 1.3;
+}
+
+
+/* FLECHA */
+
+.inicio-itinerario-flecha {
+    color:
+        #7890bd;
+
+    font-size: 21px;
+
+    text-align: center;
+
+    transition:
+        transform 150ms ease;
+}
+
+
+.inicio-accion-itinerario:active
+.inicio-itinerario-flecha {
+    transform:
+        translateX(3px);
+}
+
+
+/* =========================================================
+   PANTALLA ITINERARIO
+========================================================= */
+
+#pantalla-itinerario {
+    min-height: 100dvh;
+
+    padding:
+        0
+        0
+        calc(
+            30px +
+            env(safe-area-inset-bottom)
+        );
+
+    background:
+        linear-gradient(
+            180deg,
+            #eef4ff 0%,
+            #f7f9fd 240px,
+            #f5f8fd 100%
+        );
+}
+
+
+.itinerario-app {
+    width: 100%;
+    max-width: 600px;
+
+    margin:
+        0 auto;
+
+    padding:
+        29px
+        17px
+        30px;
+}
+
+
+/* =========================================================
+   HEADER ITINERARIO
+========================================================= */
+
+.itinerario-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 18px;
+
+    margin-bottom: 23px;
+}
+
+
+.itinerario-header > div:first-child {
+    min-width: 0;
+}
+
+
+.itinerario-eyebrow {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color:
+        #7183a3;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: 1.2px;
+}
+
+
+.itinerario-header h1 {
+    margin: 0;
+
+    color:
+        var(--azul);
+
+    font-size: 30px;
+    font-weight: 850;
+
+    line-height: 1.05;
+
+    letter-spacing: -0.8px;
+}
+
+
+.itinerario-header p {
+    margin-top: 6px;
+
+    color:
+        #8491a7;
+
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+
+/* ICONO HEADER */
+
+.itinerario-icono-header {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-shrink: 0;
+
+    color:
+        var(--azul);
+
+    background:
+        rgba(255, 255, 255, 0.82);
+
+    border:
+        1px solid
+        rgba(23, 63, 150, 0.08);
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 5px 15px
+        rgba(23, 63, 150, 0.07);
+}
+
+
+.itinerario-icono-header svg {
+    width: 22px;
+    height: 22px;
+
+    fill: none;
+
+    stroke:
+        currentColor;
+
+    stroke-width: 1.8;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+/* =========================================================
+   TARJETA DE FECHA
+========================================================= */
+
+.itinerario-fecha {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns:
+        auto
+        1fr;
+
+    grid-template-rows:
+        auto
+        auto;
+
+    align-items: center;
+
+    column-gap: 15px;
+
+    margin-bottom: 25px;
+
+    padding:
+        17px
+        18px;
+
+    overflow: hidden;
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #173f96 0%,
+            #2861c7 100%
+        );
+
+    border-radius: 19px;
+
+    box-shadow:
+        0 10px 24px
+        rgba(23, 63, 150, 0.20);
+}
+
+
+.itinerario-fecha::after {
+    content: "";
+
+    position: absolute;
+
+    width: 120px;
+    height: 120px;
+
+    top: -70px;
+    right: -35px;
+
+    background:
+        rgba(255, 255, 255, 0.08);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+
+#itinerario-dia-semana {
+    grid-column: 2;
+    grid-row: 1;
+
+    align-self: end;
+
+    color:
+        rgba(255, 255, 255, 0.72);
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: 1.3px;
+}
+
+
+#itinerario-dia {
+    grid-column: 1;
+    grid-row:
+        1 / 3;
+
+    position: relative;
+    z-index: 1;
+
+    color: #ffffff;
+
+    font-size: 42px;
+    font-weight: 850;
+
+    line-height: 1;
+
+    letter-spacing: -1.5px;
+}
+
+
+#itinerario-mes {
+    grid-column: 2;
+    grid-row: 2;
+
+    align-self: start;
+
+    margin-top: 2px;
+
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: 750;
+
+    letter-spacing: 0.3px;
+}
+
+
+/* =========================================================
+   SECCIÓN DE ACTIVIDADES
+========================================================= */
+
+.itinerario-seccion {
+    width: 100%;
+}
+
+
+.itinerario-seccion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 16px;
+
+    padding:
+        0
+        2px;
+}
+
+
+.itinerario-seccion-label {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color:
+        #8090aa;
+
+    font-size: 8px;
+    font-weight: 800;
+
+    letter-spacing: 1.2px;
+}
+
+
+.itinerario-seccion-header h2 {
+    color:
+        var(--azul);
+
+    font-size: 20px;
+    font-weight: 800;
+
+    letter-spacing: -0.4px;
+}
+
+
+.itinerario-total {
+    min-width: 31px;
+    height: 31px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding:
+        0
+        8px;
+
+    color:
+        var(--azul);
+
+    background:
+        #e5edff;
+
+    border-radius: 10px;
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   LÍNEA DE TIEMPO
+========================================================= */
+
+.lista-itinerario {
+    width: 100%;
+}
+
+
+.itinerario-item {
+    display: grid;
+
+    grid-template-columns:
+        63px
+        22px
+        minmax(0, 1fr);
+
+    align-items: stretch;
+
+    min-height: 105px;
+}
+
+
+/* HORA */
+
+.itinerario-hora {
+    padding-top: 17px;
+
+    color:
+        var(--azul);
+
+    font-size: 10px;
+    font-weight: 800;
+
+    line-height: 1.2;
+
+    white-space: nowrap;
+}
+
+
+/* COLUMNA DE LÍNEA */
+
+.itinerario-linea {
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+
+    width: 22px;
+}
+
+
+.itinerario-linea::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+
+    left: 50%;
+
+    width: 2px;
+
+    transform:
+        translateX(-50%);
+
+    background:
+        #dbe5f5;
+}
+
+
+/* PRIMER ITEM */
+
+.itinerario-item-primero
+.itinerario-linea::before {
+    top: 20px;
+}
+
+
+/* ÚLTIMO ITEM */
+
+.itinerario-item-ultimo
+.itinerario-linea::before {
+    bottom:
+        calc(100% - 21px);
+}
+
+
+/* PUNTO */
+
+.itinerario-punto {
+    position: relative;
+    z-index: 2;
+
+    width: 11px;
+    height: 11px;
+
+    margin-top: 18px;
+
+    background:
+        var(--azul);
+
+    border:
+        3px solid
+        #ffffff;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 0 2px
+        rgba(23, 63, 150, 0.20);
+}
+
+
+/* =========================================================
+   TARJETA DE ACTIVIDAD
+========================================================= */
+
+.itinerario-actividad {
+    min-width: 0;
+
+    margin:
+        0
+        0
+        12px
+        8px;
+
+    padding:
+        15px
+        16px;
+
+    background:
+        rgba(255, 255, 255, 0.98);
+
+    border:
+        1px solid
+        #e7ecf4;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 4px 13px
+        rgba(23, 63, 150, 0.045);
+
+    transition:
+        transform 160ms ease,
+        box-shadow 160ms ease;
+}
+
+
+.itinerario-actividad h3 {
+    margin: 0;
+
+    color:
+        #20345b;
+
+    font-size: 14px;
+    font-weight: 800;
+
+    line-height: 1.3;
+}
+
+
+/* =========================================================
+   UBICACIÓN
+========================================================= */
+
+.itinerario-lugar {
+    display: flex;
+    align-items: center;
+
+    gap: 5px;
+
+    margin-top: 7px;
+
+    color:
+        #5472aa;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    line-height: 1.3;
+}
+
+
+.itinerario-lugar svg {
+    width: 13px;
+    height: 13px;
+
+    flex-shrink: 0;
+
+    fill: none;
+
+    stroke:
+        currentColor;
+
+    stroke-width: 1.8;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+/* DESCRIPCIÓN */
+
+.itinerario-actividad > p {
+    margin-top: 8px;
+
+    color:
+        #8793a7;
+
+    font-size: 11px;
+
+    line-height: 1.45;
+}
+
+
+/* =========================================================
+   AVISO
+========================================================= */
+
+.itinerario-aviso {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 10px;
+
+    margin-top: 13px;
+
+    padding:
+        13px
+        14px;
+
+    color:
+        #647590;
+
+    background:
+        #edf3ff;
+
+    border:
+        1px solid
+        #dce7fb;
+
+    border-radius: 13px;
+}
+
+
+.itinerario-aviso-icono {
+    width: 20px;
+    height: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-shrink: 0;
+
+    color:
+        #ffffff;
+
+    background:
+        var(--azul);
+
+    border-radius: 50%;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+
+.itinerario-aviso p {
+    margin: 0;
+
+    font-size: 10px;
+    line-height: 1.45;
+}
+
+
+/* =========================================================
+   VOLVER AL INICIO
+========================================================= */
+
+.btn-volver-itinerario {
+    width: 100%;
+    min-height: 48px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 7px;
+
+    margin-top: 18px;
+
+    color:
+        #6f7f9f;
+
+    background:
+        transparent;
+
+    border: none;
+    border-radius: 13px;
+
+    font-size: 11px;
+    font-weight: 750;
+
+    cursor: pointer;
+
+    transition:
+        color 150ms ease,
+        background 150ms ease,
+        transform 150ms ease;
+}
+
+
+.btn-volver-itinerario svg {
+    width: 17px;
+    height: 17px;
+
+    fill: none;
+
+    stroke:
+        currentColor;
+
+    stroke-width: 2;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+.btn-volver-itinerario:hover {
+    color:
+        var(--azul);
+
+    background:
+        rgba(23, 63, 150, 0.05);
+}
+
+
+.btn-volver-itinerario:active {
+    transform:
+        scale(0.98);
+}
+
+
+/* =========================================================
+   ESTADOS DE CARGA / ERROR
+========================================================= */
+
+.itinerario-cargando {
+    padding:
+        35px
+        15px;
+
+    color:
+        #8d99ad;
+
+    text-align: center;
+
+    font-size: 12px;
+}
+
+
+.itinerario-estado {
+    padding:
+        30px
+        20px;
+
+    text-align: center;
+
+    background:
+        #ffffff;
+
+    border:
+        1px solid
+        #e7ecf4;
+
+    border-radius: 17px;
+
+    box-shadow:
+        0 4px 13px
+        rgba(23, 63, 150, 0.04);
+}
+
+
+.itinerario-estado strong {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color:
+        var(--azul);
+
+    font-size: 14px;
+    font-weight: 800;
+}
+
+
+.itinerario-estado p {
+    margin: 0;
+
+    color:
+        #8793a7;
+
+    font-size: 11px;
+    line-height: 1.45;
+}
+
+
+.itinerario-error strong {
+    color:
+        #c94343;
+}
+
+
+/* =========================================================
+   MICROINTERACCIONES
+========================================================= */
+
+@media (hover: hover) {
+
+    .itinerario-actividad:hover {
+        transform:
+            translateY(-1px);
+
+        box-shadow:
+            0 7px 18px
+            rgba(23, 63, 150, 0.07);
+    }
+
+}
+
+
+/* =========================================================
+   ITINERARIO - TELÉFONOS PEQUEÑOS
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .itinerario-app {
+        padding-left:
+            13px;
+
+        padding-right:
+            13px;
+    }
+
+
+    .itinerario-header h1 {
+        font-size:
+            27px;
+    }
+
+
+    .itinerario-fecha {
+        padding:
+            15px;
+    }
+
+
+    #itinerario-dia {
+        font-size:
+            38px;
+    }
+
+
+    #itinerario-mes {
+        font-size:
+            13px;
+    }
+
+
+    .itinerario-item {
+        grid-template-columns:
+            55px
+            19px
+            minmax(0, 1fr);
+    }
+
+
+    .itinerario-hora {
+        font-size:
+            9px;
+    }
+
+
+    .itinerario-actividad {
+        margin-left:
+            5px;
+
+        padding:
+            13px;
+    }
+
+
+    .itinerario-actividad h3 {
+        font-size:
+            13px;
+    }
+
+}
+
 
 /* =========================================================
    30. MOVIMIENTO REDUCIDO

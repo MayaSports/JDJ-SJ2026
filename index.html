@@ -18,7 +18,7 @@
 
     <link
         rel="stylesheet"
-        href="css/estilos.css?v=20"
+        href="css/estilos.css?v=21"
     >
 </head>
 
@@ -80,6 +80,67 @@
                     →
                 </span>
             </button>
+
+            <!-- =====================================================
+     ITINERARIO
+===================================================== -->
+
+<button
+    id="btn-itinerario"
+    class="inicio-accion-itinerario"
+    type="button"
+    aria-label="Ver itinerario del evento"
+>
+    <span
+        class="inicio-itinerario-icono"
+        aria-hidden="true"
+    >
+        <svg
+            viewBox="0 0 24 24"
+            width="22"
+            height="22"
+        >
+            <rect
+                x="3"
+                y="5"
+                width="18"
+                height="16"
+                rx="3"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+            ></rect>
+
+            <path
+                d="M8 3v4M16 3v4M3 10h18"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+            ></path>
+
+            <path
+                d="M8 14h3M8 17h6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+            ></path>
+        </svg>
+    </span>
+
+    <span class="inicio-itinerario-texto">
+        <strong>Ver itinerario</strong>
+        <small>Horarios y actividades del evento</small>
+    </span>
+
+    <span
+        class="inicio-itinerario-flecha"
+        aria-hidden="true"
+    >
+        ›
+    </span>
+</button>
 
         </div>
 
@@ -548,6 +609,185 @@
 
     </section>
 
+    <!-- =========================================================
+     PANTALLA ITINERARIO
+========================================================= -->
+
+<main
+    id="pantalla-itinerario"
+    class="pantalla"
+    style="display: none;"
+>
+
+    <div class="itinerario-app">
+
+        <!-- =============================================
+             HEADER
+        ============================================== -->
+
+        <header class="itinerario-header">
+
+            <div>
+
+                <span class="itinerario-eyebrow">
+                    JDJ · SAN JUAN 2026
+                </span>
+
+                <h1>
+                    Itinerario
+                </h1>
+
+                <p>
+                    Horarios y actividades del evento
+                </p>
+
+            </div>
+
+            <div
+                class="itinerario-icono-header"
+                aria-hidden="true"
+            >
+                <svg viewBox="0 0 24 24">
+
+                    <rect
+                        x="3"
+                        y="5"
+                        width="18"
+                        height="16"
+                        rx="3"
+                    ></rect>
+
+                    <path
+                        d="M8 3v4M16 3v4M3 10h18"
+                    ></path>
+
+                </svg>
+            </div>
+
+        </header>
+
+
+        <!-- =============================================
+             FECHA
+        ============================================== -->
+
+        <section
+            id="itinerario-fecha"
+            class="itinerario-fecha"
+            aria-live="polite"
+        >
+
+            <span id="itinerario-dia-semana">
+                EVENTO
+            </span>
+
+            <strong id="itinerario-dia">
+                —
+            </strong>
+
+            <small id="itinerario-mes">
+                —
+            </small>
+
+        </section>
+
+
+        <!-- =============================================
+             ACTIVIDADES
+        ============================================== -->
+
+        <section class="itinerario-seccion">
+
+            <div class="itinerario-seccion-header">
+
+                <div>
+
+                    <span class="itinerario-seccion-label">
+                        AGENDA
+                    </span>
+
+                    <h2>
+                        Actividades
+                    </h2>
+
+                </div>
+
+                <span
+                    id="itinerario-total"
+                    class="itinerario-total"
+                >
+                    0
+                </span>
+
+            </div>
+
+
+            <!-- Las actividades se crean desde app.js -->
+
+            <div
+                id="lista-itinerario"
+                class="lista-itinerario"
+                aria-live="polite"
+            >
+
+                <p class="itinerario-cargando">
+                    Cargando itinerario...
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =============================================
+             INFORMACIÓN
+        ============================================== -->
+
+        <div class="itinerario-aviso">
+
+            <span
+                class="itinerario-aviso-icono"
+                aria-hidden="true"
+            >
+                i
+            </span>
+
+            <p>
+                Los horarios pueden actualizarse durante
+                el evento. Consulta esta sección para ver
+                la información más reciente.
+            </p>
+
+        </div>
+
+
+        <!-- =============================================
+             VOLVER
+        ============================================== -->
+
+        <button
+            id="btn-volver-itinerario"
+            class="btn-volver-itinerario"
+            type="button"
+        >
+
+            <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+            >
+                <path d="M15 18l-6-6 6-6"></path>
+            </svg>
+
+            <span>
+                Volver al inicio
+            </span>
+
+        </button>
+
+    </div>
+
+</main>
+
 
     <!-- =====================================================
          DASHBOARD DE PARQUEOS
@@ -877,6 +1117,8 @@
 
     </section>
 
+    
+
 
     <!-- =====================================================
          LIBRERÍAS
@@ -897,7 +1139,7 @@
          JAVASCRIPT PRINCIPAL
     ====================================================== -->
 
-    <script src="js/app.js?v=16"></script>
+    <script src="js/app.js?v=17"></script>
 
 </body>
 
