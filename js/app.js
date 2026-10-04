@@ -216,6 +216,14 @@ const itinerarioTotal =
 const listaItinerario =
     document.getElementById("lista-itinerario");
 
+    // =====================================================
+// AYUDA
+// =====================================================
+
+const btnAyuda = document.getElementById("btn-ayuda");
+const pantallaAyuda = document.getElementById("pantalla-ayuda");
+const btnWhatsAppAyuda = document.getElementById("btn-whatsapp-ayuda");
+const btnVolverAyuda = document.getElementById("btn-volver-ayuda");
 
 
 
@@ -245,6 +253,7 @@ function ocultarPantallas() {
     pantallaEncargado.style.display = "none";
     pantallaDashboard.style.display = "none";
     pantallaItinerario.style.display = "none";
+    pantallaAyuda.style.display = "none";
 }
 
 
@@ -371,6 +380,53 @@ btnVolverItinerario.addEventListener(
         mostrarInicio();
     }
 );
+
+// =====================================================
+// ABRIR AYUDA
+// =====================================================
+
+btnAyuda.addEventListener("click", function () {
+    ocultarPantallas();
+
+    pantallaAyuda.style.display = "block";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+
+// =====================================================
+// VOLVER DESDE AYUDA
+// =====================================================
+
+btnVolverAyuda.addEventListener("click", function () {
+    mostrarInicio();
+});
+
+// =====================================================
+// CONTACTO POR WHATSAPP
+// =====================================================
+
+btnWhatsAppAyuda.addEventListener("click", function () {
+
+    const numeroWhatsApp = "50241151019";
+
+    const mensajeWhatsApp =
+        "Hola, voy para la JDJ SAN JUAN 26 necesito ayuda";
+
+    const urlWhatsApp =
+        "https://wa.me/" +
+        numeroWhatsApp +
+        "?text=" +
+        encodeURIComponent(mensajeWhatsApp);
+
+    window.open(
+        urlWhatsApp,
+        "_blank",
+        "noopener,noreferrer"
+    );
+});
 
 
 // =========================================================

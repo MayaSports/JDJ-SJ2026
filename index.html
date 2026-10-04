@@ -90,7 +90,7 @@
     class="inicio-accion-itinerario"
     type="button"
     aria-label="Ver itinerario del evento"
->
+    >
     <span
         class="inicio-itinerario-icono"
         aria-hidden="true"
@@ -166,6 +166,28 @@
         </p>
 
     </main>
+
+    <!-- =====================================================
+     AYUDA
+===================================================== -->
+
+<button
+    id="btn-ayuda"
+    class="inicio-ayuda"
+    type="button"
+    aria-label="Abrir ayuda"
+>
+    <span
+        class="inicio-ayuda-icono"
+        aria-hidden="true"
+    >
+        ?
+    </span>
+
+    <span>
+        ¿Necesitas ayuda?
+    </span>
+</button>
 
 
     <!-- =====================================================
@@ -768,6 +790,349 @@
         <button
             id="btn-volver-itinerario"
             class="btn-volver-itinerario"
+            type="button"
+        >
+
+            <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+            >
+                <path d="M15 18l-6-6 6-6"></path>
+            </svg>
+
+            <span>
+                Volver al inicio
+            </span>
+
+        </button>
+
+    </div>
+
+</main>
+
+<!-- =========================================================
+     PANTALLA AYUDA
+========================================================= -->
+
+<main
+    id="pantalla-ayuda"
+    class="pantalla"
+    style="display: none;"
+>
+
+    <div class="ayuda-app">
+
+        <!-- =============================================
+             HEADER
+        ============================================== -->
+
+        <header class="ayuda-header">
+
+            <div>
+
+                <span class="ayuda-eyebrow">
+                    JDJ · SAN JUAN 2026
+                </span>
+
+                <h1>
+                    ¿Necesitas ayuda?
+                </h1>
+
+                <p>
+                    Estamos para ayudarte durante tu llegada
+                    al evento.
+                </p>
+
+            </div>
+
+            <div
+                class="ayuda-icono-header"
+                aria-hidden="true"
+            >
+                ?
+            </div>
+
+        </header>
+
+
+        <!-- =============================================
+             MENSAJE PRINCIPAL
+        ============================================== -->
+
+        <section class="ayuda-bienvenida">
+
+            <div
+                class="ayuda-bienvenida-icono"
+                aria-hidden="true"
+            >
+                <svg viewBox="0 0 24 24">
+
+                    <path
+                        d="M12 21s7-5.2 7-12a7 7 0 1 0-14 0c0 6.8 7 12 7 12z"
+                    ></path>
+
+                    <circle
+                        cx="12"
+                        cy="9"
+                        r="2.3"
+                    ></circle>
+
+                </svg>
+            </div>
+
+            <div>
+
+                <strong>
+                    Tu llegada a JDJ
+                </strong>
+
+                <p>
+                    Sigue tu asignación de parqueo y conserva
+                    tu código QR para presentarlo al llegar.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =============================================
+             GUÍA RÁPIDA
+        ============================================== -->
+
+        <section class="ayuda-seccion">
+
+            <div class="ayuda-seccion-titulo">
+
+                <span>
+                    GUÍA RÁPIDA
+                </span>
+
+                <h2>
+                    ¿Cómo funciona?
+                </h2>
+
+            </div>
+
+
+            <div class="ayuda-pasos">
+
+                <!-- PASO 1 -->
+
+                <article class="ayuda-paso">
+
+                    <span class="ayuda-paso-numero">
+                        1
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Registra tu vehículo
+                        </strong>
+
+                        <p>
+                            Ingresa tu nombre y selecciona
+                            el tipo de vehículo con el que
+                            llegarás al evento.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PASO 2 -->
+
+                <article class="ayuda-paso">
+
+                    <span class="ayuda-paso-numero">
+                        2
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Guarda tu código QR
+                        </strong>
+
+                        <p>
+                            El sistema te asignará un parqueo
+                            y generará tu código de ingreso.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PASO 3 -->
+
+                <article class="ayuda-paso">
+
+                    <span class="ayuda-paso-numero">
+                        3
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Dirígete a tu parqueo
+                        </strong>
+
+                        <p>
+                            Utiliza Google Maps o Waze desde
+                            la pantalla de asignación para
+                            llegar al parqueo indicado.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PASO 4 -->
+
+                <article class="ayuda-paso">
+
+                    <span class="ayuda-paso-numero">
+                        4
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Presenta tu QR
+                        </strong>
+
+                        <p>
+                            Al llegar, muestra tu código al
+                            encargado para confirmar tu
+                            ingreso.
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =============================================
+             CONTACTO
+        ============================================== -->
+
+        <section class="ayuda-contacto">
+
+            <div class="ayuda-contacto-superior">
+
+                <div
+                    class="ayuda-whatsapp-icono"
+                    aria-hidden="true"
+                >
+                    <svg viewBox="0 0 24 24">
+
+                        <path
+                            d="M20.5 11.8a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.3-4.2A8.5 8.5 0 1 1 20.5 11.8z"
+                        ></path>
+
+                        <path
+                            d="M8.3 7.7c.2-.5.4-.5.7-.5h.5c.2 0 .4.1.5.4l.8 1.9c.1.3 0 .5-.2.7l-.6.7c-.2.2-.1.4 0 .6.7 1.2 1.6 2.1 2.8 2.8.2.1.4.2.6 0l.8-1c.2-.2.4-.3.7-.2l1.9.9c.3.1.4.3.4.5 0 .4-.2 1.3-.8 1.8-.6.5-1.4.8-2.3.6-1-.2-2.3-.7-4-2.2-1.3-1.2-2.2-2.6-2.7-3.7-.5-1.1-.5-2-.3-2.6.2-.4.6-.7 1.2-.7z"
+                        ></path>
+
+                    </svg>
+                </div>
+
+
+                <div>
+
+                    <span>
+                        CONTACTO
+                    </span>
+
+                    <h2>
+                        ¿Aún necesitas ayuda?
+                    </h2>
+
+                    <p>
+                        Escríbenos por WhatsApp y te
+                        ayudaremos con tu llegada.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="ayuda-numero">
+
+                <span>
+                    WhatsApp
+                </span>
+
+                <strong>
+                    +502 4115 1019
+                </strong>
+
+            </div>
+
+
+            <button
+                id="btn-whatsapp-ayuda"
+                class="btn-whatsapp-ayuda"
+                type="button"
+            >
+
+                <svg
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                >
+                    <path
+                        d="M20.5 11.8a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.3-4.2A8.5 8.5 0 1 1 20.5 11.8z"
+                    ></path>
+
+                    <path
+                        d="M8.3 7.7c.2-.5.4-.5.7-.5h.5c.2 0 .4.1.5.5l.8 1.8c.1.3 0 .5-.2.7l-.6.7c-.2.2-.1.4 0 .6.7 1.2 1.6 2.1 2.8 2.8.2.1.4.2.6 0l.8-1c.2-.2.4-.3.7-.2l1.9.9c.3.1.4.3.4.5 0 .4-.2 1.3-.8 1.8-.6.5-1.4.8-2.3.6-1-.2-2.3-.7-4-2.2-1.3-1.2-2.2-2.6-2.7-3.7-.5-1.1-.5-2-.3-2.6.2-.4.6-.7 1.2-.7z"
+                    ></path>
+                </svg>
+
+                <span>
+                    Contactar por WhatsApp
+                </span>
+
+            </button>
+
+        </section>
+
+
+        <!-- =============================================
+             NOTA
+        ============================================== -->
+
+        <div class="ayuda-nota">
+
+            <span aria-hidden="true">
+                i
+            </span>
+
+            <p>
+                Si ya tienes un parqueo asignado,
+                ten a la mano tu código JDJ cuando
+                solicites ayuda.
+            </p>
+
+        </div>
+
+
+        <!-- =============================================
+             VOLVER
+        ============================================== -->
+
+        <button
+            id="btn-volver-ayuda"
+            class="btn-volver-ayuda"
             type="button"
         >
 

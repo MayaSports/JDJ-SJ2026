@@ -3941,6 +3941,600 @@ and
 
 }
 
+/* =========================================================
+   AYUDA · JDJ SAN JUAN 2026
+========================================================= */
+
+.inicio-ayuda {
+    width: 100%;
+    margin-top: 12px;
+    padding: 10px 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    border: 0;
+    background: transparent;
+
+    color: #5f6f86;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.inicio-ayuda:hover {
+    color: #135ecb;
+}
+
+.inicio-ayuda:active {
+    transform: scale(0.98);
+}
+
+.inicio-ayuda-icono {
+    width: 22px;
+    height: 22px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1.5px solid currentColor;
+    border-radius: 50%;
+
+    font-size: 13px;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   PANTALLA
+========================================================= */
+
+#pantalla-ayuda {
+    min-height: 100vh;
+    background: #f5f8fc;
+}
+
+.ayuda-app {
+    width: min(100%, 520px);
+    min-height: 100vh;
+
+    margin: 0 auto;
+    padding: 24px 18px 36px;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.ayuda-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 18px;
+
+    margin-bottom: 22px;
+}
+
+.ayuda-eyebrow {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #1769d2;
+
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.ayuda-header h1 {
+    margin: 0;
+
+    color: #10223f;
+
+    font-size: clamp(27px, 7vw, 34px);
+    line-height: 1.08;
+    letter-spacing: -0.8px;
+}
+
+.ayuda-header p {
+    max-width: 330px;
+
+    margin: 9px 0 0;
+
+    color: #6c7b90;
+
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+.ayuda-icono-header {
+    flex: 0 0 auto;
+
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 16px;
+
+    background: #e7f0ff;
+    color: #1769d2;
+
+    font-size: 22px;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   BIENVENIDA
+========================================================= */
+
+.ayuda-bienvenida {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+
+    margin-bottom: 28px;
+    padding: 17px;
+
+    border: 1px solid #dce8f8;
+    border-radius: 20px;
+
+    background: #ffffff;
+}
+
+.ayuda-bienvenida-icono {
+    flex: 0 0 auto;
+
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background: #eaf2ff;
+    color: #1769d2;
+}
+
+.ayuda-bienvenida-icono svg {
+    width: 22px;
+    height: 22px;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.ayuda-bienvenida strong {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #142642;
+
+    font-size: 15px;
+}
+
+.ayuda-bienvenida p {
+    margin: 0;
+
+    color: #6c7b90;
+
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   GUÍA RÁPIDA
+========================================================= */
+
+.ayuda-seccion {
+    margin-bottom: 28px;
+}
+
+.ayuda-seccion-titulo {
+    margin-bottom: 17px;
+}
+
+.ayuda-seccion-titulo span {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #1769d2;
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+}
+
+.ayuda-seccion-titulo h2 {
+    margin: 0;
+
+    color: #142642;
+
+    font-size: 21px;
+    letter-spacing: -0.3px;
+}
+
+
+/* =========================================================
+   PASOS
+========================================================= */
+
+.ayuda-pasos {
+    display: grid;
+    gap: 10px;
+}
+
+.ayuda-paso {
+    position: relative;
+
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+
+    padding: 15px;
+
+    border: 1px solid #e3eaf3;
+    border-radius: 17px;
+
+    background: #ffffff;
+}
+
+.ayuda-paso-numero {
+    flex: 0 0 auto;
+
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #1769d2;
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.ayuda-paso strong {
+    display: block;
+
+    margin: 1px 0 4px;
+
+    color: #172944;
+
+    font-size: 14px;
+}
+
+.ayuda-paso p {
+    margin: 0;
+
+    color: #718096;
+
+    font-size: 12.5px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   CONTACTO WHATSAPP
+========================================================= */
+
+.ayuda-contacto {
+    margin-bottom: 18px;
+    padding: 20px;
+
+    border: 1px solid #dce7e1;
+    border-radius: 22px;
+
+    background: #ffffff;
+}
+
+.ayuda-contacto-superior {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+.ayuda-whatsapp-icono {
+    flex: 0 0 auto;
+
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: #e8f8ef;
+    color: #169b53;
+}
+
+.ayuda-whatsapp-icono svg {
+    width: 25px;
+    height: 25px;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.ayuda-contacto-superior span {
+    display: block;
+
+    margin: 1px 0 3px;
+
+    color: #169b53;
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.3px;
+}
+
+.ayuda-contacto-superior h2 {
+    margin: 0;
+
+    color: #142642;
+
+    font-size: 19px;
+}
+
+.ayuda-contacto-superior p {
+    margin: 6px 0 0;
+
+    color: #718096;
+
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   NÚMERO
+========================================================= */
+
+.ayuda-numero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+
+    margin: 18px 0 13px;
+    padding: 13px 14px;
+
+    border-radius: 13px;
+
+    background: #f5f8fa;
+}
+
+.ayuda-numero span {
+    color: #778598;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.ayuda-numero strong {
+    color: #172944;
+
+    font-size: 14px;
+    letter-spacing: 0.2px;
+}
+
+
+/* =========================================================
+   BOTÓN WHATSAPP
+========================================================= */
+
+.btn-whatsapp-ayuda {
+    width: 100%;
+    min-height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    padding: 13px 18px;
+
+    border: 0;
+    border-radius: 15px;
+
+    background: #1faa59;
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.18s ease,
+        background 0.18s ease;
+}
+
+.btn-whatsapp-ayuda svg {
+    width: 22px;
+    height: 22px;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.btn-whatsapp-ayuda:hover {
+    background: #198f4a;
+}
+
+.btn-whatsapp-ayuda:active {
+    transform: scale(0.985);
+}
+
+
+/* =========================================================
+   NOTA
+========================================================= */
+
+.ayuda-nota {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+
+    margin-bottom: 22px;
+    padding: 13px 14px;
+
+    border-radius: 14px;
+
+    background: #eaf2ff;
+}
+
+.ayuda-nota > span {
+    flex: 0 0 auto;
+
+    width: 20px;
+    height: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1.5px solid #1769d2;
+    border-radius: 50%;
+
+    color: #1769d2;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.ayuda-nota p {
+    margin: 0;
+
+    color: #4f6582;
+
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   VOLVER
+========================================================= */
+
+.btn-volver-ayuda {
+    width: 100%;
+    min-height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    padding: 12px 16px;
+
+    border: 1px solid #dbe4ef;
+    border-radius: 15px;
+
+    background: #ffffff;
+    color: #40536d;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 750;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.18s ease,
+        color 0.18s ease,
+        transform 0.18s ease;
+}
+
+.btn-volver-ayuda svg {
+    width: 18px;
+    height: 18px;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.btn-volver-ayuda:hover {
+    border-color: #b8cbe5;
+    color: #1769d2;
+}
+
+.btn-volver-ayuda:active {
+    transform: scale(0.985);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .ayuda-app {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .ayuda-header {
+        gap: 12px;
+    }
+
+    .ayuda-icono-header {
+        width: 43px;
+        height: 43px;
+        border-radius: 14px;
+    }
+
+    .ayuda-contacto {
+        padding: 17px;
+    }
+
+    .ayuda-numero {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 3px;
+    }
+
+}
+
 
 /* =========================================================
    30. MOVIMIENTO REDUCIDO
