@@ -18,7 +18,7 @@
 
     <link
         rel="stylesheet"
-        href="css/estilos.css?v=26"
+        href="css/estilos.css?v=27"
     >
 </head>
 
@@ -812,52 +812,205 @@
 
 
     <!-- =====================================================
-         LOGIN ENCARGADO
-    ====================================================== -->
+     LOGIN ENCARGADO
+====================================================== -->
 
-    <section
-        id="pantalla-login-encargado"
-        class="pantalla"
-    >
+<section
+    id="pantalla-login-encargado"
+    class="pantalla"
+>
 
-        <div class="encargado-contenido">
+    <div class="login-app">
 
-            <h1>ACCESO ENCARGADO</h1>
+        <!-- Navegación superior -->
 
-            <p class="subtitulo-encargado">
-                Ingresa tus credenciales para continuar
+        <header class="login-topbar">
+
+            <button
+                id="btn-volver-login"
+                class="login-volver"
+                type="button"
+                aria-label="Volver al inicio"
+            >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M15 18l-6-6 6-6"></path>
+                </svg>
+            </button>
+
+
+            <span class="login-eyebrow">
+                JDJ · SAN JUAN 2026
+            </span>
+
+
+            <span class="login-seguro">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <rect
+                        x="5"
+                        y="10"
+                        width="14"
+                        height="10"
+                        rx="3"
+                    ></rect>
+
+                    <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+                </svg>
+
+                SEGURO
+            </span>
+
+        </header>
+
+
+        <!-- Presentación -->
+
+        <section class="login-presentacion">
+
+            <div
+                class="login-icono-principal"
+                aria-hidden="true"
+            >
+                <svg viewBox="0 0 24 24">
+
+                    <circle
+                        cx="12"
+                        cy="8"
+                        r="3.5"
+                    ></circle>
+
+                    <path
+                        d="M5.5 20c.6-4 2.8-6 6.5-6s5.9 2 6.5 6"
+                    ></path>
+
+                    <path
+                        d="M17 12.5l1.5 1.5 2.5-3"
+                    ></path>
+
+                </svg>
+            </div>
+
+
+            <span class="login-presentacion-label">
+                PERSONAL JDJ
+            </span>
+
+            <h1>
+                Acceso de encargado
+            </h1>
+
+            <p>
+                Ingresa tus credenciales para acceder
+                al control de ingreso de vehículos.
             </p>
 
+        </section>
 
-            <form id="form-login-encargado">
 
-                <div class="campo">
+        <!-- Formulario -->
 
-                    <label for="usuario-encargado">
-                        Usuario
-                    </label>
+        <form id="form-login-encargado">
+
+            <div class="login-form-header">
+
+                <span>
+                    INICIAR SESIÓN
+                </span>
+
+                <h2>
+                    Bienvenido
+                </h2>
+
+                <p>
+                    Utiliza las credenciales asignadas
+                    por la organización.
+                </p>
+
+            </div>
+
+
+            <!-- Usuario -->
+
+            <div class="campo login-campo">
+
+                <label for="usuario-encargado">
+                    Usuario
+                </label>
+
+
+                <div class="login-input-wrapper">
+
+                    <span
+                        class="login-input-icono"
+                        aria-hidden="true"
+                    >
+                        <svg viewBox="0 0 24 24">
+
+                            <circle
+                                cx="12"
+                                cy="8"
+                                r="3.5"
+                            ></circle>
+
+                            <path
+                                d="M5 20c.5-4 3-6 7-6s6.5 2 7 6"
+                            ></path>
+
+                        </svg>
+                    </span>
+
 
                     <input
                         type="text"
                         id="usuario-encargado"
-                        placeholder="Ej: encargado1"
+                        placeholder="Ingresa tu usuario"
                         autocomplete="username"
+                        autocapitalize="none"
+                        spellcheck="false"
                         required
                     >
 
                 </div>
 
+            </div>
 
-                <div class="campo">
 
-                    <label for="pin-encargado">
-                        PIN
-                    </label>
+            <!-- PIN -->
+
+            <div class="campo login-campo">
+
+                <label for="pin-encargado">
+                    PIN de acceso
+                </label>
+
+
+                <div class="login-input-wrapper">
+
+                    <span
+                        class="login-input-icono"
+                        aria-hidden="true"
+                    >
+                        <svg viewBox="0 0 24 24">
+
+                            <rect
+                                x="5"
+                                y="10"
+                                width="14"
+                                height="10"
+                                rx="3"
+                            ></rect>
+
+                            <path
+                                d="M8 10V7a4 4 0 0 1 8 0v3"
+                            ></path>
+
+                        </svg>
+                    </span>
+
 
                     <input
                         type="password"
                         id="pin-encargado"
-                        placeholder="Ingresa tu PIN"
+                        placeholder="••••"
                         inputmode="numeric"
                         autocomplete="current-password"
                         required
@@ -865,181 +1018,401 @@
 
                 </div>
 
-
-                <p
-                    id="mensaje-login"
-                    class="mensaje-escaner"
-                    aria-live="polite"
-                ></p>
+            </div>
 
 
-                <button
-                    type="submit"
-                    class="btn-principal"
+            <!-- Mensaje del backend -->
+
+            <p
+                id="mensaje-login"
+                class="mensaje-escaner login-mensaje"
+                aria-live="polite"
+            ></p>
+
+
+            <!-- Ingresar -->
+
+            <button
+                type="submit"
+                class="btn-principal login-ingresar"
+            >
+
+                <span>
+                    Ingresar al sistema
+                </span>
+
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M9 6l6 6-6 6"></path>
+                </svg>
+
+            </button>
+
+
+            <!-- Seguridad -->
+
+            <div class="login-aviso">
+
+                <span
+                    class="login-aviso-icono"
+                    aria-hidden="true"
                 >
-                    INGRESAR
-                </button>
+                    <svg viewBox="0 0 24 24">
 
-            </form>
+                        <path
+                            d="M12 3l7 3v5c0 4.5-2.7 7.8-7 10-4.3-2.2-7-5.5-7-10V6l7-3z"
+                        ></path>
+
+                        <path
+                            d="M9.5 12l1.7 1.7 3.5-3.7"
+                        ></path>
+
+                    </svg>
+                </span>
+
+
+                <div>
+                    <strong>
+                        Acceso exclusivo
+                    </strong>
+
+                    <p>
+                        Esta sección está destinada únicamente
+                        al personal autorizado del evento.
+                    </p>
+                </div>
+
+            </div>
+
+        </form>
+
+
+        <p class="login-footer">
+            JDJ San Juan 2026 · Sistema de Parqueos
+        </p>
+
+    </div>
+
+</section>
+
+
+   <!-- =====================================================
+     CONTROL DE INGRESO
+====================================================== -->
+
+<section
+    id="pantalla-encargado"
+    class="pantalla"
+>
+
+    <div class="control-app">
+
+        <!-- Encabezado -->
+
+        <header class="control-header">
+
+            <div>
+                <span class="control-eyebrow">
+                    JDJ · SAN JUAN 2026
+                </span>
+
+                <h1>Control de ingreso</h1>
+
+                <p>
+                    Verifica y registra la llegada de vehículos.
+                </p>
+            </div>
+
+            <span class="control-en-vivo">
+                <span aria-hidden="true"></span>
+                ACTIVO
+            </span>
+
+        </header>
+
+
+        <!-- Escáner principal -->
+
+        <section class="control-escaner-card">
+
+            <div class="control-seccion-header">
+
+                <div class="control-seccion-icono">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M4 9V5h4"></path>
+                        <path d="M16 5h4v4"></path>
+                        <path d="M20 15v4h-4"></path>
+                        <path d="M8 19H4v-4"></path>
+                        <path d="M8 9h3v3H8z"></path>
+                        <path d="M14 9h2v2h-2z"></path>
+                        <path d="M14 14h3v3h-3z"></path>
+                        <path d="M8 15h3"></path>
+                    </svg>
+                </div>
+
+                <div>
+                    <span class="control-label">
+                        MÉTODO RECOMENDADO
+                    </span>
+
+                    <h2>Escanear código QR</h2>
+
+                    <p>
+                        Utiliza la cámara del teléfono para
+                        leer el pase del piloto.
+                    </p>
+                </div>
+
+            </div>
 
 
             <button
-                id="btn-volver-login"
-                class="btn-volver"
+                id="btn-escanear-qr"
+                class="btn-escanear control-btn-escanear"
                 type="button"
             >
-                VOLVER AL INICIO
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M4 8V5a1 1 0 0 1 1-1h3"></path>
+                    <path d="M16 4h3a1 1 0 0 1 1 1v3"></path>
+                    <path d="M20 16v3a1 1 0 0 1-1 1h-3"></path>
+                    <path d="M8 20H5a1 1 0 0 1-1-1v-3"></path>
+                    <path d="M7 12h10"></path>
+                </svg>
+
+                <span>
+                    Escanear código QR
+                </span>
             </button>
 
+
+            <div
+                id="lector-qr"
+                class="lector-qr control-lector"
+            ></div>
+
+
+            <p
+                id="mensaje-escaner"
+                class="mensaje-escaner control-mensaje"
+                aria-live="polite"
+            ></p>
+
+        </section>
+
+
+        <!-- Separador -->
+
+        <div class="control-separador">
+            <span></span>
+            <strong>O INGRESA EL CÓDIGO</strong>
+            <span></span>
         </div>
 
-    </section>
+
+        <!-- Búsqueda manual -->
+
+        <section class="control-busqueda-card">
+
+            <div class="control-busqueda-header">
+
+                <span class="control-busqueda-icono">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="11" cy="11" r="6"></circle>
+                        <path d="M16 16l4 4"></path>
+                    </svg>
+                </span>
+
+                <div>
+                    <h2>Búsqueda manual</h2>
+
+                    <p>
+                        Úsala si no es posible escanear el QR.
+                    </p>
+                </div>
+
+            </div>
 
 
-
-    <!-- =====================================================
-         CONTROL DE INGRESO
-    ====================================================== -->
-
-    <section
-        id="pantalla-encargado"
-        class="pantalla"
-    >
-
-        <div class="encargado-contenido">
-
-            <h1>CONTROL DE INGRESO</h1>
-
-            <p class="subtitulo-encargado">
-                Escanea el código presentado por el piloto
-            </p>
+            <label for="codigo-busqueda">
+                Código de ingreso
+            </label>
 
 
-            <!-- Búsqueda / escáner -->
+            <div class="control-codigo-wrapper">
 
-            <div class="tarjeta-busqueda">
-
-                <button
-                    id="btn-escanear-qr"
-                    class="btn-escanear"
-                    type="button"
-                >
-                    ESCANEAR CÓDIGO QR
-                </button>
-
-                <div
-                    id="lector-qr"
-                    class="lector-qr"
-                ></div>
-
-                <p
-                    id="mensaje-escaner"
-                    class="mensaje-escaner"
-                    aria-live="polite"
-                ></p>
-
-
-                <label for="codigo-busqueda">
-                    Código de Ingreso
-                </label>
+                <span aria-hidden="true">
+                    JDJ
+                </span>
 
                 <input
                     type="text"
                     id="codigo-busqueda"
-                    placeholder="Ej: JDJ-Z68Y0L"
+                    placeholder="JDJ-Z68Y0L"
                     autocomplete="off"
+                    autocapitalize="characters"
+                    spellcheck="false"
                 >
-
-
-                <button
-                    id="btn-buscar-codigo"
-                    class="btn-principal"
-                    type="button"
-                >
-                    BUSCAR VEHÍCULO
-                </button>
-
-            </div>
-
-
-            <!-- Resultado -->
-
-            <div
-                id="resultado-busqueda"
-                class="resultado-busqueda"
-            >
-
-                <div
-                    class="check-encontrado"
-                    aria-hidden="true"
-                >
-                    ✓
-                </div>
-
-                <h2>VEHÍCULO ENCONTRADO</h2>
-
-
-                <div class="datos-vehiculo">
-
-                    <p>
-                        <strong>Piloto:</strong>
-                        <span id="encargado-nombre">-</span>
-                    </p>
-
-                    <p>
-                        <strong>Tipo:</strong>
-                        <span id="encargado-tipo">-</span>
-                    </p>
-
-                    <p>
-                        <strong>Parqueo:</strong>
-                        <span id="encargado-codigo-parqueo">-</span>
-                    </p>
-
-                    <p>
-                        <strong>Nombre del parqueo:</strong>
-                        <span id="encargado-nombre-parqueo">-</span>
-                    </p>
-
-                    <p>
-                        <strong>Estado:</strong>
-                        <span id="encargado-estado">-</span>
-                    </p>
-
-                </div>
-
-
-                <button
-                    id="btn-confirmar-ingreso"
-                    class="btn-confirmar"
-                    type="button"
-                >
-                    CONFIRMAR INGRESO
-                </button>
 
             </div>
 
 
             <button
-                id="btn-dashboard"
-                class="btn-principal"
+                id="btn-buscar-codigo"
+                class="btn-principal control-btn-buscar"
                 type="button"
             >
-                VER DASHBOARD
+                <span>Buscar vehículo</span>
+
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="10.5" cy="10.5" r="5.5"></circle>
+                    <path d="M15 15l4.5 4.5"></path>
+                </svg>
             </button>
 
+        </section>
+
+
+        <!-- Resultado -->
+
+        <div
+            id="resultado-busqueda"
+            class="resultado-busqueda control-resultado"
+        >
+
+            <div class="control-resultado-header">
+
+                <div
+                    class="check-encontrado control-check"
+                    aria-hidden="true"
+                >
+                    <svg viewBox="0 0 24 24">
+                        <path d="M5 12.5l4.2 4.2L19 7"></path>
+                    </svg>
+                </div>
+
+                <div>
+                    <span>REGISTRO LOCALIZADO</span>
+                    <h2>Vehículo encontrado</h2>
+                </div>
+
+            </div>
+
+
+            <div class="datos-vehiculo control-datos">
+
+                <div class="control-dato">
+                    <span>PILOTO</span>
+                    <strong id="encargado-nombre">-</strong>
+                </div>
+
+                <div class="control-dato">
+                    <span>TIPO DE VEHÍCULO</span>
+                    <strong id="encargado-tipo">-</strong>
+                </div>
+
+                <div class="control-dato">
+                    <span>CÓDIGO DE PARQUEO</span>
+                    <strong id="encargado-codigo-parqueo">-</strong>
+                </div>
+
+                <div class="control-dato">
+                    <span>PARQUEO</span>
+                    <strong id="encargado-nombre-parqueo">-</strong>
+                </div>
+
+                <div class="control-dato control-dato-estado">
+                    <span>ESTADO</span>
+
+                    <strong id="encargado-estado">
+                        -
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <div class="control-confirmacion-aviso">
+
+                <span aria-hidden="true">i</span>
+
+                <p>
+                    Verifica que los datos coincidan antes
+                    de confirmar el ingreso.
+                </p>
+
+            </div>
+
+
             <button
-                id="btn-volver-inicio"
-                class="btn-volver"
+                id="btn-confirmar-ingreso"
+                class="btn-confirmar control-btn-confirmar"
                 type="button"
             >
-                VOLVER AL INICIO
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M5 12.5l4.2 4.2L19 7"></path>
+                </svg>
+
+                <span>Confirmar ingreso</span>
             </button>
 
         </div>
 
-    </section>
 
+        <!-- Herramientas -->
+
+        <section class="control-herramientas">
+
+            <span class="control-label">
+                HERRAMIENTAS
+            </span>
+
+            <button
+                id="btn-dashboard"
+                class="control-dashboard-btn"
+                type="button"
+            >
+                <span class="control-dashboard-icono">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="4" y="12" width="3" height="7" rx="1"></rect>
+                        <rect x="10.5" y="8" width="3" height="11" rx="1"></rect>
+                        <rect x="17" y="4" width="3" height="15" rx="1"></rect>
+                    </svg>
+                </span>
+
+                <span class="control-dashboard-texto">
+                    <strong>Estado de parqueos</strong>
+                    <small>
+                        Ver ocupación y disponibilidad
+                    </small>
+                </span>
+
+                <span class="control-dashboard-flecha">
+                    ›
+                </span>
+            </button>
+
+        </section>
+
+
+        <button
+            id="btn-volver-inicio"
+            class="control-volver"
+            type="button"
+        >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M15 18l-6-6 6-6"></path>
+            </svg>
+
+            <span>Volver al inicio</span>
+        </button>
+
+
+        <p class="control-footer">
+            JDJ San Juan 2026 · Personal autorizado
+        </p>
+
+    </div>
+
+</section>
 
 
     <!-- =====================================================
